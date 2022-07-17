@@ -1,13 +1,11 @@
 <?php
-$server_name="127.0.0.1";
-$user_name="root";
-$password="admin";
-$database_name="amitml_deni_avdija";
-$port=60796;
-$socket="/var/run/mysqld/mysqld.sock";
+$server_name="localhost";
+$user_name="isamitml_admin";
+$password="iG_W7XXnV!8U";
+$database_name="isamitml_db";
 
 //create connection
-$conn=new mysqli($server_name,$user_name,$password,$database_name,$port);
+$conn=new mysqli($server_name,$user_name,$password,$database_name);
 
 //check the connection
 if ($conn->connect_error){
