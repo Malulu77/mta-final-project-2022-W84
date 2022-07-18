@@ -1,6 +1,11 @@
 <?php
 // Include config file
-require_once "config.php";
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'isamitml_admin');
+define('DB_PASSWORD', 'iG_W7XXnV!8U');
+define('DB_NAME', 'isamitml_db');
+
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -130,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            <p>Already have an account? <a href="IdeaProjects/mta-final-project-2022-W84/includes/login/login.php">Login here</a>.</p>
         </form>
     </div>    
 </body>
