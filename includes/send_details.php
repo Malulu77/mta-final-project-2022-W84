@@ -1,5 +1,5 @@
 <?php
-$server_name="localhost";
+$server_name="localhost:3306";
 $user_name="isamitml_admin";
 $password="iG_W7XXnV!8U";
 $database_name="isamitml_db";

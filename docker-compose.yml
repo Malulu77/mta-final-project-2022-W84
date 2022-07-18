@@ -7,8 +7,11 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: isamitml_db
+      MYSQL_USER: isamitml_admin
+      MYSQL_PASSWORD: iG_W7XXnV!8U
     ports:
-      - "6033:3306"
+      - "9906:3306"
     restart: always
     volumes:
       - dbdata:/var/lib/mysql
@@ -24,5 +27,17 @@ services:
     restart: always
     ports:
       - 8082:80
+  php-apache-environment:
+    container_name: php-apache
+    build:
+      context: /Users/amalul/IdeaProjects/mta-final-project-2022-W84/includes/login/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - /Users/amalul/IdeaProjects/mta-final-project-2022-W84/includes/login/:/var/www/html/
+    ports:
+      - 8000:80
+    restart: always
 volumes:
   dbdata:
