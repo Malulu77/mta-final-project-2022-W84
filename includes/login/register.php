@@ -1,11 +1,17 @@
 <?php
-// Include config file
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'isamitml_admin');
-define('DB_PASSWORD', 'iG_W7XXnV!8U');
-define('DB_NAME', 'isamitml_db');
 
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$server_name = "localhost";
+$db_user_name = "isamitml_admin";
+$db_password = "iG_W7XXnV!8U";
+$database_name = "isamitml_db";
+
+//create connection
+$conn = mysqli_connect($server_name, $db_user_name, $db_password, $database_name);
+
+//check the connection
+if ($conn->connect_error){
+    die("Connection failed: ".$conn->connect_error);
+}
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -23,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
@@ -74,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
          
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
@@ -96,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
  
