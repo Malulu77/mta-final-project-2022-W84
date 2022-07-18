@@ -9,9 +9,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 //172.22.0.2 local
 $server_name = "localhost";
-$db_user_name = "isamitml_admin";
+$db_user_name = "isamitml_user";
 $db_password = "iG_W7XXnV!8U";
-$database_name = "isamitml_db";
+$database_name = "isamitml_db2";
 
 //create connection
 $conn = mysqli_connect($server_name, $db_user_name, $db_password, $database_name);
