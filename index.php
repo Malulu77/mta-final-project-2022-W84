@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: includes/login/login.php");
+    exit;
+}
+?>
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -21,7 +31,7 @@
     <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index.html">בית</a>
+          <a class="nav-link active" aria-current="page" href="/index.php">בית</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="includes/dani.html">על דני</a>
@@ -72,11 +82,11 @@
   <section class=" py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">דני אבדיה</h1>
-        <p class="lead text-muted">אתר המעריצים הרשמי</p>
+        <h1 class="fw-light">ברוכים הבאים!</h1>
+        <p class="lead text-muted"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></p>
         <p>
-          <a onclick="" class="btn btn-primary my-2">לסרטון</a>
-          <a href="#startArticle" class="btn btn-secondary my-2">לכתבות</a>
+          <a href="includes/login/logout.php" class="btn btn-secondary my-2">התנתקות</a>
+          <a href="includes/login/reset-password.php" class="btn btn-secondary my-2">איפוס סיסמא</a>
         </p>
       </div>
     </div>

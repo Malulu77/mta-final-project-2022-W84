@@ -7,9 +7,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
- 
-// Include config file
-require_once "index.php";
+$server_name = "localhost";
+$db_user_name = "isamitml_admin";
+$db_password = "iG_W7XXnV!8U";
+$database_name = "isamitml_db";
+
+//create connection
+$conn = mysqli_connect($server_name, $db_user_name, $db_password, $database_name);
+
+//check the connection
+if ($conn->connect_error){
+    die("Connection failed: ".$conn->connect_error);
+}
  
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
@@ -42,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare an update statement
         $sql = "UPDATE users SET password = ? WHERE id = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
             
@@ -66,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
  

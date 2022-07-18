@@ -1,20 +1,20 @@
 <?php
 // Initialize the session
-session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location:../../index.php");
     exit;
 }
 
-$server_name="localhost";
-$user_name="isamitml_admin";
-$password="iG_W7XXnV!8U";
-$database_name="isamitml_db";
+//172.22.0.2 local
+$server_name = "localhost";
+$db_user_name = "isamitml_admin";
+$db_password = "iG_W7XXnV!8U";
+$database_name = "isamitml_db";
 
 //create connection
-$conn=new mysqli($server_name,$user_name,$password,$database_name);
+$conn = mysqli_connect($server_name, $db_user_name, $db_password, $database_name);
 
 //check the connection
 if ($conn->connect_error){
@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT id, username, password FROM users WHERE username = ?";
 
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: ../../index.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
 
