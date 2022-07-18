@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   db:
     image: arm64v8/mysql
@@ -28,14 +27,15 @@ services:
     ports:
       - 8082:80
   php-apache-environment:
+    image: php:8.0-apache
     container_name: php-apache
+    command: /bin/sh -c "docker-php-ext-install mysqli && exec docker-php-entrypoint apache2-foreground"
     build:
-      context: /Users/amalul/IdeaProjects/mta-final-project-2022-W84/includes/login/
-      dockerfile: Dockerfile
+      context: /Users/amalul/IdeaProjects/mta-final-project-2022-W84/
     depends_on:
       - db
     volumes:
-      - /Users/amalul/IdeaProjects/mta-final-project-2022-W84/includes/login/:/var/www/html/
+      - /Users/amalul/IdeaProjects/mta-final-project-2022-W84/:/var/www/html/
     ports:
       - 8000:80
     restart: always
