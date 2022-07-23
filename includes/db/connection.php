@@ -1,7 +1,7 @@
 <?php
 
 // to use db locally replace localhost with 172.24.2.2
-$server_name = "172.24.2.2";
+$server_name = "localhost";
 $db_user_name = "isamitml_user";
 $db_password = "iG_W7XXnV!8U";
 $database_name = "isamitml_db2";
