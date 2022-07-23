@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
     <title>ניהול מסעדות עם Wolty</title>
 
@@ -27,8 +27,8 @@ session_start();
                                 פרופיל
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="includes/login/reset-password.php" target="_blank" >איפוס סיסמא</a></li>
-                                <li><a class="dropdown-item" href="includes/login/logout.php" target="_blank">התנתקות</a></li>
+                                <li><a class="dropdown-item" href="../includes/login/reset-password.php">איפוס סיסמא</a></li>
+                                <li><a class="dropdown-item" href="../includes/login/logout.php">התנתקות</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#" target="_blank">הגדרות</a></li>
                             </ul>
@@ -82,11 +82,12 @@ session_start();
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="../includes/donations.php">ברוך הבא, <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
+                            <a class="nav-link" href="#">ברוך הבא, <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <script src="../bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
