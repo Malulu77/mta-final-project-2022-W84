@@ -6,14 +6,17 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: isamitml_db
-      MYSQL_USER: isamitml_admin
+      MYSQL_DATABASE: isamitml_db2
+      MYSQL_USER: isamitml_user
       MYSQL_PASSWORD: iG_W7XXnV!8U
     ports:
       - "9906:3306"
     restart: always
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.2
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
@@ -26,6 +29,9 @@ services:
     restart: always
     ports:
       - 8082:80
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.3
   php-apache-environment:
     image: php:8.0-apache
     container_name: php-apache
@@ -39,5 +45,15 @@ services:
     ports:
       - 8000:80
     restart: always
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.4
+networks:
+  appnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.24.2.0/16
 volumes:
   dbdata:

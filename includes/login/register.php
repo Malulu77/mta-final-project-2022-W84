@@ -1,17 +1,6 @@
 <?php
 
-$server_name = "localhost";
-$db_user_name = "isamitml_user";
-$db_password = "iG_W7XXnV!8U";
-$database_name = "isamitml_db2";
-
-//create connection
-$conn = mysqli_connect($server_name, $db_user_name, $db_password, $database_name);
-
-//check the connection
-if ($conn->connect_error){
-    die("Connection failed: ".$conn->connect_error);
-}
+require_once '../db/connection.php';
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -141,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
-            <p>Already have an account? <a href="IdeaProjects/mta-final-project-2022-W84/includes/login/login.php">Login here</a>.</p>
+            <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
     </div>    
 </body>
