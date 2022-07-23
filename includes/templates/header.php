@@ -34,19 +34,55 @@ session_start();
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../../index.php">ממשק ניהול</a>
+                            <?php
+                            if (basename($_SERVER['PHP_SELF']) == 'index.php'){
+                                echo  '<a class="nav-link active" aria-current="page" href="../../index.php">ממשק ניהול</a>';
+                            }
+                            else {
+                                echo '<a class="nav-link" aria-current="page" href="../../index.php">ממשק ניהול</a>';
+                            } ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../includes/training.php">הדרכות</a>
+                            <?php
+                            if (basename($_SERVER['PHP_SELF']) == 'training.php'){
+                                echo  '<a class="nav-link active" href="../includes/training.php">הדרכות</a>';
+                            }
+                            else {
+                                echo '<a class="nav-link" href="../includes/training.php">הדרכות</a>';
+                            } ?>
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../includes/games.php">קמפיינים</a>
+                            <?php
+                            if (basename($_SERVER['PHP_SELF']) == 'campaigns.php'){
+                                echo  '<a class="nav-link active" href="../includes/campaigns.php">קמפיינים</a>';
+                            }
+                            else {
+                                echo '<a class="nav-link" href="../includes/campaigns.php">קמפיינים</a>';
+                            } ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../includes/stats.php">סטטיסטיקות</a>
+                            <?php
+                            if (basename($_SERVER['PHP_SELF']) == 'stats.php'){
+                                echo  '<a class="nav-link active" href="../includes/stats.php">סטטיסטיקות</a>';
+                            }
+                            else {
+                                echo '<a class="nav-link" href="../includes/stats.php">סטטיסטיקות</a>';
+                            } ?>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="../includes/donations.php">תרומות</a>
+                            <?php
+                            if (basename($_SERVER['PHP_SELF']) == 'donations.php'){
+                                echo  '<a class="nav-link active" href="../includes/donations.php">תרומות</a>';
+                            }
+                            else {
+                                echo '<a class="nav-link" href="../includes/donations.php">תרומות</a>';
+                            } ?>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="../includes/donations.php">ברוך הבא, <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
                         </li>
                     </ul>
                 </div>
