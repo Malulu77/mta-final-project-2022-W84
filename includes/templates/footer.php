@@ -14,7 +14,7 @@
             <a href="#">גלול למעלה</a>
 
         </p>
-        <img src="images/college.svg" width="120" height="120" class="float-end align-top mb-3">
+        <img src="../images/college.svg" width="120" height="120" class="float-end align-top mb-3">
         <p class="mb-1">&copy; נכתב ע״י עמית מלול, שובל לוי ויובל קורן במסגרת סדנא מעשית</p>
 
 

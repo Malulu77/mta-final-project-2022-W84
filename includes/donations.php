@@ -103,7 +103,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 include("templates/footer.php");
 ?>
 </div>
-<script src="../bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
