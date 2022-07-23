@@ -1,8 +1,5 @@
 <?php
-
-
-// Initialize the session
-session_start();
+include("includes/templates/header.php");
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -18,50 +15,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   <link href="bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style/style.css">
   <meta name="generator" content="Hugo 0.98.0">
-  <title>דני אבדיה - עמוד בית</title>
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="images/ball.svg" width="38" height="30" class="d-inline-block align-top" loading="lazy" style="filter:  grayscale(100%) brightness(200%);">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index.php">בית</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="includes/dani.html">על דני</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="includes/login/login.php">משחקים</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="includes/stats.html">סטטיסטיקות</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="includes/donations.html">תרומות</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            מקורות נוספים
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="https://he.wikipedia.org/wiki/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank" >ויקיפדיה</a></li>
-            <li><a class="dropdown-item" href="https://www.sport5.co.il/Tags/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">חדשות</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="https://www.youtube.com/results?search_query=%D7%93%D7%A0%D7%99+%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">סרטונים ב Youtube</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <main>
   <div id="video">
@@ -180,16 +136,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div><!-- /.container -->
 
 
-  <footer class="text-muted py-2">
-    <div class="container">
-      <p class="float-end mb-1">
-        <a href="#">גלול למעלה</a>
-      </p>
-      <p class="mb-1">&copy;   נכתב ע״י עמית מלול, עומר בן נון ונעם לוי במסגרת פרויקט בקורס תכנות Web</p>
-      <img src="images/college.svg" width="120" height="120" class="d-inline-block align-top mb-3">
-
-    </div>
-  </footer>
+<?php
+    include("includes/templates/footer.php");
+?>
 </main>
 
 

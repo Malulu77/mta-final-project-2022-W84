@@ -1,49 +1,20 @@
+<?php
+include("templates/header.php");
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: includes/login/login.php");
+    exit;
+}
+?>
 <!doctype html>
 <html dir="rtl" lang="he">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-	<link href="style/style.css" rel="stylesheet" /><meta name="generator" content="Hugo 0.98.0">
-	<title>דני אבדיה - על דני</title>
+	<link href="IdeaProjects/mta-final-project-2022-W84/style/style.css" rel="stylesheet" /><meta name="generator" content="Hugo 0.98.0">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light sticky-top">
-<div class="container-fluid">
-<p style="text-align: right;"></p>
 
-<div dir="rtl"><a class="navbar-brand" href="#"><img class="d-inline-block align-top" height="30" loading="lazy" src="../images/ball.svg" style="filter:  grayscale(100%) brightness(200%);" width="38" /></a></div>
-
-<p></p>
-
-<p dir="rtl" style="text-align: right;"><button aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"></button></p>
-
-<p dir="rtl" style="text-align: right;"><button aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"></button></p>
-
-<p style="text-align: right;"><button aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"></button></p>
-
-<div dir="rtl"></div>
-
-<div class="navbar-collapse collapse show" dir="rtl" id="navbarSupportedContent">
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	<li class="nav-item" style="text-align: right;"><a aria-current="page" class="nav-link" href="../index.php">בית</a></li>
-	<li class="nav-item" style="text-align: right;"><a class="nav-link active" href="../includes/dani.html">על דני</a></li>
-	<li class="nav-item" style="text-align: right;"><a class="nav-link" href="../includes/games.html">משחקים</a></li>
-	<li class="nav-item" style="text-align: right;"><a class="nav-link" href="../includes/stats.html">סטטיסטיקות</a></li>
-	<li class="nav-item" style="text-align: right;"><a class="nav-link " href="../includes/donations.html">תרומות</a></li>
-	<li class="nav-item dropdown" style="text-align: right;">
-	<div><a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="navbarDropdown" role="button">מקורות נוספים</a></div>
-
-	<ul aria-labelledby="navbarDropdown" class="dropdown-menu">
-		<li><a class="dropdown-item" href="https://he.wikipedia.org/wiki/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">ויקיפדיה</a></li>
-		<li><a class="dropdown-item" href="https://www.sport5.co.il/Tags/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">חדשות</a></li>
-		<li>
-		<hr class="dropdown-divider" style="direction: rtl;" /></li>
-		<li><a class="dropdown-item" href="https://www.youtube.com/results?search_query=%D7%93%D7%A0%D7%99+%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">סרטונים ב Youtube</a></li>
-	</ul>
-	</li>
-</ul>
-</div>
-</div>
-</nav>
 
 <main>
 <main class="container">
@@ -152,15 +123,9 @@
 </div>
 </main>
 
-<footer class="text-muted py-1">
-<div class="container">
-<p class="float-end mb-1" dir="rtl" style="text-align: right;"><a href="#">גלול למעלה</a></p>
-
-<p class="mb-1" dir="rtl" style="text-align: right;">&copy; נכתב ע״י עמית מלול, עומר בן נון ונעם לוי במסגרת פרויקט בקורס תכנות Web</p>
-
-<p dir="rtl" style="text-align: right;"><img class="float-end mb-2" height="120" src="../images/college.svg" width="120" /></p>
-</div>
-</footer>
+<?php
+    include("templates/footer.php");
+?>
 </main>
 <script src="../../Root/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>

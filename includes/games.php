@@ -1,9 +1,17 @@
+<?php
+include("templates/header.php");
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: includes/login/login.php");
+    exit;
+}
+?>
 <!doctype html>
 <html dir="rtl" lang="he">
 <head><meta charset="utf-8"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-	<link href="style/style.css" rel="stylesheet" />
-	<title>דני אבדיה - משחקים</title>
+	<link href="IdeaProjects/mta-final-project-2022-W84/style/style.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 
@@ -23,34 +31,6 @@ $(document).ready(function(){
   
 
 </script>
-
-         
-   
-<nav class="navbar navbar-expand-lg bg-light sticky-top">
-<div class="container-fluid">
-<p dir="rtl"><a class="navbar-brand" href="#"><img alt="Bootstrap" class="d-inline-block align-top" height="30" loading="lazy" src="../images/ball.svg" style="filter:  grayscale(100%) brightness(200%);" width="38" /> </a><button aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button"></button></p>
-
-<div class="navbar-collapse collapse show" dir="rtl" id="navbarSupportedContent">
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-	<li class="nav-item"><a aria-current="page" class="nav-link" href="../index.php">בית</a></li>
-	<li class="nav-item"><a class="nav-link" href="../includes/dani.html">על דני</a></li>
-	<li class="nav-item"><a class="nav-link active" href="../includes/games.html">משחקים</a></li>
-	<li class="nav-item"><a class="nav-link" href="../includes/stats.html">סטטיסטיקות</a></li>
-	<li class="nav-item"><a class="nav-link" href="../includes/donations.html">תרומות</a></li>
-	<li class="nav-item dropdown"><a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">מקורות נוספים </a>
-	<ul aria-labelledby="navbarDropdown" class="dropdown-menu">
-		<li><a class="dropdown-item" href="https://he.wikipedia.org/wiki/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">ויקיפדיה</a></li>
-		<li><a class="dropdown-item" href="https://www.sport5.co.il/Tags/%D7%93%D7%A0%D7%99_%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">חדשות</a></li>
-		<li>
-		<hr class="dropdown-divider" /></li>
-		<li><a class="dropdown-item" href="https://www.youtube.com/results?search_query=%D7%93%D7%A0%D7%99+%D7%90%D7%91%D7%93%D7%99%D7%94" target="_blank">סרטונים ב Youtube</a></li>
-	</ul>
-	</li>
-</ul>
-</div>
-</div>
-</nav>
-
 <main>
 <section class="py-5 text-center container">
 <div class="row py-lg-5" dir="rtl">
@@ -181,13 +161,9 @@ $(document).ready(function(){
 </div>
 </main>
 
-<footer class="text-muted py-2">
-<div class="container">
-<p class="mb-1" dir="rtl">&copy; נכתב ע״י עמית מלול, עומר בן נון ונעם לוי במסגרת פרויקט בקורס תכנות Web</p>
-
-<p dir="rtl"><img class="d-inline-block align-top mb-3" height="120" src="../images/college.svg" width="120" /></p>
-</div>
-</footer>
+ <?php
+    include("templates/footer.php");
+ ?>
 <script src="../bootstrap/dist/js/bootstrap.bundle.min.js">
       function toggleMute() {
 
