@@ -37,20 +37,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   </div>
 
 
-  <section class=" py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">ברוכים הבאים!</h1>
-        <p class="lead text-muted"><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></p>
-        <p>
-          <a href="includes/login/logout.php" class="btn btn-secondary my-2">התנתקות</a>
-          <a href="includes/login/reset-password.php" class="btn btn-secondary my-2">איפוס סיסמא</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
