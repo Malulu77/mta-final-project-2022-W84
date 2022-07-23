@@ -33,10 +33,10 @@ services:
       appnet:
         ipv4_address: 172.24.2.3
   php-apache-environment:
-    image: php:8.0-apache
     container_name: php-apache
     command: /bin/sh -c "docker-php-ext-install mysqli && exec docker-php-entrypoint apache2-foreground"
     build:
+      dockerfile: Dockerfile
       context: /Users/amalul/IdeaProjects/mta-final-project-2022-W84/
     depends_on:
       - db
