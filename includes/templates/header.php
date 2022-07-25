@@ -14,7 +14,7 @@ session_start();
     <body>
         <nav class="navbar navbar-expand-lg bg-light sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a style="margin-left: 15px" href="#">
                     <img src="../images/wolt_logo.svg" width="38" height="30" class="d-inline-block align-top" loading="lazy">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
