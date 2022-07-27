@@ -70,15 +70,6 @@ session_start();
                                 echo '<a class="nav-link" href="../includes/stats.php">סטטיסטיקות</a>';
                             } ?>
                         </li>
-                        <li class="nav-item">
-                            <?php
-                            if (basename($_SERVER['PHP_SELF']) == 'donations.php'){
-                                echo  '<a class="nav-link active" href="../includes/donations.php">תרומות</a>';
-                            }
-                            else {
-                                echo '<a class="nav-link" href="../includes/donations.php">תרומות</a>';
-                            } ?>
-                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">

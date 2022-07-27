@@ -20,57 +20,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <main class="container">
 <div class="text-black rounded bg-white" dir="rtl">
 <div class="col-md-6 px-0">
-<h1 class="display-4 fst-italic">גאווה ישראלית: סיפורו של דני אבדיה</h1>
+<h1 class="display-4 fst-italic">ממש ניהול הדרכות</h1>
 
 <p class="lead my-3" style="text-align: right;">נולד להורים ספורטאים בצפון, זכה לחיזורים מסרביה והחליט לייצג את ישראל בזכות פיני גרשון. הדרך של השחקן שמרגש מדינה שלמה.</p>
 </div>
 </div>
 
-<div class="row mb-2" dir="rtl">
-<div class="col-md-6">
-<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-<div class="col p-4 d-flex flex-column position-static">
-<h3 style="text-align: right;">אבדיה זורק לסל (ארכיון משפחתי)<svg aria-label="Placeholder: صورة مصغرة" class="bd-placeholder-img" focusable="false" height="0" preserveaspectratio="xMidYMid slice" role="img" width="200" xmlns="http://www.w3.org/2000/svg"><rect fill="#5595c" height="100%" width="100%"></rect>
-<title></title>
-</svg></h3>
-</div>
-<img alt="Trulli" height="10%" src="../images/small_deni.jgb.jpg" width="50%" /></div>
-</div>
 
-<div class="col-md-6">
-<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-<h3>אבדיה במשחק ילדים (ארכיון משפחתי)<svg aria-label="Placeholder: صورة مصغرة" class="bd-placeholder-img" focusable="false" height="0" preserveaspectratio="xMidYMid slice" role="img" width="200" xmlns="http://www.w3.org/2000/svg"><rect fill="#55595c" height="100%" width="100%"></rect>
-<title></title>
-</svg></h3>
-<img alt="Trulli" height="660" src="../images/deni_shoot.jpg" width="330" />&nbsp; &nbsp;</div>
-</div>
-</div>
 
 <div class="row" dir="rtl">
 <div class="col-md-8">
-<h3 class="pb-4 mb-4 fst-italic border-bottom" style="text-align: right;">גילאי נוער</h3>
+<h3 class="pb-4 mb-4 fst-italic border-bottom" style="text-align: right;">לוח הדרכות</h3>
 
-<article class="blog-post">
-<h2 class="blog-post-title mb-1" style="text-align: right;">פוטנציאל&nbsp;</h2>
-
-<p class="blog-post-meta" style="text-align: right;">במכבי עטפו את אבדיה עם&nbsp;מאמן אישי, אותו עודד שלום שהמליץ&nbsp;ו-וליקו&nbsp;פרוביץ&rsquo; עבדו איתו באופן צמוד לפני ואחרי בית הספר.&nbsp;בכיתה י&#39; הגיע המשבר הראשון הרציני של אבדיה שעבר פציעה קשה בגב שהשביתה אותו לחצי שנה בלי כדורסל, אבל כמו הטובים ביותר הוא יצא ממנה כשידו על העליונה, חזק יותר, פיזית ומנטאלית.&nbsp;כשהוא עוד לא&nbsp;16 ואחרי חצי עונה של פציעה, הוביל את נבחרת הקדטים של ישראל להישארות בדרג א&#39; עם אליפות נפלאה,&nbsp;אותה&nbsp;הוביל במדד היעילות וסיים שני ברשימת הקלעים והריבאונדרים&nbsp;ונכנס לפנקסי הסקאוטים באירופה וכבר אז ה-NBA שסימנו את הפוטנציאל שלו.</p>
-
-<h2 style="text-align: right;">חוזה ראשון</h2>
-
-<p style="text-align: right;">בסוף אותו הקיץ, כשהוא רק בן 16, הודיעה מכבי שאבדיה מצטרף לסגל הבוגרים של הקבוצה.&nbsp;במקביל לקבוצת הנוער, והחתימה אותו על חוזה ל-6 שנים עם סעיף &lsquo;ביי אאוט&rsquo; של מיליון דולר ל-NBA.&nbsp;&nbsp;אבדיה התאמן עם הקבוצה הבוגרת ובסוף אותה עונה, במשחק הראשון&nbsp;בפלייאוף 2018&nbsp;מול עירוני נס ציונה, הגיעו הנקודות הראשונות שלו בבוגרים בצהוב, אגב, מהקו.</p>
-
-<h2 style="text-align: right;">ישראל או סרביה?</h2>
-
-<p style="text-align: right;">בסוף אותו הקיץ, כשהוא רק בן 16, הודיעה מכבי שאבדיה מצטרף לסגל הבוגרים של הקבוצה.&nbsp;במקביל לקבוצת הנוער, והחתימה אותו על חוזה ל-6 שנים עם סעיף &lsquo;ביי אאוט&rsquo; של מיליון דולר ל-NBA.&nbsp;&nbsp;אבדיה התאמן עם הקבוצה הבוגרת ובסוף אותה עונה, במשחק הראשון&nbsp;בפלייאוף 2018&nbsp;מול עירוני נס ציונה, הגיעו הנקודות הראשונות שלו בבוגרים בצהוב, אגב, מהקו.</p>
-
-<h2>ההתעקשות של פיני גרשון</h2>
-
-<p style="text-align: right;">אבדיה &ldquo;התקשקש&rdquo; קצת עם הרעיון, בראש ישבה העובדה שאולי הוא יוכל להתפתח טוב יותר ולהגיע רחוק יותר דרך הנבחרת הסרבית, אבל בפנים אבדיה ידע מראש שהוא לא מוותר על נבחרת ישראל, הוא ידע שהוא גדל פה, התחנך פה, למד פה (תיכון חדש ת&quot;א), שיחק בנבחרות בתי הספר ולקח את אליפות ליגת התיכונים, החברים שלו פה ושהוא הולך להתגייס לצבא ולעזור לנבחרת הישראלית, זופר, אגב נתן לדני לקבל את ההחלטה בעצמו. מי שנכנס לעניינים בכל התהליך הזה היה פיני גרשון שנפגש עם משפחת אבדיה והציע לדני לוותר על נבחרת הנוער ולקפוץ ישר מהקדטים אל נבחרת העתודה ששיחקה בדרג א&#39;. אבדיה ג&#39;וניור לקח את ההצעה בשתי ידיים, בשתי ידיים, ניתור והטבעה.</p>
-
-<h2 style="text-align: right;">הזכייה הראשונה באליפות אירופה</h2>
-
-<p style="text-align: right;">העונה ההיא הייתה קפיצת המדרגה שעשה אבדיה מבחינת יכולת, במכבי מספרים שבאותה שנה הוא הגיע כל בוקר ב-6:00 לאולם כדי לזרוק קצת יותר מ-1000 זריקות ביום ובילה לא מעט בחדר הכושר בניסיון להעלות מסת שריר. בקיץ שלאחר מכן על אדמת גרמניה, אבדיה, בגיל 17 בלבד וקטן מרוב השחקנים בכמעט שנתיים,&nbsp;הוביל את נבחרת העתודה יחד עם יובל זוסמן לזכייה ראשונה באליפות אירופה,&nbsp;תוך שהוא נבחר לחמישיית הטורניר והסקאוטים הגיעו לגרמניה ועקבו אחרי כל דבר שהוא עושה.&nbsp;</p>
-</article>
+    <iframe src="https://calendar.google.com/calendar/embed?src=jc3cigngdkkmhrpv782m5c2fa4%40group.calendar.google.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
 <article class="blog-post">
 <h2 class="blog-post-title mb-1" style="text-align: right;">MVP</h2>
@@ -90,35 +52,85 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </div>
 
 <div class="col-md-4">
-<div class="position-sticky" style="top: 2rem;">
-<div class="p-4 mb-3 bg-light rounded">
-<h4 class="fst-italic" style="text-align: right;">דני אבדיה:</h4>
+    <div class="py-5 text-center" dir="rtl">
+        <p style="text-align: right;"></p>
 
-<p>״עם כל הכבוד לעומרי כספי, הוא עשה קריירה באמת מרשימה מאוד ולהיות 8 שנים ב-NBA זה לא קל, כל עם ישראל מעריכים אותו על זה. אבל יש שחקנים שרוצים לשאוף יותר גבוה... אני עובד יותר קשה, אני רוצה להיות יותר טוב, להגיע יותר רחוק. ואני חושב שאני אגיע״.</p>
-</div>
+        <h2 style="text-align: right;">הוספת הדרכה חדשה</h2>
 
-<div class="p-4">
-<h4 class="fst-italic" style="text-align: right;">קישורים נוספים</h4>
+        <p class="lead" style="text-align: right;"><strong>רוצים לתרום לקהילה של דני אבדיה?<br />
+                רוצים שהאתר ישתפר ויתווספו דברים חדשים?<br />
+                ניתן לתרום כל סכום!<br />
+                תודה!</strong></p>
+    </div>
 
-<ol class="list-unstyled mb-0">
-	<li style="text-align: right;"><span style="font-size:12px;"><a href="https://www.nba.com/player/1630166/deni-avdija">https://www.nba.com/player/1630166/deni-avdija</a></span></li>
-	<li style="text-align: right;"><span style="font-size:12px;"><a href="https://en.wikipedia.org/wiki/Deni_Avdija">https://en.wikipedia.org/wiki/Deni_Avdija</a></span></li>
-	<li style="text-align: right;"><span style="font-size:12px;"><a href="https://hoopshype.com/player/deni-avdija/">https://hoopshype.com/player/deni-avdija/</a></span></li>
-	<li style="text-align: right;"><span style="font-size:12px;"><a href="https://www.youtube.com/watch?v=153C7dROPzQ">https://www.youtube.com/watch?v=153C7dROPzQ</a></span></li>
-	<li style="text-align: right;"><a href="https://www.youtube.com/watch?v=0tLwNV6Ebp0"><span style="font-size:12px;">https://www.youtube.com/watch?v=0tLwNV6Ebp0</span></a></li>
-</ol>
-</div>
+    <div class="row g-3" dir="rtl">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: right;">הדרכות הקרובות</h4>
 
-<div class="p-4">
-<h4 class="fst-italic" style="text-align: right;">רשתות חברתיות</h4>
+            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">נעם לוי</span></h4>
 
-<ol class="list-unstyled">
-	<li style="text-align: right;"><a href="https://www.instagram.com/accounts/login/?next=/avdijanation/">Instagram</a></li>
-	<li style="text-align: right;"><a href="https://twitter.com/hashtag/avdija?lang=en&amp;src=hash">Twitter</a></li>
-	<li style="text-align: right;"><a href="https://www.facebook.com/deniavdijaofficial/">Facebook</a></li>
-</ol>
-</div>
-</div>
+            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">131$</p>
+
+            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">יאניס ספרופולוס</span></h4>
+
+            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">1442$</p>
+
+            <p dir="rtl" style="text-align: left;"></p>
+
+            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">עמית מלול</span></h4>
+
+
+            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">170$</p>
+
+            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">עומר בן נון</span></h4>
+
+
+            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">100$</p>
+
+            <p></p>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+            <form action="send_details.php" class="needs-validation" method="post" novalidate="">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <p style="text-align: right;"><label class="form-label" for="firstName">שם מלא&nbsp;</label><input class="form-control" id="fullname" placeholder="" required="" type="text" value="" name="fullname"/></p>
+
+                        <div class="invalid-feedback" style="text-align: right;"></div>
+                    </div>
+
+                    <div class="col-12">
+                        <p style="text-align: right;">סכום לתשלום ($)&nbsp;<input class="form-control" id="sum" placeholder="" required="" type="text" name="sum"/></p>
+
+                        <div class="input-group has-validation">
+                            <div class="invalid-feedback" style="text-align: right;">اسم المستخدم الخاص بك مطلوب.</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <p style="text-align: right;">אימייל&nbsp;<input class="form-control" id="email" placeholder="you@example.com" type="text" name="email"/></p>
+
+                        <div class="invalid-feedback" style="text-align: right;">يرجى إدخال عنوان بريد إلكتروني صحيح لتصلكم تحديثات الشحن.</div>
+                    </div>
+
+                    <div class="col-12">
+                        <p style="text-align: right;">טלפון&nbsp;<input class="form-control" id="tel" placeholder="" required="" type="text" value="" name="tel"/></p>
+
+                        <div class="invalid-feedback" style="text-align: right;">يرجى إدخال عنوان الشحن الخاص بك.</div>
+                    </div>
+
+                    <div class="col-12" style="text-align: right;">מספר כרטיס אשראי&nbsp;<input class="form-control" id="credit" placeholder="" type="text" name="credit" /></div>
+
+                    <div class="col-md-5">
+                        <p style="text-align: right;"></p>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+                <p style="text-align: right;"><button class="w-100 btn btn-primary btn-lg" type="submit" value="run">שלח תרומה</button></p>
+            </form>
+        </div>
+    </div>
 </div>
 </div>
 </main>

@@ -8,179 +8,137 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
 <!doctype html>
-<html dir="rtl" lang="he">
-<head><meta charset="utf-8"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-	<link href="IdeaProjects/mta-final-project-2022-W84/style/style.css" rel="stylesheet" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
-
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <meta name="generator" content="Hugo 0.98.0">
 
 </head>
 <body>
 
- <script>
- 
-$(document).ready(function(){
-  
-  
-   $("button").click(function(){
-    alert("https://www.youtube.com/watch?v=OrfsKbZWT2c");
-  });
-});
-  
-
-</script>
 <main>
-<section class="py-5 text-center container">
-<div class="row py-lg-5" dir="rtl">
-<div class="col-lg-6 col-md-8 mx-auto">
-<h1 class="fw-light">תקצירי המשחקים על פי #מעקבדיה</h1>
-</div>
-</div>
-</section>
 
-<div class="album py-5 bg-light" dir="rtl">
-<div class="container">
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games1.webp" width="100%" /></p>
 
-<p></p>
 
-<div class="card-body">
-<p class="card-text">דני אבדיה נגד שארלוט - #מעקבדיה אחרון לעונה</p>
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<p class="card-text"></p>
+    <div class="container marketing">
 
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
+        <!-- Three columns of text below the carousel -->
 
-<p><small class="text-muted">9 במאי</small></p>
-</div>
-</div>
+        <div class="row">
+            <div class="col-lg-4">
 
-<p></p>
-</div>
-</div>
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><text x="50%" y="50%" fill="#777" dy=".3em"><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/9/3369687-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/9/3369687-46.jpg" alt="דני אבדיה שחקן וושינגטון וויזארדס. רויטרס" title="דני אבדיה שחקן וושינגטון וויזארדס. רויטרס"></text></svg>
 
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games2.webp" width="100%" /></p>
+                <h2 >שב למדים הלאומיים</h2>
+                <p> דני אבדיה זומן לסגל נבחרת ישראל בחלון מוקדמות גביע העולם
+                    הישראלי של וושינגטון וויזארדס נכלל ב-19 השחקנים שזומנו לסגל הרחב לקראת השלב הראשון של מוקדמות הטורניר בעוד כחודש. גם יובל זוסמן ישוב לנבחרת לאחר היעדרות. ליגת העל: בעקבות האלימות בדרבי, יציע הפועל תל אביב עלול להיסגר לשני משחקים</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/1/3361940-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/1/3361940-46.jpg" alt="דני אבדיה שחקן וושינגטון וויזארדס מול לברון ג'יימס שחקן לוס אנג'לס לייקרס. Patrick Smith, GettyImages" title="דני אבדיה שחקן וושינגטון וויזארדס מול לברון ג'יימס שחקן לוס אנג'לס לייקרס. Patrick Smith, GettyImages"></text></svg>
 
-<p></p>
+                <h2 class="fw-normal">אבדיה בסגל הנבחרת לפולין </h2>
+                <p>בעוד כחודש תשחק נבחרת ישראל בחלון המשחקים האחרון של השלב הראשון במוקדמות גביע העולם, ואיגוד הכדורסל פרסם היום (שני) את 19 השחקנים שזומנו לסגל הרחב. השם החם ביותר שמופיע ברשימה הוא דני אבדיה, שחקן וושינגטון וויזארדס, שישוב לנבחרת לראשונה מאז נבחר בדראפט ה-NBA. </p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/2/6/3326222-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/2/6/3326222-46.jpg" alt="דני אבדיה ג'ואל אמביד. רויטרס" title="דני אבדיה ג'ואל אמביד. רויטרס"></text></svg>
 
-<div class="card-body">
-<p class="card-text">דני אבדיה נגד מינסוטה - כשדני מקבל את ההחלטות על המגרש #מעקבדיה</p>
+                <h2 class="fw-normal"> נשיא המדינה אירח את דני אבדיה</h2>
+                <p>בפתח המפגש נשיא המדינה שיבח את אבדיה על הישגיו והודה לו על ייצוגו הציוני בעולם: "אתה השראה עצומה. אני יודע שלהיות אדם צעיר ופופולרי זה לא דבר קל". עוד הוא הוסיף "אתה גאווה גדולה, גם בהתנהגות האנושית שלך וגם באהבת עם ישראל שקיימת בך".</p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
 
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
 
-<p><span style="font-size: 13.3333px;">1 במאי</span></p>
-</div>
-</div>
-</div>
-</div>
+        <!-- START THE FEATURETTES -->
 
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games3.webp" width="100%" /></p>
+        <hr class="featurette-divider">
 
-<p></p>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1" id="startArticle">דני אבדיה חוזר לסגל נבחרת ישראל</h2>
+                <br>
+                <p class="lead">גודס פרסם היום (שני) את סגל השחקנים הרחב שיעמוד לרשותו לשני משחקי הנבחרת הקרובים במסגרת מוקדמות גביע העולם, מול פולין בחוץ ואסטוניה בבית וכלל ברשימה מספר שחקנים שיחזרו להופעה במדים הלאומיים.
 
-<div class="card-body">
-<p class="card-text">דני אבדיה עם שלשת קלאץ&#39; נגד הלייקרס ולברון ג&#39;יימס 2.0 #מעקבדיה</p>
+                    לרשות גודס יעמדו לא פחות מ-19 שחקנים לקראת המשחקים שיתקיימו ב-30 ביוני וב-3 ליולי, כאשר מעל כולם יהיה זה דני אבדיה, שחקנה של וושינגטון וויזארדס מליגת הכדורסל הטובה בעולם שיחזור למדים הלאומיים לאחר שלא שיחק בהם בשל עונת ה-NBA וכעת ישוב לשחק עבור הנבחרת בזכות פגרת הכדורסל בארצות הברית.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="img-fluid" width="500" height="500" src="images/mainlarge1.webp"/>
+            </div>
+        </div>
 
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
+        <hr class="featurette-divider">
 
-<p><span style="font-size: 13.3333px;">24 באפריל</span></p>
-</div>
-</div>
-</div>
-</div>
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1">השחקן המצטיין<span class="text-muted"></span></h2>
+                <br>
+                <p class="lead">דֶנִי אָבְדִיָה הוא כדורסלן ישראלי-סרבי, המשחק בקבוצת וושינגטון ויזארדס מליגת ה-NBA בעמדות הסמול פורוורד והפאוור פורוורד. בנוסף, אבדיה חבר בנבחרת ישראל בכדורסל. הוא זכה בשתי מדליות זהב עם ישראל בנבחרת העתודה, כולל באליפות אירופה בכדורסל עד גיל 20 בשנת 2019, שם זכה בתואר השחקן המצטיין של התחרות</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="img-fluid" width="500" height="500" src="images/mainlarge2.jpeg"/>
+            </div>
+        </div>
 
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games4.webp" width="100%" /></p>
+        <hr class="featurette-divider">
 
-<p></p>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">גאווה ישראלית</h2>
+                <br>
+                <p class="lead"> ״אתה גאווה ישראלית, אתה מציג את פניה היפות של ישראל בסיפור בפני העולם, וזו בוודאי משימה קשה.״
 
-<div class="card-body">
-<p class="card-text">דני אבדיה נגד דנבר - משחקו הטוב ביותר העונה (ובקריירה) #מעקבדיה</p>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="img-fluid" width="500" height="500" src="images/mainlarge3.jpeg"/>
+            </div>
+        </div>
 
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
+        <hr class="featurette-divider">
 
-<p><span style="font-size: 13.3333px;">15 בפאריל</span></p>
-</div>
-</div>
-</div>
-</div>
+        <!-- /END THE FEATURETTES -->
 
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games5.webp" width="100%" /></p>
+    </div><!-- /.container -->
 
-<p></p>
 
-<div class="card-body">
-<p class="card-text">דני אבדיה נגד דטרויט - שיא קריירה בנקודות וזריקות! #מעקבדיה</p>
-
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
-
-<p><span style="font-size: 13.3333px;">2 לאפריל</span></p>
-</div>
-</div>
-</div>
-</div>
-
-<div class="col">
-<div class="card shadow-sm">
-<p><img alt="Trulli" height="100%" src="../images/games6.webp" width="100%" /></p>
-
-<p></p>
-
-<div class="card-body">
-<p class="card-text">דני אבדיה נגד אטלנטה - הגיוון במשחק #מעקבדיה</p>
-
-<div class="d-flex justify-content-between align-items-center">
-<div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
-
-<p><span style="font-size: 13.3333px;">20 למרץ</span></p>
-</div>
-</div>
-</div>
-</div>
-
-<p><a href="#">גלול למעלה</a></p>
-</div>
-</div>
-</div>
-</main>
-
- <?php
+    <?php
     include("templates/footer.php");
- ?>
-<script src="../bootstrap/dist/js/bootstrap.bundle.min.js">
-      function toggleMute() {
+    ?>
+</main>
+<script>
 
-        var video=document.getElementById("video");
 
-        if(video.muted){
-          video.muted = false;
+    // Pause and play the video, and change the button text
+    function play() {
+        // Get the video
+        var video = document.getElementById("myVideo");
+
+        // Get the button
+        var btn = document.getElementById("playBtn");
+        if (video.paused) {
+            video.play();
+            btn.innerHTML = "עצור";
         } else {
-          debugger;
-          video.muted = true;
-          video.play()
+            video.pause();
+            btn.innerHTML = "נגן";
         }
+    }
 
-      }
+    function back(){
+        document.getElementById("video").style.display = "none";
+    }
 
-      $(document).ready(function(){
-        setTimeout(toggleMute,3000);
-      })
-    </script></body>
+    function video(){
+        document.getElementById("video").style.display = "block";
+
+    }
+</script>
+
+</body>
 </html>

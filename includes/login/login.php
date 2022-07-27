@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $login_err = "שם המשתמש או הסיסמא אינם נכונים";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "משהו השתבש נסה שוב מאוחר יותר";
             }
 
             // Close statement
@@ -87,14 +87,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; box-sizing: border-box;}
-        .wrapper{ width: 360px; padding: 20px; margin: 10% 35%}
+        .wrapper{ width: 25%; padding: 20px; margin: 10% 35%}
     </style>
 </head>
 <body>
 <div class="wrapper" align="right">
     <h2>התחברות</h2>
     <p>אנא מלא את פרטי ההתחברות על מנת להתחבר</p>
-
+    <br>
     <?php
     if(!empty($login_err)){
         echo '<div class="alert alert-danger">' . $login_err . '</div>';
@@ -104,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group">
             <label>שם משתמש</label>
-            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" >
             <span class="invalid-feedback"><?php echo $username_err; ?></span>
         </div>
         <div class="form-group">
