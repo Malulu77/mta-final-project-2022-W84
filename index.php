@@ -50,7 +50,7 @@ $num_rows = mysqli_num_rows($result);
             <div class="card shadow-lg">
             <div class="card-body">
                 <h4 class="card-title">'.$row['name'].'</h4>'.'                <p class="card-text"> PSS This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <img src="../images/'.$row['img'].' width="100%">
+                <img src="images/'.$row['img'].'" width="200px" height="200px">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
                     <p><small class="text-muted">9 במאי</small></p>
