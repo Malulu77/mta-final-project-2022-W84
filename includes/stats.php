@@ -52,10 +52,6 @@ $(document).ready(function(){
 
 <div class="container-fluid" dir="rtl">
 <div class="row">
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-    <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
-
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -157,243 +153,108 @@ $(document).ready(function(){
 </div>
 
 <p><canvas class="my-4 w-100" height="380" id="myChart" width="900"></canvas></p>
+    <div class="container my-5">
 
+
+
+        <section class="p-5 z-depth-1">
+
+            <h3 class="text-center font-weight-bold mb-5">Counter</h3>
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-6 col-lg-3 mb-4 text-center">
+                    <h4 class="h1 font-weight-normal mb-3">
+                        <i class="fas fa-file-alt indigo-text"></i>
+                        <span class="d-inline-block count-up" data-from="0" data-to="100" data-time="2000">100</span>
+                    </h4>
+                    <p class="font-weight-normal text-muted">Unique Page</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4 text-center">
+                    <h4 class="h1 font-weight-normal mb-3">
+                        <i class="fas fa-layer-group indigo-text"></i>
+                        <span class="d-inline-block count1" data-from="0" data-to="250" data-time="2000">250</span>
+                    </h4>
+                    <p class="font-weight-normal text-muted">Block Variety</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4 text-center">
+                    <h4 class="h1 font-weight-normal mb-3">
+                        <i class="fas fa-pencil-ruler indigo-text"></i>
+                        <span class="d-inline-block count2" data-from="0" data-to="330" data-time="2000">330</span>
+                    </h4>
+                    <p class="font-weight-normal text-muted">Reusable Component</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3 mb-4 text-center">
+                    <h4 class="h1 font-weight-normal mb-3">
+                        <i class="fab fa-react indigo-text"></i>
+                        <span class="d-inline-block count3" data-from="0" data-to="430" data-time="2000">430</span>
+                    </h4>
+                    <p class="font-weight-normal text-muted">Crafted Element</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
 <div class="table-responsive"><span style="font-size: 24px;"><b>משחק</b></span>
-
-<table class="table table-striped table-sm">
-	<thead>
-		<tr>
-			<th scope="col">קבוצה מתחרה/אחוז</th>
-			<th scope="col">&nbsp;מהשדה</th>
-			<th scope="col">מהשלוש</th>
-			<th scope="col">מהעונשין</th>
-			<th scope="col">דקות משחק</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>לייקרס</td>
-			<td>78</td>
-			<td>50</td>
-			<td>95</td>
-			<td>25</td>
-		</tr>
-		<tr>
-			<td>מיאמי</td>
-			<td>65</td>
-			<td>60</td>
-			<td>85</td>
-			<td>35</td>
-		</tr>
-		<tr>
-			<td>שיקגו</td>
-			<td>67</td>
-			<td>85</td>
-			<td>90</td>
-			<td>24</td>
-		</tr>
-		<tr>
-			<td>ניו יורק</td>
-			<td>68</td>
-			<td>100</td>
-			<td>100</td>
-			<td>12</td>
-		</tr>
-		<tr>
-			<td>ברוקלין</td>
-			<td>80</td>
-			<td>90</td>
-			<td>87</td>
-			<td>15</td>
-		</tr>
-		<tr>
-			<td>מיניסוטה</td>
-			<td>90</td>
-			<td>30</td>
-			<td>50</td>
-			<td>32</td>
-		</tr>
-		<tr>
-			<td>בוסטון</td>
-			<td>25</td>
-			<td>25</td>
-			<td>84</td>
-			<td>28</td>
-		</tr>
-		<tr>
-			<td>דאלאס</td>
-			<td>40</td>
-			<td>50</td>
-			<td>70</td>
-			<td>38</td>
-		</tr>
-		<tr>
-			<td>לוס אנג&#39;לס&nbsp;</td>
-			<td>50</td>
-			<td>100</td>
-			<td>90</td>
-			<td>40</td>
-		</tr>
-		<tr>
-			<td>דטרויט</td>
-			<td>65</td>
-			<td>70</td>
-			<td>65</td>
-			<td>38</td>
-		</tr>
-		<tr>
-			<td>פילדפליה</td>
-			<td>66</td>
-			<td>56</td>
-			<td>100</td>
-			<td>29</td>
-		</tr>
-		<tr>
-			<td>מילוואקי</td>
-			<td>80</td>
-			<td>60</td>
-			<td>80</td>
-			<td>15</td>
-		</tr>
-		<tr>
-			<td>דנבר</td>
-			<td>90</td>
-			<td>33</td>
-			<td>75</td>
-			<td>35</td>
-		</tr>
-	</tbody>
-</table>
 </div>
+
+
 </main>
 </div>
 </div>
-<script src="../bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-<script src="../bootstrap/assets/dist/js/dashboard.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../bootstrap/assets/dist/js/dashboard.js"></script>
+
 
 <script>
-    const CLIENT_ID = '106790926272447038931';
-    const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
-    const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
-    const SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+    (function ($){
+        $.fn.counter = function() {
+            const $this = $(this),
+                numberFrom = parseInt($this.attr('data-from')),
+                numberTo = parseInt($this.attr('data-to')),
+                delta = numberTo - numberFrom,
+                deltaPositive = delta > 0 ? 1 : 0,
+                time = parseInt($this.attr('data-time')),
+                changeTime = 10;
 
-    let tokenClient;
-    let gapiInited = false;
-    let gisInited = false;
-
-    /**
-     * Callback after api.js is loaded.
-     */
-    function gapiLoaded() {
-        gapi.load('client', intializeGapiClient);
-    }
-    /**
-     * Callback after the API client is loaded. Loads the
-     * discovery doc to initialize the API.
-     */
-    async function intializeGapiClient() {
-        await gapi.client.init({
-            apiKey: API_KEY,
-            discoveryDocs: [DISCOVERY_DOC],
-        });
-        gapiInited = true;
-        maybeEnableButtons();
-    }
-
-    /**
-     * Callback after Google Identity Services are loaded.
-     */
-    function gisLoaded() {
-        tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: CLIENT_ID,
-            scope: SCOPES,
-            callback: '', // defined later
-        });
-        gisInited = true;
-        maybeEnableButtons();
-    }
-
-    /**
-     * Enables user interaction after all libraries are loaded.
-     */
-    function maybeEnableButtons() {
-        if (gapiInited && gisInited) {
-            document.getElementById('authorize_button').style.visibility = 'visible';
-        }
-    }
-
-    /**
-     *  Sign in the user upon button click.
-     */
-    function handleAuthClick() {
-        tokenClient.callback = async (resp) => {
-            if (resp.error !== undefined) {
-                throw (resp);
+            let currentNumber = numberFrom,
+                value = delta*changeTime/time;
+            var interval1;
+            const changeNumber = () => {
+                currentNumber += value;
+                //checks if currentNumber reached numberTo
+                (deltaPositive && currentNumber >= numberTo) || (!deltaPositive &&currentNumber<= numberTo) ? currentNumber=numberTo : currentNumber;
+                this.text(parseInt(currentNumber));
+                currentNumber == numberTo ? clearInterval(interval1) : currentNumber;
             }
-            document.getElementById('signout_button').style.visibility = 'visible';
-            document.getElementById('authorize_button').innerText = 'Refresh';
-            await listMajors();
-        };
 
-        if (gapi.client.getToken() === null) {
-            // Prompt the user to select a Google Account and ask for consent to share their data
-            // when establishing a new session.
-            tokenClient.requestAccessToken({prompt: 'consent'});
-        } else {
-            // Skip display of account chooser and consent dialog for an existing session.
-            tokenClient.requestAccessToken({prompt: ''});
+            interval1 = setInterval(changeNumber,changeTime);
         }
-    }
+    }(jQuery));
 
-    /**
-     *  Sign out the user upon button click.
-     */
-    function handleSignoutClick() {
-        const token = gapi.client.getToken();
-        if (token !== null) {
-            google.accounts.oauth2.revoke(token.access_token);
-            gapi.client.setToken('');
-            document.getElementById('content').innerText = '';
-            document.getElementById('authorize_button').innerText = 'Authorize';
-            document.getElementById('signout_button').style.visibility = 'hidden';
-        }
-    }
+    $(document).ready(function(){
 
-    /**
-     * Print the names and majors of students in a sample spreadsheet:
-     * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-     */
-    async function listMajors() {
-        let response;
-        try {
-            // Fetch first 10 files
-            response = await gapi.client.sheets.spreadsheets.values.get({
-                spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-                range: 'Class Data!A2:E',
-            });
-        } catch (err) {
-            document.getElementById('content').innerText = err.message;
-            return;
-        }
-        const range = response.result;
-        if (!range || !range.values || range.values.length == 0) {
-            document.getElementById('content').innerText = 'No values found.';
-            return;
-        }
-        // Flatten to string to display
-        const output = range.values.reduce(
-            (str, row) => `${str}${row[0]}, ${row[4]}\n`,
-            'Name, Major:\n');
-        document.getElementById('content').innerText = output;
-    }
+        $('.count-up').counter();
+        $('.count1').counter();
+        $('.count2').counter();
+        $('.count3').counter();
 
+        new WOW().init();
+
+        setTimeout(function () {
+            $('.count5').counter();
+        }, 3000);
+    });
 </script>
-<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-
 </body>
 
 
