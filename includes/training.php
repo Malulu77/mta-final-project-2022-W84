@@ -18,7 +18,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html dir="rtl" lang="he">
 <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -173,5 +172,4 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     include("templates/footer.php");
 ?>
 </main>
-<script src="/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>

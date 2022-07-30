@@ -19,7 +19,6 @@ $num_rows = mysqli_num_rows($result);
     <link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <link href="/style/style.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
         main{width: 90%; margin: auto;}
