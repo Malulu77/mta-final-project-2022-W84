@@ -7,7 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: includes/login/login.php");
     exit;
 }
-$sql = "SELECT * FROM restaurants;";
+$sql = "SELECT * FROM enterprises;";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 ?>
@@ -23,7 +23,7 @@ $num_rows = mysqli_num_rows($result);
 
     <style>
         main{width: 90%; margin: auto;}
-        .card{width: 50%; margin-top: 2%;}
+        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%;}
 
     </style>
 </head>
@@ -41,23 +41,25 @@ $num_rows = mysqli_num_rows($result);
         </div>
         <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
     </section>
-    <div class="card-group col" >
+    <div class="card-group" >
         <?php
 
         while($row = mysqli_fetch_assoc($result))
         {
-            echo '    <div>
+            echo ' 
             <div class="card shadow-lg">
             <div class="card-body">
-                <h4 class="card-title">'.$row['name'].'</h4>'.'                <p class="card-text"> PSS This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <img src="images/'.$row['img'].'" width="200px" height="200px">
+                <h4 class="card-title">'.$row['name'].'</h4>'.'               
+                <p class="card-text"> PSS This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group"><button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
+                    <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
                     <p><small class="text-muted">9 במאי</small></p>
                 </div>
             </div>
         </div>
-    </div>';
+        ';
         }
         ?>
     </div>

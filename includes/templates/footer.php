@@ -1,24 +1,25 @@
-<!doctype html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
+<footer class="page-footer font-small grey lighten-3 py-4 dark-grey-text  bg-light" >
 
-</head>
-<body>
-<footer class="text-muted py-2">
-    <div class="container">
-        <p class="float-end mb-1">
-            <a href="#">גלול למעלה</a>
+    <!-- Footer Elements -->
+    <div class="container" >
 
-        </p>
-        <img src="../images/college.svg" width="120" height="120" class="float-end align-top mb-3">
-        <p class="mb-1">&copy; נכתב ע״י עמית מלול, שובל לוי ויובל קורן במסגרת סדנא מעשית</p>
-
+        <div class="row" >
+            <div class="col-md-2">
+                <img src="../images/college.svg" width="120" height="120" class="float-end align-top mb-3">
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md">
+                <!-- Copyright -->
+                <br>
+                <div class="footer-copyright text-right bg-transparent dark-grey-text mt-2">© 2022.
+                    <p class="mb-1">נכתב ע״י עמית מלול, שובל לוי ויובל קורן במסגרת סדנא מעשית</p>
+                </div>
+                <!-- Copyright -->
+            </div>
+        </div>
 
     </div>
+    <!-- Footer Elements -->
+
 </footer>
-</body>
-</html>

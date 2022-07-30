@@ -1,5 +1,12 @@
 <?php
 include("templates/header.php");
+require_once 'db/connection.php';
+
+
+
+$sql = "SELECT * FROM enterprises;";
+$result_enterprises = mysqli_query($conn, $sql);
+$num_rows_enterprises = mysqli_num_rows($result_enterprises);
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -9,20 +16,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 ?>
 <!doctype html>
 <html dir="rtl" lang="he">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-	<link href="IdeaProjects/mta-final-project-2022-W84/style/style.css" rel="stylesheet" /><meta name="generator" content="Hugo 0.98.0">
 </head>
 <body>
 
 
 <main>
-<main class="container">
+<main class="container-lg">
 <div class="text-black rounded bg-white" dir="rtl">
 <div class="col-md-6 px-0">
-<h1 class="display-4 fst-italic">ממש ניהול הדרכות</h1>
+<h1 class="display-4 fst-italic">ממשק ניהול הדרכות</h1>
 
-<p class="lead my-3" style="text-align: right;">נולד להורים ספורטאים בצפון, זכה לחיזורים מסרביה והחליט לייצג את ישראל בזכות פיני גרשון. הדרך של השחקן שמרגש מדינה שלמה.</p>
+<p class="lead my-3" style="text-align: right;">מעקב אחר הדרכות הרשתות</p>
 </div>
 </div>
 
@@ -35,20 +42,51 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <iframe src="https://calendar.google.com/calendar/embed?src=jc3cigngdkkmhrpv782m5c2fa4%40group.calendar.google.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
 <article class="blog-post">
-<h2 class="blog-post-title mb-1" style="text-align: right;">MVP</h2>
+<h2 class="blog-post-title mb-1" style="text-align: right;">טבלת הדרכות</h2>
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th scope="col">רשת</th>
+            <th scope="col">&nbsp;כמות הדרכות כוללת</th>
+            <th scope="col">הדרכות אייפד</th>
+            <th scope="col">הדרכות הכשרה</th>
 
-<p class="blog-post-meta" style="text-align: right;">שנה קדימה, הנבחרת הישראלית מארחת את האליפות בתל אביב וממשיכה בהיסטוריה כשהיא שומרת על התואר שלה, אבדיה הפעם הופך להיות הכוכב של הנבחרת, הבלתי ניתן לעצירה, ה-MVP של האליפות והכוכב הבלתי מעורר שלה, ראו את זה בכל מהלך שלו על המגרש ולא רק עליו, הסקאוטים של קבוצות ה-NBA מילאו את היכל קבוצת שלמה וצפו בכל חצי מהלך שלו על המגרש. ברבע הגמר&nbsp;נגד ליטא, הנבחרת הישראלית אומנם ניצחה, אבדיה קלע 16 נק&rsquo; אבל נק&rsquo; החולשה שלו היתה מהקו עם 3 מ-8. בסיום המשחק, כשהכל השחקנים כבר היו בדרך לאוטובוס, והאוהדים חיכו לשמוח עם השחקנים,&nbsp;&nbsp;עלה אבדיה עם אחד מעוזרי המאמן יואב שמיר וזרק יותר מ-100 זריקות עונשין.</p>
-</article>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        $sql = "SELECT * FROM enterprises;";
+        $result_enterprises = mysqli_query($conn, $sql);
 
-<article class="blog-post">
-<h2 class="blog-post-title mb-1" style="text-align: right;">צנועה ובדרך ל-NBA</h2>
 
-<p class="blog-post-meta" style="text-align: right;">בעונה האחרונה אבדיה כבר היה בורג חשוב במכונה של יאניס ספרופולוס, גם בגלל הפציעות הרבות שעברו על מכבי ת&quot;א בתחילת העונה אבל לא רק, אבדיה לקח את ההזדמנות בשתי ידיים. מסביב לצהובים מספרים על שחקן שאוהב לעבוד, כזה שתמיד ישאר לזרוק אחרי האימון (ע&rdquo;ע העונשין אחרי רבע גמר אליפות אירופה), יגיע מוקדם ובכלל, למרות גילו הצעיר, הכישרון, הפוטנציאל והרחשים מסביב, מעולם לא הרים את האף והיה תמיד חביב בחדר ההלבשה וניסה ללמוד מכל שחקן שהגיע, כשאמארה סטודמאייר&nbsp;הגיע למכבי באמצע העונה החיבור ביניהם היה מיידי. השחקן הכי מבוגר בקבוצה עם הכי צעיר, &quot;סטאט&quot; לקח את אבדיה תחת חסותו, אבדיה ספג את המידע ולקח איתו את זה הלאה בשנה הבאה הוא עתיד לפגוש אותו במשחקי ה-NBA כשסטודומאייר יעמוד מאחורי הקווים ודני בתוכם.&nbsp;</p>
-</article>
 
-<nav aria-label="Pagination" class="blog-pagination">
-<p style="text-align: right;"></p>
-</nav>
+        while($row_enterprises = mysqli_fetch_assoc($result_enterprises))
+        {
+            $count_sql = 'SELECT * FROM trainings where restaurant_id = '.$row_enterprises['id'].';';
+            $count_result = mysqli_query($conn, $count_sql);
+            $count_training_per_enterprise = mysqli_num_rows($count_result);
+
+            $count_sql_ipad = 'SELECT * FROM trainings where restaurant_id = '.$row_enterprises['id'].' and type = "ipad";';
+            $count_result_ipad = mysqli_query($conn, $count_sql_ipad);
+            $count_training_per_enterprise_ipad = mysqli_num_rows($count_result_ipad);
+
+            $count_sql_team = 'SELECT * FROM trainings where restaurant_id = '.$row_enterprises['id'].' and type = "team";';
+            $count_result_team = mysqli_query($conn, $count_sql_team);
+            $count_training_per_enterprise_team = mysqli_num_rows($count_result_team);
+
+            echo '        
+        <tr>
+            <td>'.$row_enterprises['name'].'</td>
+            <td>'.$count_training_per_enterprise.'</td>
+            <td>'.$count_training_per_enterprise_ipad.'</td>
+            <td>'.$count_training_per_enterprise_team.'</td>
+        </tr>';
+            echo '</a></li>';
+        }
+        ?>
+
+        </tbody>
+    </table>
 </div>
 
 <div class="col-md-4">
@@ -57,69 +95,65 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
         <h2 style="text-align: right;">הוספת הדרכה חדשה</h2>
 
-        <p class="lead" style="text-align: right;"><strong>רוצים לתרום לקהילה של דני אבדיה?<br />
-                רוצים שהאתר ישתפר ויתווספו דברים חדשים?<br />
-                ניתן לתרום כל סכום!<br />
-                תודה!</strong></p>
+        <p class="lead" style="text-align: right;"><strong>מלאו את הטופס בכדי להוסיף הדרכה חדשה ללוח השנה<br>
     </div>
 
     <div class="row g-3" dir="rtl">
         <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: right;">הדרכות הקרובות</h4>
-
-            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">נעם לוי</span></h4>
-
-            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">131$</p>
-
-            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">יאניס ספרופולוס</span></h4>
-
-            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">1442$</p>
-
-            <p dir="rtl" style="text-align: left;"></p>
-
-            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">עמית מלול</span></h4>
-
-
-            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">170$</p>
-
-            <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">עומר בן נון</span></h4>
-
-
-            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">100$</p>
-
-            <p></p>
+            <?php
+            $sql = "SELECT * FROM trainings;";
+            $result_trainings = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result_trainings))
+            {
+                echo '
+                <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">'.$row['name'].'</span></h4>
+            <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">'.$row['date'].'</p>
+                ';
+                echo '</a></li>';
+            }
+            ?>
         </div>
 
         <div class="col-md-7 col-lg-8">
-            <form action="send_details.php" class="needs-validation" method="post" novalidate="">
+            <form action="add_event.php" class="needs-validation" method="post" novalidate="">
                 <div class="row g-3">
-                    <div class="col-sm-6">
-                        <p style="text-align: right;"><label class="form-label" for="firstName">שם מלא&nbsp;</label><input class="form-control" id="fullname" placeholder="" required="" type="text" value="" name="fullname"/></p>
+                    <div class="col-12">
+                        <p style="text-align: right;"><label class="form-label" for="name"&nbsp;</label>שם ההדרכה<input class="form-control" id="name" placeholder="" required="" type="text" value="" name="name" required/></p>
 
                         <div class="invalid-feedback" style="text-align: right;"></div>
                     </div>
 
                     <div class="col-12">
-                        <p style="text-align: right;">סכום לתשלום ($)&nbsp;<input class="form-control" id="sum" placeholder="" required="" type="text" name="sum"/></p>
+                        <p style="text-align: right; margin-bottom: 0px;"><label class="form-label" for="name"&nbsp;</label>רשת</p>
+                        <select name="enterprises" id="enterprises" class="form-select">
+                            <?php
+                            $sql = "SELECT * FROM enterprises;";
+                            $result_enterprises = mysqli_query($conn, $sql);
+                            while($row = mysqli_fetch_assoc($result_enterprises))
+                            {
+                                $name = $row['name'];
+                                $id = $row['id'];
+                                echo '<option value="'.$id.'">'.$name.'</option>';
+                            }
+                            ?>
 
-                        <div class="input-group has-validation">
-                            <div class="invalid-feedback" style="text-align: right;">اسم المستخدم الخاص بك مطلوب.</div>
-                        </div>
+                        </select>
                     </div>
 
                     <div class="col-12">
-                        <p style="text-align: right;">אימייל&nbsp;<input class="form-control" id="email" placeholder="you@example.com" type="text" name="email"/></p>
+                        <p style="text-align: right;">
+                        <label class="form-label" for="name"&nbsp;</label>סוג הדרכה&nbsp;
+                            <select name="type" id="type" class="form-select">
+                                <option value="ipad"> אייפד</option>
+                                <option value="team"> צוותי</option>
+                            </select>
 
-                        <div class="invalid-feedback" style="text-align: right;">يرجى إدخال عنوان بريد إلكتروني صحيح لتصلكم تحديثات الشحن.</div>
+                        </p>
+
                     </div>
 
-                    <div class="col-12">
-                        <p style="text-align: right;">טלפון&nbsp;<input class="form-control" id="tel" placeholder="" required="" type="text" value="" name="tel"/></p>
-
-                        <div class="invalid-feedback" style="text-align: right;">يرجى إدخال عنوان الشحن الخاص بك.</div>
-                    </div>
-
-                    <div class="col-12" style="text-align: right;">מספר כרטיס אשראי&nbsp;<input class="form-control" id="credit" placeholder="" type="text" name="credit" /></div>
+                    <div class="col-12" style="text-align: right;"><label class="form-label" for="name"&nbsp;>תאריך הדרכה</label>&nbsp;<input required class="form-control" id="date" placeholder="" type="datetime-local" name="date" /></div>
 
                     <div class="col-md-5">
                         <p style="text-align: right;"></p>
@@ -127,7 +161,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </div>
 
                 <hr class="my-4" />
-                <p style="text-align: right;"><button class="w-100 btn btn-primary btn-lg" type="submit" value="run">שלח תרומה</button></p>
+                <p style="text-align: right;"><button class="w-100 btn btn-primary btn-lg" type="submit" value="run">שמור אירוע</button></p>
             </form>
         </div>
     </div>
@@ -139,5 +173,5 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     include("templates/footer.php");
 ?>
 </main>
-<script src="../../Root/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script></body>
+<script src="/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>
