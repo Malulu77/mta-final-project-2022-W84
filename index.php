@@ -7,7 +7,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: includes/login/login.php");
     exit;
 }
-$sql = "SELECT * FROM restaurants;";
+$sql = "SELECT * FROM enterprises;";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 ?>
