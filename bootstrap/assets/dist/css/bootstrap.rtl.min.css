@@ -4901,7 +4901,7 @@ fieldset:disabled .btn {
     margin-bottom: var(--bs-card-group-margin)
 }
 
-@media (min-width:1800px) {
+@media (max-width:100px) {
     .card-group {
         display: flex;
         flex-flow: row wrap
