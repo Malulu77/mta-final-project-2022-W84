@@ -19,6 +19,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 </head>
 <body>
 
@@ -98,8 +100,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <p class="lead" style="text-align: right;"><strong>מלאו את הטופס בכדי להוסיף הדרכה חדשה ללוח השנה<br>
     </div>
 
-    <div class="row g-3" dir="rtl">
-        <div class="col-md-5 col-lg-4 order-md-last">
+    <div class="row lg-3 overflow-auto" dir="rtl">
+        <div class="col-md-5 col-lg-4 order-md-last" style="height: 10%;">
             <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: right;">הדרכות הקרובות</h4>
             <?php
             $sql = "SELECT * FROM trainings;";
@@ -124,7 +126,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <div class="invalid-feedback" style="text-align: right;"></div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 ">
                         <p style="text-align: right; margin-bottom: 0px;"><label class="form-label" for="name"&nbsp;</label>רשת</p>
                         <select name="enterprises" id="enterprises" class="form-select">
                             <?php
@@ -162,11 +164,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
                 <hr class="my-4" />
                 <p style="text-align: right;"><button class="w-100 btn btn-primary btn-lg" type="submit" value="run">שמור אירוע</button></p>
+
             </form>
         </div>
     </div>
 </div>
 </div>
+    <?php
+    echo $_SERVER['QUERY_STRING'];
+    if( $_SERVER['QUERY_STRING'] == 'success'){
+        echo '    <script>
+            Swal.fire("האירוע נשמר במערכת", "האירוע נשמר בהצלחה, ניתן לצפות ביומן  ", "success");
+    </script>';
+    }
+    if( $_SERVER['QUERY_STRING'] == 'error'){
+        echo '    <script>
+            Swal.fire("חלה שגיאה", "וודא כי כל הפרטים מולאו כראוי", "error");
+    </script>';
+    }
+    ?>
+
 </main>
 
 <?php
