@@ -4813,7 +4813,9 @@ fieldset:disabled .btn {
 }
 
 .card-title {
-    margin-bottom: var(--bs-card-title-spacer-y)
+    margin-bottom: var(--bs-card-title-spacer-y);
+    text-align: left;
+
 }
 
 .card-subtitle {
