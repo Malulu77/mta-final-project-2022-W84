@@ -49,12 +49,11 @@ $num_rows = mysqli_num_rows($result);
             <div class="card shadow-lg">
             <div class="card-body">
                 <h4 class="card-title">'.$row['name'].'</h4>'.'               
-                <p class="card-text"> PSS This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                    <button class="btn btn-sm btn-outline-secondary" type="button">לצפייה</button></div>
-                    <p><small class="text-muted">9 במאי</small></p>
+                    <a href="stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
+                    <p><small class="text-muted">'.$row['venues_num'].'</small></p>
                 </div>
             </div>
         </div>
