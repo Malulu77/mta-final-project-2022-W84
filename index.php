@@ -52,7 +52,7 @@ $num_rows = mysqli_num_rows($result);
                 <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                    <a href="stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
+                    <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
                     <p><small class="text-muted">'.$row['venues_num'].'</small></p>
                 </div>
             </div>
