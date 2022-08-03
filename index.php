@@ -22,7 +22,7 @@ $num_rows = mysqli_num_rows($result);
 
     <style>
         main{width: 90%; margin: auto;}
-        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%;}
+        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%; float: left; display: inline; width: 30%}
 
     </style>
 </head>
