@@ -7,7 +7,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: includes/login/login.php");
     exit;
 }
-$sql = "SELECT * FROM enterprises;";
+
+$enterprise_id = $_SERVER['QUERY_STRING'];
+$sql_current = "SELECT * FROM enterprises where id = ".$enterprise_id;
+$result_current = mysqli_query($conn, $sql_current);
+$row_current = mysqli_fetch_assoc($result_current);
+
+$sql = "SELECT * FROM enterprises";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 ?>
@@ -25,183 +31,143 @@ $num_rows = mysqli_num_rows($result);
 <body>
 
 
-
-
-<script>
-
-$(document).ready(function(){
-
-
-   $("li2").click(function(){
-    alert("יפותח בהמשך,יש למה לצפות");
-  });
-
-
-   $("button").click(function(){
-    alert("יפותח בהמשך,יש למה לצפות");
-  });
-
-});
-
-
-</script>
-
-
-
-
-
 <div class="container-fluid" dir="rtl">
 <div class="row">
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
+
             <ul class="nav flex-column">
                 <?php
 
                 while($row = mysqli_fetch_assoc($result))
                 {
+                    $active = '';
+                    if($row_current['id'] == $row['id']){
+                        $active='active';}
+
                     echo '<li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>';
+                    <a class="nav-link '.$active.'" href="stats.php?'.$row['id'].'">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 297.653 297.653" style="enable-background:new 0 0 297.653 297.653;" xml:space="preserve">
+<g>
+	<path d="M38.167,66.826c-3.271,0-5.996,1.966-7.236,4.778c-0.964-3.336-3.993-5.778-7.639-5.778c-3.647,0-6.696,2.442-7.66,5.778   c-1.24-2.812-4.205-4.778-7.475-4.778c-4.418,0-8.156,3.582-8.156,8v37.363c0,9.714,7,18.017,15,21.223v106.414   c0,4.418,3.582,8,8,8s8-3.582,8-8V133.411c9-3.206,15-11.509,15-21.222V74.826C46,70.408,42.584,66.826,38.167,66.826z"/>
+	<path style="fill:#B4EBDD;" d="M151.332,65.492C105.383,65.492,68,102.876,68,148.826s37.383,83.334,83.332,83.334   c45.95,0,83.334-37.384,83.334-83.334S197.282,65.492,151.332,65.492z M151.332,216.159c-37.126,0-67.331-30.205-67.331-67.333   s30.205-67.333,67.331-67.333c37.128,0,67.333,30.205,67.333,67.333S188.46,216.159,151.332,216.159z"/>
+	<path d="M151.332,49.492C96.56,49.492,52,94.053,52,148.826s44.56,99.334,99.332,99.334c54.772,0,99.334-44.561,99.334-99.334   S206.104,49.492,151.332,49.492z M151.332,232.16C105.383,232.16,68,194.777,68,148.826s37.383-83.334,83.332-83.334   c45.95,0,83.334,37.384,83.334,83.334S197.282,232.16,151.332,232.16z"/>
+	<path style="fill:#FFFFFF;" d="M151.332,97.493c-28.304,0-51.331,23.028-51.331,51.333s23.027,51.333,51.331,51.333   c28.305,0,51.333-23.028,51.333-51.333S179.637,97.493,151.332,97.493z"/>
+	<path d="M151.332,81.493c-37.126,0-67.331,30.205-67.331,67.333s30.205,67.333,67.331,67.333c37.128,0,67.333-30.205,67.333-67.333   S188.46,81.493,151.332,81.493z M151.332,200.159c-28.304,0-51.331-23.028-51.331-51.333s23.027-51.333,51.331-51.333   c28.305,0,51.333,23.028,51.333,51.333S179.637,200.159,151.332,200.159z"/>
+	<path d="M297.483,131.124l-16.334-75c-0.869-3.993-4.764-6.688-8.839-6.252c-4.064,0.438-7.31,3.867-7.31,7.954v182   c0,4.418,3.582,8,8,8s8-3.582,8-8v-90.749l13.3-9.851C296.804,137.348,298.149,134.183,297.483,131.124z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>';
+                    echo '&nbsp';
                     echo $row['name'];
                     echo '</a></li>';
                 }
                 ?>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                        Dashboard <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                        Orders
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        Products
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        Customers
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                        Reports
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                        Integrations
-                    </a>
-                </li>
-            </ul>
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Saved reports</span>
-                <a class="d-flex align-items-center text-muted" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Current month
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Last quarter
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Social engagement
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Year-end sale
-                    </a>
-                </li>
             </ul>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>סה״כ מסעדות</span>
+                <span><?php echo $num_rows; ?></span>
+            </h6>
         </div>
     </nav>
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<h2>נתוני התקפה -נקודות של דני על פי חודשים</h2>
+<h2><?php echo $row_current['name'];?></h2>
 
 <div class="btn-toolbar mb-2 mb-md-0">
-<div class="btn-group me-2"><button class="btn btn-sm btn-outline-secondary" type="button">עונתי</button><button class="btn btn-sm btn-outline-secondary" type="button">כל הזמנים</button></div>
+<div class="btn-group me-2"><button class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';"><?php echo $row_current['coo_email'];?></button><button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button></div>
 
-<p><button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">בחירת תאריך</button></p>
 </div>
 </div>
-
-<p><canvas class="my-4 w-100" height="380" id="myChart" width="900"></canvas></p>
     <div class="container my-5">
-
-
-
-        <section class="p-5 z-depth-1">
-
-            <h3 class="text-center font-weight-bold mb-5">Counter</h3>
-
-            <div class="row d-flex justify-content-center">
-
-                <div class="col-md-6 col-lg-3 mb-4 text-center">
-                    <h4 class="h1 font-weight-normal mb-3">
-                        <i class="fas fa-file-alt indigo-text"></i>
-                        <span class="d-inline-block count-up" data-from="0" data-to="100" data-time="2000">100</span>
-                    </h4>
-                    <p class="font-weight-normal text-muted">Unique Page</p>
+        <div class="row ">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">סל ממוצע רשתי</h5>
+                        <p class="card-text"><?php echo $row_current['avg_basket'];?></p>
+                    </div>
                 </div>
-
-                <div class="col-md-6 col-lg-3 mb-4 text-center">
-                    <h4 class="h1 font-weight-normal mb-3">
-                        <i class="fas fa-layer-group indigo-text"></i>
-                        <span class="d-inline-block count1" data-from="0" data-to="250" data-time="2000">250</span>
-                    </h4>
-                    <p class="font-weight-normal text-muted">Block Variety</p>
-                </div>
-
-                <div class="col-md-6 col-lg-3 mb-4 text-center">
-                    <h4 class="h1 font-weight-normal mb-3">
-                        <i class="fas fa-pencil-ruler indigo-text"></i>
-                        <span class="d-inline-block count2" data-from="0" data-to="330" data-time="2000">330</span>
-                    </h4>
-                    <p class="font-weight-normal text-muted">Reusable Component</p>
-                </div>
-
-                <div class="col-md-6 col-lg-3 mb-4 text-center">
-                    <h4 class="h1 font-weight-normal mb-3">
-                        <i class="fab fa-react indigo-text"></i>
-                        <span class="d-inline-block count3" data-from="0" data-to="430" data-time="2000">430</span>
-                    </h4>
-                    <p class="font-weight-normal text-muted">Crafted Element</p>
-                </div>
-
             </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">סך הכל מכירות</h5>
+                        <p class="card-text"><?php echo $row_current['total_sales'];?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">רייטינג ממוצע</h5>
+                        <p class="card-text"><?php echo $row_current['avg_goods_rating'];?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">יחס המרה</h5>
+                        <p class="card-text"><?php echo $row_current['avg_convertion'];?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">יחס דחייה</h5>
+                        <p class="card-text"><?php echo $row_current['rejection_rate'];?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">כמות מכירות</h5>
+                        <p class="card-text"><?php echo $row_current['purchase_count'];?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        </section>
-
-
+        <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
     </div>
-<div class="table-responsive"><span style="font-size: 24px;"><b>משחק</b></span>
+
+
 </div>
 
 
