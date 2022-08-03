@@ -64,10 +64,10 @@ session_start();
                         <li class="nav-item">
                             <?php
                             if (basename($_SERVER['PHP_SELF']) == 'stats.php'){
-                                echo  '<a class="nav-link active" href="../includes/stats.php">סטטיסטיקות</a>';
+                                echo  '<a class="nav-link active" href="../includes/stats.php?1">סטטיסטיקות</a>';
                             }
                             else {
-                                echo '<a class="nav-link" href="../includes/stats.php">סטטיסטיקות</a>';
+                                echo '<a class="nav-link" href="../includes/stats.php?1">סטטיסטיקות</a>';
                             } ?>
                         </li>
                     </ul>
