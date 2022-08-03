@@ -9,7 +9,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $enterprise_id = $_SERVER['QUERY_STRING'];
-echo $enterprise_id;
 $sql_current = "SELECT * FROM enterprises where id = ".$enterprise_id;
 $result_current = mysqli_query($conn, $sql_current);
 $row_current = mysqli_fetch_assoc($result_current);
