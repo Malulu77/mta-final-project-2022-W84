@@ -110,6 +110,7 @@ $num_rows = mysqli_num_rows($result);
 <div class="btn-toolbar mb-2 mb-md-0">
 <div class="btn-group me-2"><button class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';"><?php echo $row_current['coo_email'];?></button><button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button></div>
 
+
 </div>
 </div>
     <div class="container my-5">
