@@ -1,0 +1,59 @@
+version: '3'
+services:
+  db:
+    image: arm64v8/mysql
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: isamitml_db2
+      MYSQL_USER: isamitml_user
+      MYSQL_PASSWORD: iG_W7XXnV!8U
+    ports:
+      - "9906:3306"
+    restart: always
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.2
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8082:80
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.3
+  php-apache-environment:
+    container_name: php-apache
+    command: /bin/sh -c "docker-php-ext-install mysqli && exec docker-php-entrypoint apache2-foreground"
+    build:
+      dockerfile: Dockerfile
+      context: /Users/amalul/IdeaProjects/mta-final-project-2022-W84/
+    depends_on:
+      - db
+    volumes:
+      - /Users/amalul/IdeaProjects/mta-final-project-2022-W84/:/var/www/html/
+    ports:
+      - 8000:80
+    restart: always
+    networks:
+      appnet:
+        ipv4_address: 172.24.2.4
+networks:
+  appnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.24.2.0/16
+volumes:
+  dbdata:
