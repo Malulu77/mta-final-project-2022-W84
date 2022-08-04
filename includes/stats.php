@@ -25,6 +25,7 @@ $num_rows = mysqli_num_rows($result);
     <link href="../bootstrap/assets/dist/css/dashboard.rtl.css" rel="stylesheet">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
 
+
 	
 </head>
 <body>
@@ -99,6 +100,9 @@ $num_rows = mysqli_num_rows($result);
                 <span>סה״כ מסעדות</span>
                 <span><?php echo $num_rows; ?></span>
             </h6>
+            <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+            <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+
         </div>
     </nav>
 
@@ -124,6 +128,7 @@ $num_rows = mysqli_num_rows($result);
 </div>
 </div>
     <div class="container my-5">
+
         <div class="row ">
             <div class="col">
                 <div class="card">
@@ -173,6 +178,7 @@ $num_rows = mysqli_num_rows($result);
                     </div>
                 </div>
             </div>
+            <p style="text-align: right;"><button class="w-10 btn btn-primary btn-lg" type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
@@ -191,6 +197,7 @@ $num_rows = mysqli_num_rows($result);
         </form>
     </div>
 
+
 </div>
 
 
@@ -203,64 +210,167 @@ $num_rows = mysqli_num_rows($result);
 
 
 <script>
+        let row_data ;
 
-    function getDataFromSheets(){
+        // TODO(developer): Set to client ID and API key from the Developer Console
+        const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
+        const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
 
+        // Discovery doc URL for APIs used by the quickstart
+        const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+
+        // Authorization scopes required by the API; multiple scopes can be
+        // included, separated by spaces.
+        const SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+        let tokenClient;
+        let gapiInited = false;
+        let gisInited = false;
+
+        document.getElementById('authorize_button').style.visibility = 'hidden';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+
+        /**
+        * Callback after api.js is loaded.
+        */
+        function gapiLoaded() {
+        gapi.load('client', intializeGapiClient);
     }
 
-    feather.replace({ 'aria-hidden': 'true' })
-    data = getDataFromSheets();
-    console.log(data);
+        /**
+        * Callback after the API client is loaded. Loads the
+        * discovery doc to initialize the API.
+        */
+        async function intializeGapiClient() {
+        await gapi.client.init({
+            apiKey: API_KEY,
+            discoveryDocs: [DISCOVERY_DOC],
+        });
+        gapiInited = true;
+        maybeEnableButtons();
+    }
 
-    // Graphs
-    const ctx = document.getElementById('myChart')
-    // eslint-disable-next-line no-unused-vars
-    // const headers = ["a","b","c","d","e","f","g"];
+        /**
+        * Callback after Google Identity Services are loaded.
+        */
+        function gisLoaded() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: '', // defined later
+        });
+        gisInited = true;
+        maybeEnableButtons();
+    }
 
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [
-                '2017',
-                '2018',
-                '2019',
-                '2020',
-                '2021',
-                '2022'
-            ],
-            datasets: [{
-                data: [
-                    Math.floor(Math.random() * 30) + 1,
-                    Math.floor(Math.random() * 30) + 1,
-                    Math.floor(Math.random() * 30) + 1,
-                    Math.floor(Math.random() * 30) + 1,
-                    Math.floor(Math.random() * 30) + 1,
-                    <?php echo $row_current['del_commision'];?>
-                ],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#0c38a9',
-                borderWidth: 4,
-                pointBackgroundColor: '#00b2ff'
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            },
-            legend: {
-                display: false
+        /**
+        * Enables user interaction after all libraries are loaded.
+        */
+        function maybeEnableButtons() {
+        if (gapiInited && gisInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
+    }
+    }
+
+        /**
+        *  Sign in the user upon button click.
+        */
+        function handleAuthClick() {
+        tokenClient.callback = async (resp) => {
+            if (resp.error !== undefined) {
+                throw (resp);
             }
-        }
-    })
-    function update(){
-        myChart.update();
+            document.getElementById('signout_button').style.visibility = 'visible';
+            document.getElementById('authorize_button').innerText = 'Refresh';
+        };
+
+        if (gapi.client.getToken() === null) {
+        // Prompt the user to select a Google Account and ask for consent to share their data
+        // when establishing a new session.
+        tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+        // Skip display of account chooser and consent dialog for an existing session.
+        tokenClient.requestAccessToken({prompt: ''});
     }
+    }
+
+        /**
+        *  Sign out the user upon button click.
+        */
+        function handleSignoutClick() {
+        const token = gapi.client.getToken();
+        if (token !== null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        document.getElementById('content').innerText = '';
+        document.getElementById('authorize_button').innerText = 'Authorize';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+    }
+    }
+
+        async function getData() {
+            let response;
+            try {
+                // Fetch first 10 files
+                response = await gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId: '1hy6XxMTJBlnuTIpWTfTcQmQUMGTM3c4uw3fnrrcLMDY',
+                    range: 'Sheet1!A1:E80',
+                });
+            } catch (err) {
+                document.getElementById('content').innerText = err.message;
+            }
+            const range = response.result;
+            if (!range || !range.values || range.values.length == 0) {
+                document.getElementById('content').innerText = 'No values found.';
+            }
+            row_data = range.values[<?php echo $enterprise_id;?>];
+        }
+
+        async function build(){
+            getData();
+            await new Promise(r => setTimeout(r, 2000));
+            row_data.push(<?php echo $row_current['del_commision'];?>);
+            console.log(row_data);
+            const ctx = document.getElementById('myChart')
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        '2017',
+                        '2018',
+                        '2019',
+                        '2020',
+                        '2021',
+                        '2022'
+                    ],
+                    datasets: [{
+                        data: row_data,
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#0c38a9',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#00b2ff'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            })
+        }
+
 </script>
+
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
 
 
