@@ -24,7 +24,6 @@ $num_rows = mysqli_num_rows($result);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../bootstrap/assets/dist/css/dashboard.rtl.css" rel="stylesheet">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-    <link href="../dashboard/dashboard.rtl.css" rel="stylesheet" />
 
 	
 </head>
@@ -105,10 +104,21 @@ $num_rows = mysqli_num_rows($result);
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<h2><?php echo $row_current['name'];?></h2>
 
+    <div class="container">
+        <div class="card-title align-content-center">
+            <h2><?php echo $row_current['name'];?></h2>
+        </div>
+    </div>
 <div class="btn-toolbar mb-2 mb-md-0">
-<div class="btn-group me-2"><button class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';"><?php echo $row_current['coo_email'];?></button><button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button></div>
+<div class="btn-group me-2">
+    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';"><?php echo $row_current['coo_email'];?></button>
+    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button>
+    <br>
+</div>
+
+
+
 
 
 </div>
@@ -166,8 +176,20 @@ $num_rows = mysqli_num_rows($result);
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
-    </div>
 
+        <div class="card-body">
+            <h5 class="card-title">עמלת רשת</h5>
+            <p class="card-text"><?php echo $row_current['del_commision'];?>%</p>
+        </div>
+        <br>
+        <form action="update_commision.php" class="needs-validation" method="post" novalidate="">
+            <p style="text-align: right;"><label class="form-label" for="value"&nbsp;</label>עדכון עמלה
+                <input class="form-control" id="value" type="text" value="" name="value" required/>
+                <input style="display: none" class="form-control" id="id" type="text" value="<?php echo $enterprise_id; ?>" name="id"/>
+            </p>
+            <p style="text-align: right;"><button class="w-10 btn btn-primary btn-lg" type="submit" value="run">שמור עמלה חדשה</button></p>
+        </form>
+    </div>
 
 </div>
 
@@ -179,48 +201,65 @@ $num_rows = mysqli_num_rows($result);
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="../bootstrap/assets/dist/js/dashboard.js"></script>
-
 
 <script>
-    (function ($){
-        $.fn.counter = function() {
-            const $this = $(this),
-                numberFrom = parseInt($this.attr('data-from')),
-                numberTo = parseInt($this.attr('data-to')),
-                delta = numberTo - numberFrom,
-                deltaPositive = delta > 0 ? 1 : 0,
-                time = parseInt($this.attr('data-time')),
-                changeTime = 10;
 
-            let currentNumber = numberFrom,
-                value = delta*changeTime/time;
-            var interval1;
-            const changeNumber = () => {
-                currentNumber += value;
-                //checks if currentNumber reached numberTo
-                (deltaPositive && currentNumber >= numberTo) || (!deltaPositive &&currentNumber<= numberTo) ? currentNumber=numberTo : currentNumber;
-                this.text(parseInt(currentNumber));
-                currentNumber == numberTo ? clearInterval(interval1) : currentNumber;
+    function getDataFromSheets(){
+
+    }
+
+    feather.replace({ 'aria-hidden': 'true' })
+    data = getDataFromSheets();
+    console.log(data);
+
+    // Graphs
+    const ctx = document.getElementById('myChart')
+    // eslint-disable-next-line no-unused-vars
+    // const headers = ["a","b","c","d","e","f","g"];
+
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                '2017',
+                '2018',
+                '2019',
+                '2020',
+                '2021',
+                '2022'
+            ],
+            datasets: [{
+                data: [
+                    Math.floor(Math.random() * 30) + 1,
+                    Math.floor(Math.random() * 30) + 1,
+                    Math.floor(Math.random() * 30) + 1,
+                    Math.floor(Math.random() * 30) + 1,
+                    Math.floor(Math.random() * 30) + 1,
+                    <?php echo $row_current['del_commision'];?>
+                ],
+                lineTension: 0,
+                backgroundColor: 'transparent',
+                borderColor: '#0c38a9',
+                borderWidth: 4,
+                pointBackgroundColor: '#00b2ff'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            legend: {
+                display: false
             }
-
-            interval1 = setInterval(changeNumber,changeTime);
         }
-    }(jQuery));
-
-    $(document).ready(function(){
-
-        $('.count-up').counter();
-        $('.count1').counter();
-        $('.count2').counter();
-        $('.count3').counter();
-
-        new WOW().init();
-
-        setTimeout(function () {
-            $('.count5').counter();
-        }, 3000);
-    });
+    })
+    function update(){
+        myChart.update();
+    }
 </script>
 </body>
 
