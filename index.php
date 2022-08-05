@@ -79,8 +79,6 @@ $num_rows = mysqli_num_rows($result);
         }
     }
 </script>
-
-
 </body>
 <?php
 include("includes/templates/footer.php");
