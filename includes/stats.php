@@ -16,6 +16,15 @@ $row_current = mysqli_fetch_assoc($result_current);
 $sql = "SELECT * FROM enterprises";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
+
+
+function percent($number){
+    return $number * 100 . '%';
+}
+
+function percent1($number){
+    return round((1 / $number) * 100,2) . '%';
+}
 ?>
 <!doctype html>
 <html dir="rtl" lang="he">
@@ -24,6 +33,37 @@ $num_rows = mysqli_num_rows($result);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../bootstrap/assets/dist/css/dashboard.rtl.css" rel="stylesheet">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ce0967b930.js" crossorigin="anonymous"></script>
+    <style>
+        .card-title{
+            text-align:right;
+
+        }
+        
+
+      .header img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin:auto;        
+        display: block; 
+
+
+
+        }
+
+        .header h2 {
+            text-align: center;
+            margin-top:5px;
+
+
+        }
+
+        .button1{
+            margin-top:3%;
+        }
+    </style>
 
 
 	
@@ -110,8 +150,9 @@ $num_rows = mysqli_num_rows($result);
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
     <div class="container">
-        <div class="card-title align-content-center">
+        <div class="header">
             <h2><?php echo $row_current['name'];?></h2>
+            <img src="../images/<?php echo $row_current['img'];?>"/>
         </div>
     </div>
 <div class="btn-toolbar mb-2 mb-md-0">
@@ -120,7 +161,6 @@ $num_rows = mysqli_num_rows($result);
     <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button>
     <br>
 </div>
-
 
 
 
@@ -134,7 +174,8 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">סל ממוצע רשתי</h5>
-                        <p class="card-text"><?php echo $row_current['avg_basket'];?></p>
+                        <i class="fa-solid fa-cart-arrow-down" style="float:left;"></i>
+                        <p class="card-text"><?php echo "₪" . number_format($row_current['avg_basket']);?></p>
                     </div>
                 </div>
             </div>
@@ -142,7 +183,8 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">סך הכל מכירות</h5>
-                        <p class="card-text"><?php echo $row_current['total_sales'];?></p>
+                        <i class="fa-solid fa-sack-dollar" style="float:left;"></i>
+                        <p class="card-text"><?php echo "₪" . number_format($row_current['total_sales']);?></p>
                     </div>
                 </div>
             </div>
@@ -150,7 +192,8 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">רייטינג ממוצע</h5>
-                        <p class="card-text"><?php echo $row_current['avg_goods_rating'];?></p>
+                        <i class="fa-solid fa-star-half-stroke" style="float:left;"></i>
+                        <p class="card-text"><?php echo "★" . $row_current['avg_goods_rating'];?></p>
                     </div>
                 </div>
             </div>
@@ -158,7 +201,8 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">יחס המרה</h5>
-                        <p class="card-text"><?php echo $row_current['avg_convertion'];?></p>
+                        <i class="fa-solid fa-money-bill-transfer" style="float:left;"></i>
+                        <p class="card-text"><?php echo percent($row_current['avg_convertion']);?></p>
                     </div>
                 </div>
             </div>
@@ -166,7 +210,8 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">יחס דחייה</h5>
-                        <p class="card-text"><?php echo $row_current['rejection_rate'];?></p>
+                        <i class="fa-solid fa-comment-slash" style="float:left;"></i>
+                        <p class="card-text"><?php echo percent1($row_current['rejection_rate']);?></p>
                     </div>
                 </div>
             </div>
@@ -174,11 +219,12 @@ $num_rows = mysqli_num_rows($result);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">כמות מכירות</h5>
-                        <p class="card-text"><?php echo $row_current['purchase_count'];?></p>
+                        <i class="fa-solid fa-arrow-up-wide-short" style="float:left;"></i>
+                        <p class="card-text"><?php echo  number_format($row_current['purchase_count']);?></p>
                     </div>
                 </div>
             </div>
-            <p style="text-align: right;"><button class="w-10 btn btn-primary btn-lg" type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
+            <p style="text-align: right;"><button class="button1 w-10 btn btn-primary btn-lg" type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>

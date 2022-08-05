@@ -21,13 +21,59 @@ $num_rows = mysqli_num_rows($result);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        main{width: 90%; margin: auto;}
-        .card-img-bottom {
-            width: 100%;
-            height: 15vw;
-            object-fit: cover;
+         main{width: 90%; margin: auto;}
+        .card{
+            margin-top: 2%;
+            margin-bottom: 2%;
+            margin-left: 2%;
+            display: inline;
+            width: 30%;
         }
-        .card{margin: 2%;}
+
+        @media (max-width:900px) {
+            .card {
+            display: block;
+            width: 90%;
+            }
+        }
+
+        @media (max-width:100px) {
+            .card-group {
+            display: flex;
+            flex-flow: row wrap
+        }
+        }
+
+        .card-title{
+        text-align: left;
+        }
+
+
+        .card-img,
+        .card-img-bottom,
+        .card-img-top {
+        width: 70%;
+        height: 97%;
+        margin: auto;
+        display: block; 
+        }
+
+        .img-container {
+        width: 100%;
+        height: 300px;
+        }
+    
+        .card-deck{
+            margin-right:5%;
+        
+        }
+
+        .searchbox-input{
+            width: 100%;
+        }
+
+
+
 
 
     </style>
@@ -49,10 +95,12 @@ $num_rows = mysqli_num_rows($result);
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
-            <div class="card shadow-lg" style="width: 18rem; display: flex; display: inline-block;">
+            <div class="card shadow-lg" style="display: flex; display: inline-block;">
                 <div class="card-body">
                     <h4 class="card-title">'.$row['name'].'</h4>              
-                    <img class="card-img-bottom" src="images/'.$row['img'].'"/>
+                    <div class="img-container">               	
+                    <img class="card-img-bottom" src="images/'.$row['img'].'">	
+                </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a>
