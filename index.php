@@ -22,47 +22,50 @@ $num_rows = mysqli_num_rows($result);
 
     <style>
         main{width: 90%; margin: auto;}
-        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%; float: left; display: inline; width: 30%}
+        .card-img-bottom {
+            width: 100%;
+            height: 15vw;
+            object-fit: cover;
+        }
+
 
     </style>
 </head>
 <body>
-
-<main>
-
-
-
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5" dir="rtl">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">ממשק ניהול רשתות</h1>
-            </div>
+<section class="py-5 text-center container">
+    <div class="row py-lg-5" dir="rtl">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">ממשק ניהול רשתות</h1>
         </div>
-        <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
-    </section>
-    <div class="card-group" >
+    </div>
+    <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
+</section>
+<main>
+    <div class="card-deck" >
         <?php
 
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
-            <div class="card shadow-lg">
-            <div class="card-body">
-                <h4 class="card-title">'.$row['name'].'</h4>'.'               
-                <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
-                    <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+            <div class="card shadow-lg" style="width: 18rem; display: flex; display: inline-block;">
+                <div class="card-body">
+                    <h4 class="card-title">'.$row['name'].'</h4>              
+                    <img class="card-img-bottom" src="images/'.$row['img'].'"/>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a>
+                        </div>
+                        <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+                    </div>
                 </div>
             </div>
-        </div>
         ';
         }
         ?>
     </div>
-
 </main>
+
+
 <script>
     var buttonUp = () => {
         const input = document.querySelector(".searchbox-input");
@@ -78,9 +81,8 @@ $num_rows = mysqli_num_rows($result);
         }
     }
 </script>
-
+</body>
 <?php
 include("includes/templates/footer.php");
 ?>
-</body>
 </html>
