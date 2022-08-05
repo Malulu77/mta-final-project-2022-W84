@@ -27,21 +27,23 @@ $num_rows = mysqli_num_rows($result);
             height: 15vw;
             object-fit: cover;
         }
+        .card{margin: 2%;}
 
 
     </style>
 </head>
 <body>
-<section class="py-5 text-center container">
-    <div class="row py-lg-5" dir="rtl">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">ממשק ניהול רשתות</h1>
-        </div>
-    </div>
-    <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
-</section>
+
 <main>
-    <div class="card-deck" >
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5" dir="rtl">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">ממשק ניהול רשתות</h1>
+            </div>
+        </div>
+        <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
+    </section>
+    <div class="card-deck">
         <?php
 
         while($row = mysqli_fetch_assoc($result))
