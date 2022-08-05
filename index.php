@@ -22,16 +22,12 @@ $num_rows = mysqli_num_rows($result);
 
     <style>
         main{width: 90%; margin: auto;}
-        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%; float: left; display: inline; width: 30%}
 
     </style>
 </head>
 <body>
 
 <main>
-
-
-
     <section class="py-5 text-center container">
         <div class="row py-lg-5" dir="rtl">
             <div class="col-lg-6 col-md-8 mx-auto">
@@ -40,6 +36,8 @@ $num_rows = mysqli_num_rows($result);
         </div>
         <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
     </section>
+
+    
     <div class="card-group" >
         <?php
 
@@ -48,15 +46,17 @@ $num_rows = mysqli_num_rows($result);
             echo ' 
             <div class="card shadow-lg">
             <div class="card-body">
-                <h4 class="card-title">'.$row['name'].'</h4>'.'               
-                <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
+                <h4 class="card-title">'.$row['name'].'</h4>'.'
+                <div class="img-container">               
+                    <img class="card-img-bottom" src="images/'.$row['img'].'">
+                </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                     <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
                     <p><small class="text-muted">'.$row['venues_num'].'</small></p>
                 </div>
             </div>
-        </div>
+            </div>
         ';
         }
         ?>
@@ -79,8 +79,9 @@ $num_rows = mysqli_num_rows($result);
     }
 </script>
 
+
+</body>
 <?php
 include("includes/templates/footer.php");
 ?>
-</body>
 </html>

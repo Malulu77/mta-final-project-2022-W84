@@ -4767,7 +4767,6 @@ fieldset:disabled .btn {
     --bs-card-img-overlay-padding: 1rem;
     --bs-card-group-margin: 0.75rem;
     position: relative;
-    display: flex;
     flex-direction: column;
     min-width: 0;
     height: var(--bs-card-height);
@@ -4775,7 +4774,13 @@ fieldset:disabled .btn {
     background-color: var(--bs-card-bg);
     background-clip: border-box;
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-    border-radius: var(--bs-card-border-radius)
+    border-radius: var(--bs-card-border-radius);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    float: left;
+    display: inline;
+    width: 30%;
 }
 
 .card>hr {
@@ -4883,12 +4888,13 @@ fieldset:disabled .btn {
 .card-img,
 .card-img-bottom,
 .card-img-top {
-    width: 300px;
-    height: 300px;
+    width: 70%;
+    height: 97%;
     margin: auto;
+    display: block;
 }
 
-.card-img,
+/* .card-img,
 .card-img-top {
     border-top-right-radius: var(--bs-card-inner-border-radius);
     border-top-left-radius: var(--bs-card-inner-border-radius)
@@ -4898,7 +4904,7 @@ fieldset:disabled .btn {
 .card-img-bottom {
     border-bottom-left-radius: var(--bs-card-inner-border-radius);
     border-bottom-right-radius: var(--bs-card-inner-border-radius)
-}
+} */
 
 .card-group>.card {
     margin-bottom: var(--bs-card-group-margin)
@@ -4909,6 +4915,7 @@ fieldset:disabled .btn {
         display: flex;
         flex-flow: row wrap
     }
+
 
     .card-group>.card {
         flex: 1 0 0%;
@@ -5611,10 +5618,21 @@ fieldset:disabled .btn {
     }
 }
 
+@media (max-width:768px) {
+    .card {
+        clear: both;
+        display: block;
+        width: 90%;
+    }
+}
+
+
 @media (min-width:768px) {
     .list-group-horizontal-md {
         flex-direction: row
     }
+
+
 
     .list-group-horizontal-md>.list-group-item:first-child {
         border-bottom-right-radius: var(--bs-list-group-border-radius);
