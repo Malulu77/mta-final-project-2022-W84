@@ -23,6 +23,7 @@ $num_rows = mysqli_num_rows($result);
     <style>
         main{width: 90%; margin: auto;}
 
+
     </style>
 </head>
 <body>
@@ -36,33 +37,33 @@ $num_rows = mysqli_num_rows($result);
         </div>
         <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
     </section>
-
-    
-    <div class="card-group" >
+    <div class="card-deck">
         <?php
 
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
             <div class="card shadow-lg">
-            <div class="card-body">
-                <h4 class="card-title">'.$row['name'].'</h4>'.'
-                <div class="img-container">               
-                    <img class="card-img-bottom" src="images/'.$row['img'].'">
+                <div class="card-body">
+                    <h4 class="card-title">'.$row['name'].'</h4>              
+                    <div class="img-container">               	
+                    <img class="card-img-bottom" src="images/'.$row['img'].'">	
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
-                    <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a>
+                        </div>
+                        <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+                    </div>
                 </div>
-            </div>
             </div>
         ';
         }
         ?>
     </div>
-
 </main>
+
+
 <script>
     var buttonUp = () => {
         const input = document.querySelector(".searchbox-input");
