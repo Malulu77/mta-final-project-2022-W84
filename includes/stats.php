@@ -18,6 +18,7 @@ $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 
 
+
 function percent($number){
     return $number * 100 . '%';
 }
@@ -25,21 +26,64 @@ function percent($number){
 function percent1($number){
     return round((1 / $number) * 100,2) . '%';
 }
+
+
 ?>
 <!doctype html>
 <html dir="rtl" lang="he">
 <head>
+    <script src="jquery-3.6.0.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../bootstrap/assets/dist/css/dashboard.rtl.css" rel="stylesheet">
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/ce0967b930.js" crossorigin="anonymous"></script>
     <style>
+
+        .contact-image{
+            width:50px;
+            height:50px;
+            margin-left:5px;
+        }
+
+        .card{
+            background-color:#F5F5F5;
+            border:solid gray 1px;
+            border-radius: 10px;
+            height:100px;
+
+
+        }
+
+        .card-text{
+            display: block;
+            font-size:18px;
+         }
+
+        
         .card-title{
-            text-align:right;
+            text-align:center;
+            display: inline-block;
+            font-size:21px;
+
+        }
+
+        .image-container{
+            width:25px;
+            height:25px;
+            margin-top:-5px;
+        }
+
+        .image-container:hover{
+            width:25px;
+            height:25px;
+            opacity: 50%;
+            margin-top:-5px;
+
 
         }
         
+
 
       .header img {
         width: 100px;
@@ -63,7 +107,102 @@ function percent1($number){
         .button1{
             margin-top:3%;
         }
-    </style>
+
+        .con-tooltip {    
+        position: relative;                
+        border-radius: 9px;
+        display: inline-block;  
+        clear:both;                   
+        }
+        
+        /*tooltip */
+        .tooltip {
+        visibility: hidden;
+        z-index: 1;
+        opacity: .40;
+        width: 210px;
+        padding: 0px 20px;
+        background: gray;
+        color: white;
+        position: absolute;
+        top:-360%;
+        left:-93px;
+        border-radius: 9px;        
+        transform: translateY(9px);
+        transition: all 0.3s ease-in-out;
+        font-size: 18px;
+        font-weight: bold;
+        box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+        }
+        
+        
+        /* tooltip  after*/
+        .tooltip::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 12.5px 0 12.5px;
+        border-color: gray transparent transparent transparent;
+        position: absolute;
+        left: 45%;
+        
+        }
+        
+        .con-tooltip:hover .tooltip{
+        visibility: visible;
+        transform: translateY(-10px);
+        opacity: 1;
+          transition: .3s linear;
+        animation: odsoky 1s ease-in-out infinite  alternate;
+        
+        }
+        @keyframes odsoky {
+        0%{
+          transform: translateY(6px); 
+        }
+        
+        100%{
+          transform: translateY(1px); 
+        }
+        
+        }
+
+
+        .button-10 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+        
+          color: #fff;
+          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+           background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+        }
+
+        .button-10:focus {
+          box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+          outline: 0;
+        }
+
+        @media (max-width:1587px) {
+            .row {
+            display: block;
+            }
+            .card{
+                margin-top:10px;
+            }
+        }
+
+               
+        </style>
 
 
 	
@@ -157,8 +296,8 @@ function percent1($number){
     </div>
 <div class="btn-toolbar mb-2 mb-md-0">
 <div class="btn-group me-2">
-    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';"><?php echo $row_current['coo_email'];?></button>
-    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>'">לשיחה בווטסאפ</button>
+    <img title="לחץ כאן לשליחת מייל למנהל הרשת" class="contact-image" src="../images/email.png" type="button" onclick="location.href='mailto:<?php echo $row_current['coo_email'];?>';">
+    <img title="לחץ כאן לשליחת הודעת WhatsApp למנהל הרשת"class="contact-image" src="../images/whatsapp.png" type="button" onclick="window.location.href='https://api.whatsapp.com/send?phone=972<?php echo $row_current['coo_phone'];?>';">
     <br>
 </div>
 
@@ -173,44 +312,73 @@ function percent1($number){
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">סל ממוצע רשתי</h5>
-                        <i class="fa-solid fa-cart-arrow-down" style="float:left;"></i>
+                    <p class="card-title"><b>סל ממוצע רשתי</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>ממוצע סכום הזמנה פר לקוח</b></p>
+                                </div>
+                        </div>
                         <p class="card-text"><?php echo "₪" . number_format($row_current['avg_basket']);?></p>
+
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">סך הכל מכירות</h5>
-                        <i class="fa-solid fa-sack-dollar" style="float:left;"></i>
+                    <p class="card-title"><b>סך הכל מכירות</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>סה"כ מכירות בשנה האחרונה</b></p>
+                                </div>
+                        </div>
                         <p class="card-text"><?php echo "₪" . number_format($row_current['total_sales']);?></p>
+
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">רייטינג ממוצע</h5>
-                        <i class="fa-solid fa-star-half-stroke" style="float:left;"></i>
+                    <p class="card-title"><b>דירוג ממוצע</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>דירוג משתמשים ממוצע מ-1 עד 5</b></p>
+                                </div>
+                        </div>
                         <p class="card-text"><?php echo "★" . $row_current['avg_goods_rating'];?></p>
+
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">יחס המרה</h5>
-                        <i class="fa-solid fa-money-bill-transfer" style="float:left;"></i>
+                    <p class="card-title"><b>שיעור רכישה</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>אחוז הרוכשים מכלל המבקרים בעמוד הרשת</b></p>
+                                </div>
+                        </div>  
                         <p class="card-text"><?php echo percent($row_current['avg_convertion']);?></p>
+
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">יחס דחייה</h5>
-                        <i class="fa-solid fa-comment-slash" style="float:left;"></i>
+                    <p class="card-title"><b>שיעור דחייה</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>אחוז דחיית הזמנות מכלל ההזמנות שהתקבלו</b></p>
+                                </div>
+                        </div>                         
                         <p class="card-text"><?php echo percent1($row_current['rejection_rate']);?></p>
                     </div>
                 </div>
@@ -218,19 +386,24 @@ function percent1($number){
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">כמות מכירות</h5>
-                        <i class="fa-solid fa-arrow-up-wide-short" style="float:left;"></i>
+                    <p class="card-title"><b>כמות מכירות</b></p>
+                        <div class="con-tooltip top">
+                               <img src="../images/info.png" class="image-container" />
+                                <div class="tooltip ">
+                                    <p><b>כמות המכירות שבוצעו בשנה האחרונה</b></p>
+                                </div>
+                        </div>                         
                         <p class="card-text"><?php echo  number_format($row_current['purchase_count']);?></p>
                     </div>
                 </div>
             </div>
-            <p style="text-align: right;"><button class="button1 w-10 btn btn-primary btn-lg" type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
+            <p style="text-align: right;"><button class="button1 button-10 " type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
 
         <div class="card-body">
-            <h5 class="card-title">עמלת רשת</h5>
+            <h5 class="card-title">עמלת רשת נוכחית</h5>
             <p class="card-text"><?php echo $row_current['del_commision'];?>%</p>
         </div>
         <br>
@@ -239,7 +412,7 @@ function percent1($number){
                 <input class="form-control" id="value" type="text" value="" name="value" required/>
                 <input style="display: none" class="form-control" id="id" type="text" value="<?php echo $enterprise_id; ?>" name="id"/>
             </p>
-            <p style="text-align: right;"><button class="w-10 btn btn-primary btn-lg" type="submit" value="run">שמור עמלה חדשה</button></p>
+            <p style="text-align: right;"><button class="button-10" type="submit" value="run">שמור עמלה חדשה</button></p>
         </form>
     </div>
 
