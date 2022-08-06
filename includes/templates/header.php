@@ -12,7 +12,7 @@ session_start();
 
 </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-light sticky-top">
+        <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#F0F0F0;">
             <div class="container-fluid">
                 <a style="margin-left: 15px" href="#">
                     <img src="../images/wolt_logo.svg" width="38" height="30" class="d-inline-block align-top" loading="lazy">

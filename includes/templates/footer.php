@@ -1,4 +1,5 @@
-<footer class="page-footer font-small grey lighten-3 py-4 dark-grey-text  bg-light" >
+
+<footer class="page-footer font-small sticky-bottom" style="background-color:#F0F0F0;" >
 
     <!-- Footer Elements -->
     <div class="container" >
