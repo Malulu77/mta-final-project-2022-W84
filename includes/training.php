@@ -216,7 +216,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <br>
         <h1>ממשק ניהול הדרכות</h1>
 
-        <button class="button-10" onclick="window.open('trainings_table.php','mywin','width=700,height=700');">לטבלת הדרכות לחץ כאן</button>
+        <button class="button-10" onclick="window.open('trainings_table.php','mywin','width=700,height=700');">הדרכות רשת לפי סוג</button>
 
         </div>
         </div>
@@ -307,13 +307,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <button class="open-button button-10" onclick="openForm()">הדרכות קרובות</button>
             <div class="chat-popup" id="myForm">
                   <div class="form-container">
-                    <h1>הדרכות קרובות</h1>
+                    <h3>הדרכות קרובות</h3>
                     <?php
-                        $sql = "SELECT * FROM trainings;";
+                        $sql = "SELECT * FROM trainings
+                                where date > now()
+                                order by date asc
+                                limit 5";
                         $result_trainings = mysqli_query($conn, $sql);
                         while($row = mysqli_fetch_assoc($result_trainings))
                         {
                             echo '
+                            <hr/>
                             <h4 class="d-flex justify-content-between align-items-center mb-3" dir="rtl" style="text-align: left;"><span style="font-size: 13.3333px;">'.$row['name'].'</span></h4>
                         <p class="list-group-item d-flex justify-content-between lh-sm" dir="rtl" style="text-align: left;">'.$row['date'].'</p>
                             ';
