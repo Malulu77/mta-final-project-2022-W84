@@ -96,6 +96,11 @@ $num_rows = mysqli_num_rows($result);
           outline: 0;
         }
 
+        .button-10:hover{
+            opacity: 70%;
+        }
+
+
 
 
 

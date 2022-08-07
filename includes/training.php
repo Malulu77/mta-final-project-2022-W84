@@ -194,6 +194,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           outline: 0;
         }
 
+        .button-10:hover{
+            opacity: 70%;
+        }
+
+        .button-11:hover{
+            opacity: 70%;
+        }
+
+
+
 
             </style>
             </head>

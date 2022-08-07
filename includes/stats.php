@@ -46,6 +46,10 @@ function percent1($number){
             margin-left:5px;
         }
 
+        .contact-image:hover{
+            opacity: 50%;
+        }
+
         .card{
             background-color:#F5F5F5;
             border:solid gray 1px;
@@ -190,6 +194,10 @@ function percent1($number){
         .button-10:focus {
           box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
           outline: 0;
+        }
+
+        .button-10:hover{
+            opacity: 70%;
         }
 
         @media (max-width:1587px) {
