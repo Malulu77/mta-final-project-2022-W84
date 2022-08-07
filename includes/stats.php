@@ -441,7 +441,7 @@ function percent1($number){
 
         // TODO(developer): Set to client ID and API key from the Developer Console
         const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
-        const API_KEY = '';
+        const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
 
         // Discovery doc URL for APIs used by the quickstart
         const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
@@ -474,7 +474,6 @@ function percent1($number){
             discoveryDocs: [DISCOVERY_DOC],
         });
         gapiInited = true;
-        maybeEnableButtons();
     }
 
         /**
@@ -487,60 +486,16 @@ function percent1($number){
             callback: '', // defined later
         });
         gisInited = true;
-        maybeEnableButtons();
+
     }
 
-        /**
-        * Enables user interaction after all libraries are loaded.
-        */
-        function maybeEnableButtons() {
-        if (gapiInited && gisInited) {
-        document.getElementById('authorize_button').style.visibility = 'visible';
-    }
-    }
-
-        /**
-        *  Sign in the user upon button click.
-        */
-        function handleAuthClick() {
-        tokenClient.callback = async (resp) => {
-            if (resp.error !== undefined) {
-                throw (resp);
-            }
-            document.getElementById('signout_button').style.visibility = 'visible';
-            document.getElementById('authorize_button').innerText = 'Refresh';
-        };
-
-        if (gapi.client.getToken() === null) {
-        // Prompt the user to select a Google Account and ask for consent to share their data
-        // when establishing a new session.
-        tokenClient.requestAccessToken({prompt: 'consent'});
-    } else {
-        // Skip display of account chooser and consent dialog for an existing session.
-        tokenClient.requestAccessToken({prompt: ''});
-    }
-    }
-
-        /**
-        *  Sign out the user upon button click.
-        */
-        function handleSignoutClick() {
-        const token = gapi.client.getToken();
-        if (token !== null) {
-        google.accounts.oauth2.revoke(token.access_token);
-        gapi.client.setToken('');
-        document.getElementById('content').innerText = '';
-        document.getElementById('authorize_button').innerText = 'Authorize';
-        document.getElementById('signout_button').style.visibility = 'hidden';
-    }
-    }
 
         async function getData() {
             let response;
             try {
                 // Fetch first 10 files
                 response = await gapi.client.sheets.spreadsheets.values.get({
-                    spreadsheetId: '1hy6XxMTJBlnuTIpWTfTcQmQUMGTM3c4uw3fnrrcLMDY',
+                    spreadsheetId: '1o38xpAySJD-MlIpiwb-uXq0jAIHkF68Wmu4MFkjb2gE',
                     range: 'Sheet1!A1:E80',
                 });
             } catch (err) {

@@ -209,7 +209,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </head>
         <body>
 
-
+        <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
         <main class="container-lg">
         <div class="text-black rounded bg-white" dir="rtl">
         <div class="col-md-6 px-0">
@@ -224,7 +225,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="calendar-container">
                 <br>
                 <h3 style="text-align: right;">לוח הדרכות</h3>
-                <iframe src="https://calendar.google.com/calendar/embed?src=jc3cigngdkkmhrpv782m5c2fa4%40group.calendar.google.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?src=mta.2022.w84%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
                 
             <div class="add-training-container">
@@ -240,7 +241,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                 
                     <div class="col-md-7 col-lg-8">
-                        <form action="add_event.php" class="needs-validation" method="post" novalidate="">
+                        <form >
                             <div class="row g-3">
                                 <div class="col-12 pad">
                                     <p style="text-align: right;"><label class="form-label" for="name"&nbsp;</label>שם ההדרכה<input class="form-control" id="name" placeholder="" required="" type="text" value="" name="name" required/></p>
@@ -284,9 +285,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 </div>
                             </div>
                                     
-                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run">שמור אירוע</button></p>
+                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" onclick="add_event();">שמור אירוע</button></p>
                                     
                         </form>
+                        <button type="button" class="btn cancel button-11" onclick="add_event_to_google()">יאללה לגוגל</button>
                     </div>
                 </div>
             </div>
@@ -329,6 +331,155 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                   </form>
             </div>
         </main>
+
+
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script>
+
+            /* exported gapiLoaded */
+            /* exported gisLoaded */
+            /* exported handleAuthClick */
+            /* exported handleSignoutClick */
+
+            // TODO(developer): Set to client ID and API key from the Developer Console
+            const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
+            const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
+
+            // Discovery doc URL for APIs used by the quickstart
+            const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+
+            // Authorization scopes required by the API; multiple scopes can be
+            // included, separated by spaces.
+            const SCOPES = 'https://www.googleapis.com/auth/calendar';
+
+            let tokenClient;
+            let gapiInited = false;
+            let gisInited = false;
+
+            document.getElementById('authorize_button').style.visibility = 'hidden';
+            document.getElementById('signout_button').style.visibility = 'hidden';
+
+            /**
+             * Callback after api.js is loaded.
+             */
+            function gapiLoaded() {
+                gapi.load('client', intializeGapiClient);
+            }
+
+            /**
+             * Callback after the API client is loaded. Loads the
+             * discovery doc to initialize the API.
+             */
+            async function intializeGapiClient() {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: [DISCOVERY_DOC],
+                });
+                gapiInited = true;
+                maybeEnableButtons();
+            }
+
+            /**
+             * Callback after Google Identity Services are loaded.
+             */
+            function gisLoaded() {
+                tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    callback: '', // defined later
+                });
+                gisInited = true;
+                maybeEnableButtons();
+            }
+
+            /**
+             * Enables user interaction after all libraries are loaded.
+             */
+            function maybeEnableButtons() {
+                if (gapiInited && gisInited) {
+                    document.getElementById('authorize_button').style.visibility = 'visible';
+                }
+            }
+
+            /**
+             *  Sign in the user upon button click.
+             */
+            function handleAuthClick() {
+                tokenClient.callback = async (resp) => {
+                    if (resp.error !== undefined) {
+                        throw (resp);
+                    }
+                    document.getElementById('signout_button').style.visibility = 'visible';
+                    document.getElementById('authorize_button').innerText = 'Refresh';
+                    await listUpcomingEvents();
+                };
+
+                if (gapi.client.getToken() === null) {
+                    // Prompt the user to select a Google Account and ask for consent to share their data
+                    // when establishing a new session.
+                    tokenClient.requestAccessToken({prompt: 'consent'});
+                } else {
+                    // Skip display of account chooser and consent dialog for an existing session.
+                    tokenClient.requestAccessToken({prompt: ''});
+                }
+            }
+
+            /**
+             *  Sign out the user upon button click.
+             */
+            function handleSignoutClick() {
+                const token = gapi.client.getToken();
+                if (token !== null) {
+                    google.accounts.oauth2.revoke(token.access_token);
+                    gapi.client.setToken('');
+                    document.getElementById('content').innerText = '';
+                    document.getElementById('authorize_button').innerText = 'Authorize';
+                    document.getElementById('signout_button').style.visibility = 'hidden';
+                }
+            }
+
+            function validation(){
+
+            }
+            function add_event(){
+                validation();
+                add_event_to_google();
+                // add_event_to_db();
+            }
+
+            function add_event_to_google(){
+                var event = {
+                    'summary': document.getElementById("name").value,
+                    'description': document.getElementById("type").value,
+                    'start': {
+                        'dateTime': document.getElementById("date").value,
+                        'timeZone': 'Israel'
+                    },
+                    'end': {
+                        'dateTime': document.getElementById("date").value,
+                        'timeZone': 'Israel'
+                    }
+                };
+
+                console.log(event);
+                var request = gapi.client.calendar.events.insert({
+                    'calendarId': 'primary',
+                    'resource': event
+                });
+                console.log(request);
+
+
+                request.execute(function(event) {
+                    appendPre('Event created: ' + event.htmlLink);
+                });
+            }
+
+
+
+
+        </script>
+
     </body>
     <?php
     include("templates/footer.php");
