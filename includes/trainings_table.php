@@ -87,6 +87,5 @@ $num_rows_enterprises = mysqli_num_rows($result_enterprises);
     </table>
     </div>
 
-  ]
 </main>
 </html>
