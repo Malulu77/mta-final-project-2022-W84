@@ -73,6 +73,30 @@ $num_rows = mysqli_num_rows($result);
         }
 
 
+        .button-10 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+        
+          color: #fff;
+          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+           background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+        }
+
+        .button-10:focus {
+          box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+          outline: 0;
+        }
+
+
 
 
 
@@ -103,7 +127,7 @@ $num_rows = mysqli_num_rows($result);
                 </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a>
+                            <a href="includes/stats.php?'.$row['id'].'" class="button-10">לצפייה ועדכון פרטי רשת</a>
                         </div>
                         <p><small class="text-muted">'.$row['venues_num'].'</small></p>
                     </div>
