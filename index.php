@@ -21,17 +21,95 @@ $num_rows = mysqli_num_rows($result);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        main{width: 90%; margin: auto;}
-        .card{ margin-top: 2%; margin-bottom: 2%; margin-left: 2%; float: left; display: inline; width: 30%}
+         main{width: 90%; margin: auto;}
+        .card{
+            margin-top: 2%;
+            margin-bottom: 2%;
+            margin-left: 2%;
+            display: inline;
+            width: 30%;
+        }
+
+        @media (max-width:900px) {
+            .card {
+            display: block;
+            width: 90%;
+            }
+        }
+
+        @media (max-width:100px) {
+            .card-group {
+            display: flex;
+            flex-flow: row wrap
+        }
+        }
+
+        .card-title{
+        text-align: left;
+        }
+
+
+        .card-img,
+        .card-img-bottom,
+        .card-img-top {
+        width: 70%;
+        height: 97%;
+        margin: auto;
+        display: block; 
+        }
+
+        .img-container {
+        width: 100%;
+        height: 300px;
+        }
+    
+        .card-deck{
+            margin-right:5%;
+        
+        }
+
+        .searchbox-input{
+            width: 100%;
+        }
+
+
+        .button-10 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+        
+          color: #fff;
+          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+           background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+        }
+
+        .button-10:focus {
+          box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+          outline: 0;
+        }
+
+        .button-10:hover{
+            opacity: 70%;
+        }
+
+
+
+
+
 
     </style>
 </head>
 <body>
 
 <main>
-
-
-
     <section class="py-5 text-center container">
         <div class="row py-lg-5" dir="rtl">
             <div class="col-lg-6 col-md-8 mx-auto">
@@ -40,29 +118,33 @@ $num_rows = mysqli_num_rows($result);
         </div>
         <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
     </section>
-    <div class="card-group" >
+    <div class="card-deck">
         <?php
 
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
-            <div class="card shadow-lg">
-            <div class="card-body">
-                <h4 class="card-title">'.$row['name'].'</h4>'.'               
-                <img class="card-img-bottom" src="images/'.$row['img'].'" width=50% height=50%>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="includes/stats.php?'.$row['id'].'"  class="btn btn-sm btn-outline-secondary">לצפייה ועדכון פרטי רשת</a></div>
-                    <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+            <div class="card shadow-lg" style="display: flex; display: inline-block;">
+                <div class="card-body">
+                    <h4 class="card-title">'.$row['name'].'</h4>              
+                    <div class="img-container">               	
+                    <img class="card-img-bottom" src="images/'.$row['img'].'">	
+                </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="includes/stats.php?'.$row['id'].'" class="button-10">לצפייה ועדכון פרטי רשת</a>
+                        </div>
+                        <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+                    </div>
                 </div>
             </div>
-        </div>
         ';
         }
         ?>
     </div>
-
 </main>
+
+
 <script>
     var buttonUp = () => {
         const input = document.querySelector(".searchbox-input");
@@ -78,9 +160,8 @@ $num_rows = mysqli_num_rows($result);
         }
     }
 </script>
-
+</body>
 <?php
 include("includes/templates/footer.php");
 ?>
-</body>
 </html>
