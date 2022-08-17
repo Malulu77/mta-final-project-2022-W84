@@ -19,9 +19,19 @@ $num_rows = mysqli_num_rows($result);
     <link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <link href="/style/style.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script> $(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+           // ajax call get data from server and append to the div
+    }
+    });
+    </script>
 
     <style>
-         main{width: 90%; margin: auto;}
+         main{
+            margin:auto;
+            width: 100%; 
+
+        }
         .card{
             margin-top: 2%;
             margin-bottom: 2%;
@@ -81,6 +91,8 @@ $num_rows = mysqli_num_rows($result);
           font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
           border-radius: 6px;
           border: none;
+          width:100%;
+          margin-top:5%;
         
           color: #fff;
           background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
@@ -98,6 +110,74 @@ $num_rows = mysqli_num_rows($result);
 
         .button-10:hover{
             opacity: 70%;
+        }
+
+        .con-tooltip{
+            background-color:#E8E8E8;
+            border-radius: 50%;
+            width:70px;
+            height:70px;
+            text-align:center;
+            float:right;
+            margin:auto;
+            padding: 6px 3px 0 3px;
+            position: relative;                
+            display: inline-block;  
+            clear:both;   
+
+
+        }
+
+        .tooltip {
+        visibility: hidden;
+        z-index: 1;
+        opacity: .40;
+        width: auto;
+        padding: 0px 20px;
+        background: gray;
+        position: absolute;
+        top:-100%;
+        border-radius: 9px;        
+        transform: translateY(9px);
+        transition: all 0.3s ease-in-out;
+        font-size: 22px;
+        font-weight: bold;
+        box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+        color:white;
+        
+        }
+        
+        
+        /* tooltip  after*/
+        .tooltip::after {
+        content: " ";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 12.5px 0 12.5px;
+        border-color: gray transparent transparent transparent;
+        position: absolute;
+        left: 32%;
+        
+        }
+        
+        .con-tooltip:hover .tooltip{
+        visibility: visible;
+        transform: translateY(-10px);
+        opacity: 1;
+          transition: .3s linear;
+        animation: odsoky 1s ease-in-out infinite  alternate;
+        
+        }
+        @keyframes odsoky {
+        0%{
+          transform: translateY(6px); 
+        }
+        
+        100%{
+          transform: translateY(1px); 
+        }
+        
         }
 
 
@@ -126,15 +206,19 @@ $num_rows = mysqli_num_rows($result);
             echo ' 
             <div class="card shadow-lg" style="display: flex; display: inline-block;">
                 <div class="card-body">
-                    <h4 class="card-title">'.$row['name'].'</h4>              
+                    <h4 class="card-title">'.$row['name'].'</h4> 
+                    <div class="con-tooltip top">כמות סניפים
+                            <div class="tooltip ">
+                                <p><b>'.$row['venues_num'].'</b></p>
+                            </div>
+                        </div>         
                     <div class="img-container">               	
                     <img class="card-img-bottom" src="images/'.$row['img'].'">	
                 </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="includes/stats.php?'.$row['id'].'" class="button-10">לצפייה ועדכון פרטי רשת</a>
-                        </div>
-                        <p><small class="text-muted">'.$row['venues_num'].'</small></p>
+                        <a href="includes/stats.php?'.$row['id'].'" class="button-10">לצפייה ועדכון פרטי רשת</a>
+                            
+                        
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ session_start();
     <link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
     <title>ניהול מסעדות עם Wolty</title>
+        
 
 </head>
     <body>
