@@ -1,144 +1,255 @@
 <?php
 include("templates/header.php");
+require_once 'db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: includes/login/login.php");
+    header("location: login/login.php");
     exit;
 }
+$sql = "SELECT * FROM campaigns;";
+$result = mysqli_query($conn, $sql);
+$num_rows = mysqli_num_rows($result);
 ?>
+
+
 <!doctype html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
-    <meta name="generator" content="Hugo 0.98.0">
-
-</head>
-<body>
-
-<main>
-
-
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-        <!-- Three columns of text below the carousel -->
-
-        <div class="row">
-            <div class="col-lg-4">
-
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><text x="50%" y="50%" fill="#777" dy=".3em"><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/9/3369687-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/9/3369687-46.jpg" alt="דני אבדיה שחקן וושינגטון וויזארדס. רויטרס" title="דני אבדיה שחקן וושינגטון וויזארדס. רויטרס"></text></svg>
-
-                <h2 >שב למדים הלאומיים</h2>
-                <p> דני אבדיה זומן לסגל נבחרת ישראל בחלון מוקדמות גביע העולם
-                    הישראלי של וושינגטון וויזארדס נכלל ב-19 השחקנים שזומנו לסגל הרחב לקראת השלב הראשון של מוקדמות הטורניר בעוד כחודש. גם יובל זוסמן ישוב לנבחרת לאחר היעדרות. ליגת העל: בעקבות האלימות בדרבי, יציע הפועל תל אביב עלול להיסגר לשני משחקים</p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/1/3361940-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/6/1/3361940-46.jpg" alt="דני אבדיה שחקן וושינגטון וויזארדס מול לברון ג'יימס שחקן לוס אנג'לס לייקרס. Patrick Smith, GettyImages" title="דני אבדיה שחקן וושינגטון וויזארדס מול לברון ג'יימס שחקן לוס אנג'לס לייקרס. Patrick Smith, GettyImages"></text></svg>
-
-                <h2 class="fw-normal">אבדיה בסגל הנבחרת לפולין </h2>
-                <p>בעוד כחודש תשחק נבחרת ישראל בחלון המשחקים האחרון של השלב הראשון במוקדמות גביע העולם, ואיגוד הכדורסל פרסם היום (שני) את 19 השחקנים שזומנו לסגל הרחב. השם החם ביותר שמופיע ברשימה הוא דני אבדיה, שחקן וושינגטון וויזארדס, שישוב לנבחרת לראשונה מאז נבחר בדראפט ה-NBA. </p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img srcset="https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/2/6/3326222-46.jpg 969w, https://images.wcdn.co.il/f_auto,q_auto,w_300,t_54/3/3/2/6/3326222-46.jpg" alt="דני אבדיה ג'ואל אמביד. רויטרס" title="דני אבדיה ג'ואל אמביד. רויטרס"></text></svg>
-
-                <h2 class="fw-normal"> נשיא המדינה אירח את דני אבדיה</h2>
-                <p>בפתח המפגש נשיא המדינה שיבח את אבדיה על הישגיו והודה לו על ייצוגו הציוני בעולם: "אתה השראה עצומה. אני יודע שלהיות אדם צעיר ופופולרי זה לא דבר קל". עוד הוא הוסיף "אתה גאווה גדולה, גם בהתנהגות האנושית שלך וגם באהבת עם ישראל שקיימת בך".</p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-
-
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1" id="startArticle">דני אבדיה חוזר לסגל נבחרת ישראל</h2>
-                <br>
-                <p class="lead">גודס פרסם היום (שני) את סגל השחקנים הרחב שיעמוד לרשותו לשני משחקי הנבחרת הקרובים במסגרת מוקדמות גביע העולם, מול פולין בחוץ ואסטוניה בבית וכלל ברשימה מספר שחקנים שיחזרו להופעה במדים הלאומיים.
-
-                    לרשות גודס יעמדו לא פחות מ-19 שחקנים לקראת המשחקים שיתקיימו ב-30 ביוני וב-3 ליולי, כאשר מעל כולם יהיה זה דני אבדיה, שחקנה של וושינגטון וויזארדס מליגת הכדורסל הטובה בעולם שיחזור למדים הלאומיים לאחר שלא שיחק בהם בשל עונת ה-NBA וכעת ישוב לשחק עבור הנבחרת בזכות פגרת הכדורסל בארצות הברית.</p>
-            </div>
-            <div class="col-md-5">
-                <img class="img-fluid" width="500" height="500" src="images/mainlarge1.webp"/>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">השחקן המצטיין<span class="text-muted"></span></h2>
-                <br>
-                <p class="lead">דֶנִי אָבְדִיָה הוא כדורסלן ישראלי-סרבי, המשחק בקבוצת וושינגטון ויזארדס מליגת ה-NBA בעמדות הסמול פורוורד והפאוור פורוורד. בנוסף, אבדיה חבר בנבחרת ישראל בכדורסל. הוא זכה בשתי מדליות זהב עם ישראל בנבחרת העתודה, כולל באליפות אירופה בכדורסל עד גיל 20 בשנת 2019, שם זכה בתואר השחקן המצטיין של התחרות</p>
-            </div>
-            <div class="col-md-5 order-md-1">
-                <img class="img-fluid" width="500" height="500" src="images/mainlarge2.jpeg"/>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">גאווה ישראלית</h2>
-                <br>
-                <p class="lead"> ״אתה גאווה ישראלית, אתה מציג את פניה היפות של ישראל בסיפור בפני העולם, וזו בוודאי משימה קשה.״
-
-                </p>
-            </div>
-            <div class="col-md-5">
-                <img class="img-fluid" width="500" height="500" src="images/mainlarge3.jpeg"/>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
-
-    </div><!-- /.container -->
-
-
-    <?php
-    include("templates/footer.php");
-    ?>
-</main>
-<script>
-
-
-    // Pause and play the video, and change the button text
-    function play() {
-        // Get the video
-        var video = document.getElementById("myVideo");
-
-        // Get the button
-        var btn = document.getElementById("playBtn");
-        if (video.paused) {
-            video.play();
-            btn.innerHTML = "עצור";
-        } else {
-            video.pause();
-            btn.innerHTML = "נגן";
+    <head>
+            <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Snippet - BBBootstrap</title>
+        <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
+        <link href='#' rel='stylesheet'>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <style>
+        
+        html{
+            margin:auto;
         }
-    }
+        
+        ::-webkit-scrollbar {
+              width: 8px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+              background: #f1f1f1; 
+        }
 
-    function back(){
-        document.getElementById("video").style.display = "none";
-    }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+              background: #888; 
+        }
 
-    function video(){
-        document.getElementById("video").style.display = "block";
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+              background: #555;
+        } body{background-color:white;
+        margin:auto;}
+        .form-control:focus{color: #495057;background-color: #fff;border-color: #80bdff;outline: 0;box-shadow: 0 0 0 0rem rgba(0,123,255,.25)}
+        .close:focus{box-shadow: 0 0 0 0rem rgba(108,117,125,.5)}
+        .mt-200{margin-top:200px}
+        .button-10 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+          width:200px;
+          color: #fff;
+          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+          background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          margin-top:5%;
+        }
+            
+                .button-10:focus {
+                  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+                  outline: 0;
+                }
+            
+                .button-10:hover{
+                    opacity: 70%;
+                }
+            
+                @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
 
-    }
-</script>
 
-</body>
+
+
+
+
+
+                </style>
+
+                <body className='snippet-body'>
+                                        <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
+         <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+
+ <div class="container">
+     <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">הוספת קמפיין חדש</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                 </div>
+                 <div class="modal-body">
+                     <div id="smartwizard">
+                         <ul>
+                             <li><a href="#step-1">שלב 1<br /><small>פרטי הקמפיין</small></a></li>
+                             <li><a href="#step-2">שלב 2<br /><small>דרישות</small></a></li>
+                             <li><a href="#step-3">שלב 3<br /><small>תאריכי קמפיין</small></a></li>
+                             <li><a href="#step-4">שלב 4<br/><small>אישור קמפיין</small></a></li>
+                         </ul>
+                         <div class="mt-4">
+                             <div id="step-1">
+                                 <div class="row">
+                                     <div class="col-md-6"> <input type="text" class="form-control" placeholder="מספר קמפיין" required> </div>
+                                     <div class="col-md-6"> <input type="text" class="form-control" placeholder="שם הקמפיין" required> </div>
+                                 </div>
+                                 
+                             </div>
+                             <div id="step-2">
+                                 <div class="row">
+                                 <label for="rating" style="  text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
+                                    <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+
+                                      
+                                    </select>
+
+                                    <label for="rating" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" >בחר תגית</label>
+                                    <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                      <option value="Burger">Burger</option>
+                                      <option value="Mediterenian">Mediterenian</option>
+                                      <option value="Sweet">Sweet</option>
+                                      <option value="Health">Health</option>
+                                      <option value="Cafe">Cafe</option>
+                                      <option value="Deli">Deli</option>
+                                      <option value="Sandwich">Sandwich</option>
+                                      <option value="Pizza">Pizza</option>
+                                      <option value="Bistro">Bistro</option>
+                                      <option value="Bakery">Bakery</option>
+                                      <option value="Italian">Italian</option>
+                                      <option value="Asian">Asian</option>
+                                      <option value="Chicken">Chicken</option>
+                                      <option value="Mexican">Mexican</option>
+
+
+
+
+
+
+
+
+
+                                      
+                                    </select>
+                                 </div>
+                               
+                             </div>
+                             <div id="step-3" class="">
+                                 <div class="row">
+                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">בחר תאריך תחילת קמפיין</label>
+                                    <input type="date" id="start" name="start" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">בחר תאריך סיום קמפיין</label>
+                                    <input type="date" id="start" name="start" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                 </div>
+                             </div>
+                             <div id="step-4" clasConfirm detailss="">
+                                 <div class="row">
+                                     <span style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">לסיום הוספת קמפיין לחץ אישור</span>
+                                     <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run">אישור</button></p>
+
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+                                <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+                                <script type='text/javascript' src='#'></script>
+                                <script type='text/javascript' src='#'></script>
+                                <script type='text/javascript' src='#'></script>
+                                <script type='text/javascript'>$(document).ready(function(){
+
+            $('#smartwizard').smartWizard({
+                    selected: 0,
+                    theme: 'arrows',
+                    autoAdjustHeight:true,
+                    transitionEffect:'fade',
+                    showStepURLhash: false,
+                 
+            });
+
+        });</script>
+                                <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+                                myLink.addEventListener('click', function(e) {
+                                  e.preventDefault();
+                                });</script>
+
+
+
+
+<h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
+
+
+
+
+        <?php
+        while($row = mysqli_fetch_assoc($result))
+        {
+            echo ' 
+
+
+            <section class="light">
+	            <div class="container py-2">
+	            	<article class="postcard light blue">
+	            	    	<div class="postcard__img_link"></div>
+	            	    		<img class="postcard__img" src="../images/'.$row['img'].'"  alt="Image Title" />
+	            	    	<div class="postcard__text t-dark">
+	            	    		<h1 class="postcard__title blue">Campaign name</h1>
+	            	    		<div class="postcard__subtitle small">
+	            	    				<div class="mr-2">status</div>
+	            	    		</div>
+	            	    		<div class="postcard__bar"></div>
+	            	    		<div class="postcard__preview-txt">דירוג סף</div>
+                                <div class="postcard__preview-txt">תגית</div>
+                                <div class="postcard__preview-txt">תאריך תחילת קמפיין</div>
+                                <div class="postcard__preview-txt">תאריך סיום קמפיין</div>
+
+	            	    		<ul class="postcard__tagbox">
+	            	    			<li class="tag__item"><i class="fas fa-tag mr-2"></i>מצא רשתות מתאימות</li>
+	            	    		</ul>
+                            </div>   
+                            
+	            	</article>
+
+                </div>
+            </section>
+
+
+           
+
+        ';
+        }
+        ?>
+                            
+    </body>
 </html>
+

@@ -224,8 +224,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="calendar-container">
                 <br>
                 <h3 style="text-align: right;">לוח הדרכות</h3>
-                <iframe src="https://calendar.google.com/calendar/embed?src=jc3cigngdkkmhrpv782m5c2fa4%40group.calendar.google.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-            </div>
+                <iframe src="https://calendar.google.com/calendar/embed?src=mta.2022.w84%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>            </div>
                 
             <div class="add-training-container">
                 <div class="py-5 text-center" dir="rtl">
@@ -284,9 +283,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 </div>
                             </div>
                                     
-                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run">שמור אירוע</button></p>
+                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" >שמור אירוע</button></p>
                                     
                         </form>
+                        <button type="button"  id="authG" onclick="handleAuthClick()" >התחבר ל Google</button>
+                        <button type="button" id="saveG" onclick="add_event_to_google()"  disabled >שמור אירוע ב Google</button>
                     </div>
                 </div>
             </div>
@@ -329,6 +330,141 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                   </form>
             </div>
         </main>
+
+
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script>
+
+            /* exported gapiLoaded */
+            /* exported gisLoaded */
+            /* exported handleAuthClick */
+            /* exported handleSignoutClick */
+
+            // TODO(developer): Set to client ID and API key from the Developer Console
+            const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
+            const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
+
+            // Discovery doc URL for APIs used by the quickstart
+            const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+
+            // Authorization scopes required by the API; multiple scopes can be
+            // included, separated by spaces.
+            const SCOPES = 'https://www.googleapis.com/auth/calendar';
+
+            let tokenClient;
+            let gapiInited = false;
+            let gisInited = false;
+
+
+            /**
+             * Callback after api.js is loaded.
+             */
+            function gapiLoaded() {
+                gapi.load('client', intializeGapiClient);
+            }
+
+            /**
+             * Callback after the API client is loaded. Loads the
+             * discovery doc to initialize the API.
+             */
+            async function intializeGapiClient() {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: [DISCOVERY_DOC],
+                });
+                gapiInited = true;
+            }
+
+            /**
+             * Callback after Google Identity Services are loaded.
+             */
+            function gisLoaded() {
+                tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    callback: '', // defined later
+                });
+                gisInited = true;
+            }
+
+
+
+            /**
+             *  Sign in the user upon button click.
+             */
+             function handleAuthClick() {
+                tokenClient.callback = async (resp) => {
+                    if (resp.error !== undefined) {
+                        throw (resp);
+                    }
+                };
+
+                if (gapi.client.getToken() === null) {
+                    // Prompt the user to select a Google Account and ask for consent to share their data
+                    // when establishing a new session.
+                     tokenClient.requestAccessToken({prompt: 'consent'});
+                } else {
+                    // Skip display of account chooser and consent dialog for an existing session.
+                    tokenClient.requestAccessToken({prompt: ''});
+                }
+                document.getElementById('authG').disabled = true;
+                document.getElementById('saveG').disabled = false;
+            }
+
+            /**
+             *  Sign out the user upon button click.
+             */
+            function handleSignoutClick() {
+                const token = gapi.client.getToken();
+                if (token !== null) {
+                    google.accounts.oauth2.revoke(token.access_token);
+                    gapi.client.setToken('');
+
+                }
+            }
+
+            function validation(){
+
+            }
+
+            function add_event_to_google(){
+                var enterprise_option = document.getElementById("enterprises");
+                var enterprise_option_text = enterprise_option.options[enterprise_option.selectedIndex].text;
+                var training_date = document.getElementById("date").value+":00";
+
+                console.log(training_date);
+                var event = {
+                    'summary': document.getElementById("name").value,
+                    'description': "Training Type: " + document.getElementById("type").value + "\n " + "Enterprise Name: " + enterprise_option_text
+                    ,
+                    'start': {
+                        'dateTime': training_date,
+                        'timeZone': 'Israel'
+                    },
+                    'end': {
+                        'dateTime': training_date,
+                        'timeZone': 'Israel'
+                    }
+                };
+
+                var request = gapi.client.calendar.events.insert({
+                    'calendarId': 'primary',
+                    'resource': event
+                });
+                console.log(request);
+
+
+                request.execute(function(event) {
+                    appendPre('Event created: ' + event.htmlLink);
+                });
+            }
+
+
+
+
+        </script>
+
     </body>
     <?php
     include("templates/footer.php");
