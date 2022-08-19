@@ -241,7 +241,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </div>
                 
                     <div class="col-md-7 col-lg-8">
-                        <form >
+                        <form action="add_event.php" class="needs-validation" method="post" novalidate="">
                             <div class="row g-3">
                                 <div class="col-12 pad">
                                     <p style="text-align: right;"><label class="form-label" for="name"&nbsp;</label>שם ההדרכה<input class="form-control" id="name" placeholder="" required="" type="text" value="" name="name" required/></p>
@@ -285,10 +285,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 </div>
                             </div>
                                     
-                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" onclick="add_event();">שמור אירוע</button></p>
+                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" >שמור אירוע</button></p>
                                     
                         </form>
-                        <button type="button" class="btn cancel button-11" onclick="add_event_to_google()">יאללה לגוגל</button>
+                        <button type="button" class="btn cancel button-11" onclick="handleAuthClick();">התחבר ל Google</button>
+                        <button type="button" class="btn cancel button-11" onclick="add_event_to_google();">שמור אירוע ב Google</button>
                     </div>
                 </div>
             </div>
@@ -405,20 +406,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             /**
              *  Sign in the user upon button click.
              */
-            function handleAuthClick() {
+            async function handleAuthClick() {
                 tokenClient.callback = async (resp) => {
                     if (resp.error !== undefined) {
                         throw (resp);
                     }
                     document.getElementById('signout_button').style.visibility = 'visible';
                     document.getElementById('authorize_button').innerText = 'Refresh';
-                    await listUpcomingEvents();
                 };
 
                 if (gapi.client.getToken() === null) {
                     // Prompt the user to select a Google Account and ask for consent to share their data
                     // when establishing a new session.
-                    tokenClient.requestAccessToken({prompt: 'consent'});
+                     tokenClient.requestAccessToken({prompt: 'consent'});
                 } else {
                     // Skip display of account chooser and consent dialog for an existing session.
                     tokenClient.requestAccessToken({prompt: ''});
@@ -442,27 +442,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             function validation(){
 
             }
-            function add_event(){
-                validation();
-                add_event_to_google();
-                // add_event_to_db();
-            }
 
             function add_event_to_google(){
+                var enterprise_option = document.getElementById("enterprises");
+                var enterprise_option_text = enterprise_option.options[enterprise_option.selectedIndex].text;
+                var training_date = document.getElementById("date").value;
+
+                console.log(training_date);
                 var event = {
                     'summary': document.getElementById("name").value,
-                    'description': document.getElementById("type").value,
+                    'description': "Training Type: " + document.getElementById("type").value + "\n " + "Enterprise Id: " + enterprise_option_text
+                    ,
                     'start': {
-                        'dateTime': document.getElementById("date").value,
+                        'dateTime': training_date,
                         'timeZone': 'Israel'
                     },
                     'end': {
-                        'dateTime': document.getElementById("date").value,
+                        'dateTime': training_date,
                         'timeZone': 'Israel'
                     }
                 };
 
-                console.log(event);
                 var request = gapi.client.calendar.events.insert({
                     'calendarId': 'primary',
                     'resource': event
