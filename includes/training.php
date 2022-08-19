@@ -446,12 +446,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             function add_event_to_google(){
                 var enterprise_option = document.getElementById("enterprises");
                 var enterprise_option_text = enterprise_option.options[enterprise_option.selectedIndex].text;
-                var training_date = document.getElementById("date").value;
+                var training_date = document.getElementById("date").value+":00";
 
                 console.log(training_date);
                 var event = {
                     'summary': document.getElementById("name").value,
-                    'description': "Training Type: " + document.getElementById("type").value + "\n " + "Enterprise Id: " + enterprise_option_text
+                    'description': "Training Type: " + document.getElementById("type").value + "\n " + "Enterprise Name: " + enterprise_option_text
                     ,
                     'start': {
                         'dateTime': training_date,
