@@ -209,8 +209,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </head>
         <body>
 
-        <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+
         <main class="container-lg">
         <div class="text-black rounded bg-white" dir="rtl">
         <div class="col-md-6 px-0">
@@ -225,8 +224,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="calendar-container">
                 <br>
                 <h3 style="text-align: right;">לוח הדרכות</h3>
-                <iframe src="https://calendar.google.com/calendar/embed?src=mta.2022.w84%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-            </div>
+                <iframe src="https://calendar.google.com/calendar/embed?src=mta.2022.w84%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>            </div>
                 
             <div class="add-training-container">
                 <div class="py-5 text-center" dir="rtl">
@@ -288,8 +286,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" >שמור אירוע</button></p>
                                     
                         </form>
-                        <button type="button" class="btn cancel button-11" onclick="handleAuthClick();">התחבר ל Google</button>
-                        <button type="button" class="btn cancel button-11" onclick="add_event_to_google();">שמור אירוע ב Google</button>
+                        <button type="button"  id="authG" onclick="handleAuthClick()" >התחבר ל Google</button>
+                        <button type="button" id="saveG" onclick="add_event_to_google()"  disabled >שמור אירוע ב Google</button>
                     </div>
                 </div>
             </div>
@@ -358,8 +356,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             let gapiInited = false;
             let gisInited = false;
 
-            document.getElementById('authorize_button').style.visibility = 'hidden';
-            document.getElementById('signout_button').style.visibility = 'hidden';
 
             /**
              * Callback after api.js is loaded.
@@ -378,7 +374,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     discoveryDocs: [DISCOVERY_DOC],
                 });
                 gapiInited = true;
-                maybeEnableButtons();
             }
 
             /**
@@ -391,28 +386,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     callback: '', // defined later
                 });
                 gisInited = true;
-                maybeEnableButtons();
             }
 
-            /**
-             * Enables user interaction after all libraries are loaded.
-             */
-            function maybeEnableButtons() {
-                if (gapiInited && gisInited) {
-                    document.getElementById('authorize_button').style.visibility = 'visible';
-                }
-            }
+
 
             /**
              *  Sign in the user upon button click.
              */
-            async function handleAuthClick() {
+             function handleAuthClick() {
                 tokenClient.callback = async (resp) => {
                     if (resp.error !== undefined) {
                         throw (resp);
                     }
-                    document.getElementById('signout_button').style.visibility = 'visible';
-                    document.getElementById('authorize_button').innerText = 'Refresh';
                 };
 
                 if (gapi.client.getToken() === null) {
@@ -423,6 +408,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     // Skip display of account chooser and consent dialog for an existing session.
                     tokenClient.requestAccessToken({prompt: ''});
                 }
+                document.getElementById('authG').disabled = true;
+                document.getElementById('saveG').disabled = false;
             }
 
             /**
@@ -433,9 +420,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 if (token !== null) {
                     google.accounts.oauth2.revoke(token.access_token);
                     gapi.client.setToken('');
-                    document.getElementById('content').innerText = '';
-                    document.getElementById('authorize_button').innerText = 'Authorize';
-                    document.getElementById('signout_button').style.visibility = 'hidden';
+
                 }
             }
 
