@@ -7,9 +7,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login/login.php");
     exit;
 }
-$sql = "SELECT * FROM enterprises;";
+$sql = "SELECT * FROM campaigns;";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
+
+
+$sql2 = "SELECT name FROM enterprises WHERE main_tag='Burger' AND avg_goods_rating>=1;";
+$result2 = mysqli_query($conn, $sql2);
+//("SELECT title FROM books WHERE category LIKE $currently");
+//opening table tag
+echo "<table border = 1px>";
+while ($data = mysqli_fetch_assoc($result2)) {
+// printing table row
+echo'<tr>';
+echo '<td>'.$data['name'].'</td>';
+echo'</tr>'; // closing table row
+}
+echo '</table>';
+
 ?>
 
 
@@ -114,12 +129,15 @@ $num_rows = mysqli_num_rows($result);
                                  <div class="row">
                                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="מספר קמפיין" required> </div>
                                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="שם הקמפיין" required> </div>
+                                                <label for="rating" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" >בחר תמונת קמפיין</label>
+                                                <br>
+                                                <input id="img" name="Image" type="file" required style="margin-right:1%; ">
                                  </div>
                                  
                              </div>
                              <div id="step-2">
                                  <div class="row">
-                                 <label for="rating" style="  text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
+                                 <label for="rating" style="text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
                                     <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                       <option value="1">1</option>
                                       <option value="2">2</option>
@@ -146,14 +164,6 @@ $num_rows = mysqli_num_rows($result);
                                       <option value="Asian">Asian</option>
                                       <option value="Chicken">Chicken</option>
                                       <option value="Mexican">Mexican</option>
-
-
-
-
-
-
-
-
 
                                       
                                     </select>
@@ -221,18 +231,17 @@ $num_rows = mysqli_num_rows($result);
 	            <div class="container py-2">
 	            	<article class="postcard light blue">
 	            	    	<div class="postcard__img_link"></div>
-	            	    		<img class="postcard__img" src="../images/'.$row['img'].'"  alt="Image Title" />
+	            	    		<img class="postcard__img" src="../images/campaigns/'.$row['img'].'"  alt="Image Title" />
 	            	    	<div class="postcard__text t-dark">
-	            	    		<h1 class="postcard__title blue">Campaign name</h1>
+	            	    		<h1 class="postcard__title blue">'.$row['name'].'</h1>
 	            	    		<div class="postcard__subtitle small">
-	            	    				<div class="mr-2">status</div>
+	            	    				<div class="mr-2">'.$row['status'].'</div>
 	            	    		</div>
 	            	    		<div class="postcard__bar"></div>
-	            	    		<div class="postcard__preview-txt">דירוג סף</div>
-                                <div class="postcard__preview-txt">תגית</div>
-                                <div class="postcard__preview-txt">תאריך תחילת קמפיין</div>
-                                <div class="postcard__preview-txt">תאריך סיום קמפיין</div>
-
+	            	    		<div class="postcard__preview-txt" style="float:right;">דירוג סף - '.$row['rating'].' ★ </div>
+                                <div class="postcard__preview-txt">תגית - '.$row['main_tag'].'</div>
+                                <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
+                                <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 	            	    		<ul class="postcard__tagbox">
 	            	    			<li class="tag__item"><i class="fas fa-tag mr-2"></i>מצא רשתות מתאימות</li>
 	            	    		</ul>
@@ -243,12 +252,17 @@ $num_rows = mysqli_num_rows($result);
                 </div>
             </section>
 
+            
+
 
            
 
         ';
+        
         }
         ?>
+
+        
                             
     </body>
 </html>
