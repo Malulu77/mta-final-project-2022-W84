@@ -19,6 +19,8 @@ $num_rows = mysqli_num_rows($result);
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Snippet - BBBootstrap</title>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
         <link href='#' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <style>
@@ -64,9 +66,8 @@ $num_rows = mysqli_num_rows($result);
           user-select: none;
           -webkit-user-select: none;
           touch-action: manipulation;
-
-                }<ul class="cards"><li>
-
+          margin-top:5%;
+        }
             
                 .button-10:focus {
                   box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
@@ -78,134 +79,9 @@ $num_rows = mysqli_num_rows($result);
                 }
             
                 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
-            
-        * {
-                  box-sizing: border-box;
-                }
-            
-                :root {
-          --surface-color: #fff;
-          --curve: 40;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
 
 
-        body {
-          font-family: 'Noto Sans JP', sans-serif;
-          background-color: #fef8f8;
-        }
 
-        .cards {
-          box-sizing:border-box;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 0.5rem;
-          list-style-type: none;
-          margin-top:5%;
-          
-
-        }
-
-        .card {
-          position: relative;
-          height: 100%;  
-          border-radius: calc(var(--curve) * 1px);
-          overflow: hidden;
-          text-decoration: none;
-          display:inline-block;
-          width:320px;
-        }
-
-        .card__image {      
-          width: 300px;
-          height: 300px;
-        }
-
-        .card__overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 1;      
-          border-radius: calc(var(--curve) * 1px);    
-          background-color: var(--surface-color);      
-          transform: translateY(100%);
-          transition: .2s ease-in-out;
-        }
-
-        .card:hover .card__overlay {
-          transform: translateY(0);
-        }
-
-        .card__header {
-          position: relative;
-          display: flex;
-          align-items: center;
-          gap: 2em;
-          padding: 2em;
-          border-radius: calc(var(--curve) * 1px) 0 0 0;    
-          background-color: var(--surface-color);
-          transform: translateY(-100%);
-          transition: .2s ease-in-out;
-        }
-
-        .card__arc {
-          width: 80px;
-          height: 80px;
-          position: absolute;
-          bottom: 100%;
-          right: 0;      
-          z-index: 1;
-        }
-
-        .card__arc path {
-          fill: var(--surface-color);
-          d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
-        }       
-
-        .card:hover .card__header {
-          transform: translateY(0);
-        }
-
-        .card__thumb {
-          flex-shrink: 0;
-          width: 50px;
-          height: 50px;      
-          border-radius: 50%;      
-        }
-
-        .card__title {
-          font-size: 1em;
-          margin: 0 0 .3em;
-          color: #6A515E;
-        }
-
-        .card__tagline {
-          display: block;
-          margin: 1em 0;
-          font-family: "MockFlowFont";  
-          font-size: .8em; 
-          color: #D7BDCA;  
-        }
-
-        .card__status {
-          font-size: .8em;
-          color: #D7BDCA;
-        }
-
-        .card__description {
-          padding: 0 2em 2em;
-          margin: 0;
-          color: #D7BDCA;
-          font-family: "MockFlowFont";   
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-          overflow: hidden;
-        }    
 
 
 
@@ -216,15 +92,14 @@ $num_rows = mysqli_num_rows($result);
                                         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
          <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
-         <h1 style="text-align:center; margin-top:3%;">ממשק ניהול הדרכות</h1>
 
  <div class="container">
-     <div class="row d-flex justify-content-center mt-200"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת הדרכה חדשה </button> </div> <!-- Modal -->
+     <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h5 class="modal-title" id="exampleModalLabel">הוספת הדרכה חדשה</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                     <h5 class="modal-title" id="exampleModalLabel">הוספת קמפיין חדש</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                  </div>
                  <div class="modal-body">
                      <div id="smartwizard">
@@ -331,39 +206,49 @@ $num_rows = mysqli_num_rows($result);
 
 
 
+<h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
 
 
-<ul class="cards">
+
+
         <?php
-
-        
-
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
 
-            <div class="card">
-            <img src="../images/'.$row['img'].'" class="card__image" alt="" />
-             <div class="card__overlay">
-              <div class="card__header">
-                <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-                <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-                <div class="card__header-text">
-                  <h3 class="card__title">Jessica Parker</h3>            
-                  <span class="card__status">1 hour ago</span>
+
+            <section class="light">
+	            <div class="container py-2">
+	            	<article class="postcard light blue">
+	            	    	<div class="postcard__img_link"></div>
+	            	    		<img class="postcard__img" src="../images/'.$row['img'].'"  alt="Image Title" />
+	            	    	<div class="postcard__text t-dark">
+	            	    		<h1 class="postcard__title blue">Campaign name</h1>
+	            	    		<div class="postcard__subtitle small">
+	            	    				<div class="mr-2">status</div>
+	            	    		</div>
+	            	    		<div class="postcard__bar"></div>
+	            	    		<div class="postcard__preview-txt">דירוג סף</div>
+                                <div class="postcard__preview-txt">תגית</div>
+                                <div class="postcard__preview-txt">תאריך תחילת קמפיין</div>
+                                <div class="postcard__preview-txt">תאריך סיום קמפיין</div>
+
+	            	    		<ul class="postcard__tagbox">
+	            	    			<li class="tag__item"><i class="fas fa-tag mr-2"></i>מצא רשתות מתאימות</li>
+	            	    		</ul>
+                            </div>   
+                            
+	            	</article>
+
                 </div>
-              </div>
-              <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-            </div>
-          </div>      
+            </section>
+
 
            
+
         ';
         }
         ?>
-    </div>
-
-</ul>
                             
     </body>
 </html>
