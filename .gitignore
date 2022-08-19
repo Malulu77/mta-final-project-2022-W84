@@ -1,3 +1,5 @@
 docker-compose.yml
 Dockerfile
 includes/db/
+docker/php/conf.d/error_reporting.ini
+docker/php/conf.d/xdebug.ini
