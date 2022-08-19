@@ -442,7 +442,7 @@ function percent1($number){
 
         // TODO(developer): Set to client ID and API key from the Developer Console
         const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
-        const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
+        const API_KEY = '';
 
         // Discovery doc URL for APIs used by the quickstart
         const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
