@@ -1,5 +1,7 @@
 <?php
 include("templates/header.php");
+// include("modal.html");
+
 require_once 'db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -21,14 +23,13 @@ $num_rows = mysqli_num_rows($result);
     <head>
             <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>Snippet - BBBootstrap</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
         <link href='#' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        
+
         <script>
         
 
@@ -63,8 +64,6 @@ $num_rows = mysqli_num_rows($result);
         body{
             background-image:url("../images/bk-image.jpg");
             background-attachment: fixed;
-
-
 
         }
         
@@ -246,6 +245,8 @@ $num_rows = mysqli_num_rows($result);
 
 
 
+
+
         <?php
 
         while($row = mysqli_fetch_assoc($result))
@@ -269,12 +270,20 @@ $num_rows = mysqli_num_rows($result);
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-	            	    		<ul class="postcard__tagbox">
-                                    <button type="button" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\','.$row['id'].')"> click me </button> 
-                                    <div id="'.$row['id'].'"></div>      	    		
-                                </ul>                               
+                                <button class="button-10"  id="myBtn" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\','.$row['id'].');click12();">למסעדות מתאימות לחץ כאן</button>   	    		
+                                <div id="mymodal1" class="modal1">
 
-                            </div>   
+                                <!-- modal1 content -->
+                                    <div class="modal1-content">
+                                      <span class="close1">&times;</span>
+                                      <div>מסעדות המשתתפות בקמפיין</div>
+                                      <p id='.$row['id'].'></p>
+                                    </div>
+                              
+                              </div>
+                                </div>                           
+
+                            </div>
                             
 	            	</article>
 
@@ -293,4 +302,89 @@ $num_rows = mysqli_num_rows($result);
         
                             
     </body>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The modal1 (background) */
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* modal11 Content */
+.modal1-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close1 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<script>
+// Get the modal1
+var modal1 = document.getElementById("mymodal1");
+
+// Get the button that opens the modal1
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal1
+var span = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the button, open the modal1 
+
+function click12() {
+  modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal1
+span.onclick = function() {
+  modal1.style.display = "none";
+  location.reload();
+
+}
+
+// When the user clicks anywhere outside of the modal1, close it
+window.onclick = function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+    location.reload();
+
+  }
+}
+</script>
+
+</body>
+</html>
+
 </html>
