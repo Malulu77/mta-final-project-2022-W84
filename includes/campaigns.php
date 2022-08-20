@@ -1,5 +1,7 @@
 <?php
 include("templates/header.php");
+// include("modal.html");
+
 require_once 'db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -10,23 +12,61 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 $sql = "SELECT * FROM campaigns;";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
+
+
+
 ?>
+    
 
 
 <!doctype html>
     <head>
             <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>Snippet - BBBootstrap</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
         <link href='#' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+        <script>
+        
+
+        function callYou($tag,$rate,$id) {
+                $.ajax({
+                url: 'find_enterprise.php',
+                type: 'POST',
+                data: {'tag':$tag,
+                        'rate':$rate},
+                        success: function(data){
+                console.log("The ajax request succeeded!");
+                console.log("The result is: ");
+                console.dir(data);
+                modal1.style.display = "block";
+                document.getElementById($id).innerHTML = data;
+
+            },
+            error: function(){
+                console.log("The request failed");
+            }
+            });
+
+        };
+
+
+        </script>
+
         <style>
         
         html{
             margin:auto;
+        }
+
+        body{
+            background-image:url("../images/bk-image.jpg");
+            background-attachment: fixed;
+
         }
         
         ::-webkit-scrollbar {
@@ -41,6 +81,7 @@ $num_rows = mysqli_num_rows($result);
         ::-webkit-scrollbar-thumb {
               background: #888; 
         }
+
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
@@ -114,12 +155,15 @@ $num_rows = mysqli_num_rows($result);
                                  <div class="row">
                                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="מספר קמפיין" required> </div>
                                      <div class="col-md-6"> <input type="text" class="form-control" placeholder="שם הקמפיין" required> </div>
+                                                <label for="rating" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" >בחר תמונת קמפיין</label>
+                                                <br>
+                                                <input id="img" name="Image" type="file" required style="margin-right:1%; ">
                                  </div>
                                  
                              </div>
                              <div id="step-2">
                                  <div class="row">
-                                 <label for="rating" style="  text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
+                                 <label for="rating" style="text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
                                     <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                       <option value="1">1</option>
                                       <option value="2">2</option>
@@ -146,14 +190,6 @@ $num_rows = mysqli_num_rows($result);
                                       <option value="Asian">Asian</option>
                                       <option value="Chicken">Chicken</option>
                                       <option value="Mexican">Mexican</option>
-
-
-
-
-
-
-
-
 
                                       
                                     </select>
@@ -182,11 +218,11 @@ $num_rows = mysqli_num_rows($result);
          </div>
      </div>
  </div>
-                                <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript'>$(document).ready(function(){
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>$(document).ready(function(){
 
             $('#smartwizard').smartWizard({
                     selected: 0,
@@ -198,10 +234,10 @@ $num_rows = mysqli_num_rows($result);
             });
 
         });</script>
-                                <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-                                myLink.addEventListener('click', function(e) {
-                                  e.preventDefault();
-                                });</script>
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
 
 
 
@@ -211,7 +247,10 @@ $num_rows = mysqli_num_rows($result);
 
 
 
+
+
         <?php
+
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
@@ -221,35 +260,133 @@ $num_rows = mysqli_num_rows($result);
 	            <div class="container py-2">
 	            	<article class="postcard light blue">
 	            	    	<div class="postcard__img_link"></div>
-	            	    		<img class="postcard__img" src="../images/'.$row['img'].'"  alt="Image Title" />
+	            	    		<img class="postcard__img" src="../images/campaigns/'.$row['img'].'"  alt="Image Title" />
 	            	    	<div class="postcard__text t-dark">
-	            	    		<h1 class="postcard__title blue">Campaign name</h1>
+	            	    		<h1 class="postcard__title blue">'.$row['name'].'</h1>
 	            	    		<div class="postcard__subtitle small">
-	            	    				<div class="mr-2">status</div>
+	            	    				<div class="mr-2">'.$row['status'].'</div>
 	            	    		</div>
 	            	    		<div class="postcard__bar"></div>
-	            	    		<div class="postcard__preview-txt">דירוג סף</div>
-                                <div class="postcard__preview-txt">תגית</div>
-                                <div class="postcard__preview-txt">תאריך תחילת קמפיין</div>
-                                <div class="postcard__preview-txt">תאריך סיום קמפיין</div>
+	            	    		<div class="postcard__preview-txt" style="float:right;">דירוג סף - '.$row['rating'].' ★ </div>
+                                <div class="postcard__preview-txt">תגית - '.$row['main_tag'].'</div>
+                                <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
+                                <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-	            	    		<ul class="postcard__tagbox">
-	            	    			<li class="tag__item"><i class="fas fa-tag mr-2"></i>מצא רשתות מתאימות</li>
-	            	    		</ul>
-                            </div>   
+                                <button class="button-10" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\');">למסעדות מתאימות לחץ כאן</button>  
+    		
+                                <div id="mymodal1" class="modal1">
+                                        <div class="modal1-content">
+                                          <span class="close1">&times;</span>
+                                          <div>מסעדות המשתתפות בקמפיין</div>
+                                          <div id="'.$row['id'].'"></div>
+                                          </div>
+                              
+                              </div>
+
+                            </div>
                             
 	            	</article>
 
-                </div>
-            </section>
+                </div>                               
 
-
-           
+            </section>        
 
         ';
-        }
+
+    }
+
         ?>
+
+
+                
+
+        
                             
     </body>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The modal1 (background) */
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* modal11 Content */
+.modal1-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height:300px;
+}
+
+/* The Close Button */
+.close1 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<script>
+// Get the modal1
+var modal1 = document.getElementById("mymodal1");
+
+// Get the button that opens the modal1
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal1
+var span = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the button, open the modal1 
+
+// function click12() {
+//   modal1.style.display = "block";
+// }
+
+// When the user clicks on <span> (x), close the modal1
+span.onclick = function() {
+  modal1.style.display = "none";
+  location.reload();
+
+}
+
+// When the user clicks anywhere outside of the modal1, close it
+window.onclick = function(event) {
+  if (event.target == modal1) {
+    modal1.style.display = "none";
+    location.reload();
+
+  }
+}
+</script>
+
+</body>
 </html>
 
+</html>
