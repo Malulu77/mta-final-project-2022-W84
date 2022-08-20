@@ -12,20 +12,9 @@ $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 
 
-$sql2 = "SELECT name FROM enterprises WHERE main_tag='Burger' AND avg_goods_rating>=1;";
-$result2 = mysqli_query($conn, $sql2);
-//("SELECT title FROM books WHERE category LIKE $currently");
-//opening table tag
-echo "<table border = 1px>";
-while ($data = mysqli_fetch_assoc($result2)) {
-// printing table row
-echo'<tr>';
-echo '<td>'.$data['name'].'</td>';
-echo'</tr>'; // closing table row
-}
-echo '</table>';
 
 ?>
+    
 
 
 <!doctype html>
@@ -33,15 +22,50 @@ echo '</table>';
             <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Snippet - BBBootstrap</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
         <link href='#' rel='stylesheet'>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        
+        <script>
+        
+
+        function callYou($tag,$rate,$id) {
+                $.ajax({
+                url: 'find_enterprise.php',
+                type: 'POST',
+                data: {'tag':$tag,
+                        'rate':$rate},
+                        success: function(data){
+                console.log("The ajax request succeeded!");
+                console.log("The result is: ");
+                console.dir(data);
+                document.getElementById($id).innerHTML = data;
+
+            },
+            error: function(){
+                console.log("The request failed");
+            }
+            });
+        };
+
+
+        </script>
+
         <style>
         
         html{
             margin:auto;
+        }
+
+        body{
+            background-image:url("../images/bk-image.jpg");
+            background-attachment: fixed;
+
+
+
         }
         
         ::-webkit-scrollbar {
@@ -56,6 +80,7 @@ echo '</table>';
         ::-webkit-scrollbar-thumb {
               background: #888; 
         }
+
 
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
@@ -192,11 +217,11 @@ echo '</table>';
          </div>
      </div>
  </div>
-                                <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript' src='#'></script>
-                                <script type='text/javascript'>$(document).ready(function(){
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>$(document).ready(function(){
 
             $('#smartwizard').smartWizard({
                     selected: 0,
@@ -208,10 +233,10 @@ echo '</table>';
             });
 
         });</script>
-                                <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-                                myLink.addEventListener('click', function(e) {
-                                  e.preventDefault();
-                                });</script>
+        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+          e.preventDefault();
+        });</script>
 
 
 
@@ -222,6 +247,7 @@ echo '</table>';
 
 
         <?php
+
         while($row = mysqli_fetch_assoc($result))
         {
             echo ' 
@@ -242,28 +268,29 @@ echo '</table>';
                                 <div class="postcard__preview-txt">תגית - '.$row['main_tag'].'</div>
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
+
 	            	    		<ul class="postcard__tagbox">
-	            	    			<li class="tag__item"><i class="fas fa-tag mr-2"></i>מצא רשתות מתאימות</li>
-	            	    		</ul>
+                                    <button type="button" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\','.$row['id'].')"> click me </button> 
+                                    <div id="'.$row['id'].'"></div>      	    		
+                                </ul>                               
+
                             </div>   
                             
 	            	</article>
 
                 </div>
-            </section>
-
-            
-
-
-           
+            </section>        
 
         ';
-        
-        }
+
+    }
+
         ?>
+
+
+                
 
         
                             
     </body>
 </html>
-

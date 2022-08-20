@@ -40,6 +40,13 @@ function percent1($number){
     <script src="https://kit.fontawesome.com/ce0967b930.js" crossorigin="anonymous"></script>
     <style>
 
+        body{
+            background-image:url("../images/bk-image.jpg");
+            background-attachment: fixed;
+
+
+        }
+
         .contact-image{
             width:50px;
             height:50px;

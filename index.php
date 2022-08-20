@@ -27,6 +27,13 @@ $num_rows = mysqli_num_rows($result);
     </script>
 
     <style>
+
+        body{
+            background-image:url("../images/bk-image.jpg");
+            background-attachment: fixed;
+
+
+        }
          main{
             margin:auto;
             width: 100%; 
