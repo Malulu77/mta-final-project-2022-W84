@@ -43,6 +43,7 @@ $num_rows = mysqli_num_rows($result);
                 console.log("The ajax request succeeded!");
                 console.log("The result is: ");
                 console.dir(data);
+                modal1.style.display = "block";
                 document.getElementById($id).innerHTML = data;
 
             },
@@ -50,6 +51,7 @@ $num_rows = mysqli_num_rows($result);
                 console.log("The request failed");
             }
             });
+
         };
 
 
@@ -270,24 +272,23 @@ $num_rows = mysqli_num_rows($result);
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-                                <button class="button-10"  id="myBtn" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\','.$row['id'].');click12();">למסעדות מתאימות לחץ כאן</button>   	    		
+                                <button class="button-10" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\');">למסעדות מתאימות לחץ כאן</button>  
+    		
                                 <div id="mymodal1" class="modal1">
-
-                                <!-- modal1 content -->
-                                    <div class="modal1-content">
-                                      <span class="close1">&times;</span>
-                                      <div>מסעדות המשתתפות בקמפיין</div>
-                                      <p id='.$row['id'].'></p>
-                                    </div>
+                                        <div class="modal1-content">
+                                          <span class="close1">&times;</span>
+                                          <div>מסעדות המשתתפות בקמפיין</div>
+                                          <div id="'.$row['id'].'"></div>
+                                          </div>
                               
                               </div>
-                                </div>                           
 
                             </div>
                             
 	            	</article>
 
-                </div>
+                </div>                               
+
             </section>        
 
         ';
@@ -332,6 +333,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height:300px;
 }
 
 /* The Close Button */
@@ -363,9 +365,9 @@ var span = document.getElementsByClassName("close1")[0];
 
 // When the user clicks the button, open the modal1 
 
-function click12() {
-  modal1.style.display = "block";
-}
+// function click12() {
+//   modal1.style.display = "block";
+// }
 
 // When the user clicks on <span> (x), close the modal1
 span.onclick = function() {
