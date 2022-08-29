@@ -8,6 +8,12 @@ $sql = "SELECT * FROM enterprises;";
 $result_enterprises = mysqli_query($conn, $sql);
 $num_rows_enterprises = mysqli_num_rows($result_enterprises);
 
+$sql = "SELECT password FROM users where id = 7;";
+$key_result = mysqli_query($conn, $sql);
+$key_row = mysqli_fetch_assoc($key_result);
+$key = $key_row['password'];
+
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: includes/login/login.php");
@@ -343,7 +349,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
             // TODO(developer): Set to client ID and API key from the Developer Console
             const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
-            const API_KEY = '<?getenv("KEY")?>';
+            const API_KEY = '<?php echo $key;?>';
 
             // Discovery doc URL for APIs used by the quickstart
             const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
