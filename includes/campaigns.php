@@ -33,7 +33,7 @@ $num_rows = mysqli_num_rows($result);
         <script>
         
 
-        function callYou($tag,$rate,$id) {
+        function get_res($tag,$rate,$id,$status) {
                 $.ajax({
                 url: 'find_enterprise.php',
                 type: 'POST',
@@ -43,8 +43,26 @@ $num_rows = mysqli_num_rows($result);
                 console.log("The ajax request succeeded!");
                 console.log("The result is: ");
                 console.dir(data);
+                console.log($status)
                 modal1.style.display = "block";
-                document.getElementById($id).innerHTML = data;
+                document.getElementById('modal1-content').innerHTML = data;
+                if ($status==='DONE'){
+                  // var bg = document.getElementById("end-email");
+                  // bg.style.background="gray";
+                  document.querySelector('#send-email').disabled = true;
+                  document.getElementById("send-email").classList.remove('button-10');
+                  document.getElementById("send-email").classList.add('button-11');
+
+                }
+                if ($status!=='DONE'){
+                  document.querySelector('#send-email').disabled = false;
+                  document.getElementById("send-email").classList.remove('button-11');
+                  document.getElementById("send-email").classList.add('button-10');
+
+
+    
+                }
+                
 
             },
             error: function(){
@@ -99,7 +117,7 @@ $num_rows = mysqli_num_rows($result);
           font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
           border-radius: 6px;
           border: none;
-          width:200px;
+          width:300px;
           color: #fff;
           background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
           background-origin: border-box;
@@ -108,6 +126,7 @@ $num_rows = mysqli_num_rows($result);
           -webkit-user-select: none;
           touch-action: manipulation;
           margin-top:5%;
+
         }
             
                 .button-10:focus {
@@ -118,6 +137,27 @@ $num_rows = mysqli_num_rows($result);
                 .button-10:hover{
                     opacity: 70%;
                 }
+
+          .button-11 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 6px 14px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+          border-radius: 6px;
+          border: none;
+          width:300px;
+          /* color: #fff; */
+          background: linear-gradient(180deg, gray 0%, gray 100%);
+          background-origin: border-box;
+          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          margin-top:5%;
+        }
+
+        
             
                 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
 
@@ -242,7 +282,17 @@ $num_rows = mysqli_num_rows($result);
 
 
 
+=
 <h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
+
+<div id="mymodal1" class="modal1">
+    <div class="modal1-content">
+      <span class="close1">&times;</span>
+      <h2 style="text-align:right;">מסעדות המשתתפות בקמפיין</h1>
+      <h5 style="text-align:right;" id="modal1-content"></h5>
+      <button class="button-10" id="send-email" onclick="document.location='stats.php'">לשליחת טופס השתתפות למסעדות לחץ כאן</button>
+      </div>                          
+ </div>
 
 
 
@@ -264,7 +314,7 @@ $num_rows = mysqli_num_rows($result);
 	            	    	<div class="postcard__text t-dark">
 	            	    		<h1 class="postcard__title blue">'.$row['name'].'</h1>
 	            	    		<div class="postcard__subtitle small">
-	            	    				<div class="mr-2">'.$row['status'].'</div>
+                        <div class="mr-2 '.(($row['status']==='DONE')?' text-primary':"text-success").'">'.$row['status'].'</div>	
 	            	    		</div>
 	            	    		<div class="postcard__bar"></div>
 	            	    		<div class="postcard__preview-txt" style="float:right;">דירוג סף - '.$row['rating'].' ★ </div>
@@ -272,16 +322,9 @@ $num_rows = mysqli_num_rows($result);
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-                                <button class="button-10" onclick="callYou(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\');">למסעדות מתאימות לחץ כאן</button>  
+                                <button class="button-10" onclick="get_res(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\',\'' .$row['status']. '\');">למסעדות משתתפות לחץ כאן</button>  
     		
-                                <div id="mymodal1" class="modal1">
-                                        <div class="modal1-content">
-                                          <span class="close1">&times;</span>
-                                          <div>מסעדות המשתתפות בקמפיין</div>
-                                          <div id="'.$row['id'].'"></div>
-                                          </div>
-                              
-                              </div>
+                               
 
                             </div>
                             
@@ -329,11 +372,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 /* modal11 Content */
 .modal1-content {
   background-color: #fefefe;
-  margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  height:300px;
+  height:500px;
+  margin-top:10%;
+  margin-right:10%;
+
 }
 
 /* The Close Button */
@@ -365,14 +410,14 @@ var span = document.getElementsByClassName("close1")[0];
 
 // When the user clicks the button, open the modal1 
 
-// function click12() {
-//   modal1.style.display = "block";
-// }
+function click12() {
+  modal1.style.display = "block";
+}
 
 // When the user clicks on <span> (x), close the modal1
 span.onclick = function() {
   modal1.style.display = "none";
-  location.reload();
+
 
 }
 
@@ -380,7 +425,7 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal1) {
     modal1.style.display = "none";
-    location.reload();
+
 
   }
 }

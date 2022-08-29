@@ -53,11 +53,29 @@ $num_rows = mysqli_num_rows($result);
             width: 90%;
             }
         }
+        @media (min-width:2060px) {
+            .card {
+            width: 15%;
+            }
+            .card-deck{
+                margin-right:12%;
+
+            }
+        }
+
+        @media (max-width:2060px) {
+
+            .card-deck{
+                margin-right:7%;
+
+            }        }
+
+
 
         @media (max-width:100px) {
             .card-group {
             display: flex;
-            flex-flow: row wrap
+            flex-flow: row wrap;
         }
         }
 
@@ -81,7 +99,8 @@ $num_rows = mysqli_num_rows($result);
         }
     
         .card-deck{
-            margin-right:5%;
+            width:90%;
+            margin-right:5%:
         
         }
 
