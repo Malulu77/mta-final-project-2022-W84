@@ -81,6 +81,14 @@ $num_rows = mysqli_num_rows($result);
             margin:auto;
         }
 
+        .sw-theme-arrows>ul.step-anchor>li.active>a {
+            border-color: #5cb85c!important;
+            color: #fff!important;
+            background: #5cb85c!important;
+            width: 150px;
+            text-align: center;
+}
+
         body{
             background-image:url("../images/bk-image.jpg");
             background-attachment: fixed;
@@ -175,6 +183,7 @@ $num_rows = mysqli_num_rows($result);
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
 
  <div class="container">
+  <form action="add_campaign.php" class="needs-validation" method="post" novalidate="">
      <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -193,18 +202,18 @@ $num_rows = mysqli_num_rows($result);
                          <div class="mt-4">
                              <div id="step-1">
                                  <div class="row">
-                                     <div class="col-md-6"> <input type="text" class="form-control" placeholder="מספר קמפיין" required> </div>
-                                     <div class="col-md-6"> <input type="text" class="form-control" placeholder="שם הקמפיין" required> </div>
-                                                <label for="rating" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" >בחר תמונת קמפיין</label>
+                                     <div class="col-md-6"> <input type="text" name="id" id="id" class="form-control" placeholder="מספר קמפיין" required> </div>
+                                     <div class="col-md-6"> <input type="text" name="name" id="name" class="form-control" placeholder="שם הקמפיין" required> </div>
+                                                <label for="rating" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" required >בחר תמונת קמפיין</label>
                                                 <br>
-                                                <input id="img" name="Image" type="file" required style="margin-right:1%; ">
+                                                <input id="img" name="img" type="file" required style="margin-right:1%; ">
                                  </div>
                                  
                              </div>
                              <div id="step-2">
                                  <div class="row">
                                  <label for="rating" style="text-align: right; margin-right:1%; color: #495057;" >בחר דירוג סף</label>
-                                    <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <select name="rating" id="rating"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                       <option value="1">1</option>
                                       <option value="2">2</option>
                                       <option value="3">3</option>
@@ -215,7 +224,7 @@ $num_rows = mysqli_num_rows($result);
                                     </select>
 
                                     <label for="rating" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" >בחר תגית</label>
-                                    <select name="cars" id="cars"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <select name="main_tag" id="main_tag"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                       <option value="Burger">Burger</option>
                                       <option value="Mediterenian">Mediterenian</option>
                                       <option value="Sweet">Sweet</option>
@@ -238,10 +247,10 @@ $num_rows = mysqli_num_rows($result);
                              </div>
                              <div id="step-3" class="">
                                  <div class="row">
-                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">בחר תאריך תחילת קמפיין</label>
-                                    <input type="date" id="start" name="start" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
-                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">בחר תאריך סיום קמפיין</label>
-                                    <input type="date" id="start" name="start" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך תחילת קמפיין</label>
+                                    <input type="date" id="starts_at" name="starts_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך סיום קמפיין</label>
+                                    <input type="date" id="ends_at" name="ends_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                  </div>
                              </div>
                              <div id="step-4" clasConfirm detailss="">
@@ -257,6 +266,7 @@ $num_rows = mysqli_num_rows($result);
              </div>
          </div>
      </div>
+      </form>
  </div>
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
         <script type='text/javascript' src='#'></script>
