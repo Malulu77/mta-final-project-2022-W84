@@ -56,6 +56,10 @@ $num_rows = mysqli_num_rows($result);
                 }
                 if ($status!=='DONE'){
                   document.querySelector('#send-email').disabled = false;
+                  document.getElementById("send-email").classList.remove('button-11');
+                  document.getElementById("send-email").classList.add('button-10');
+
+
     
                 }
                 
@@ -113,7 +117,7 @@ $num_rows = mysqli_num_rows($result);
           font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
           border-radius: 6px;
           border: none;
-          width:200px;
+          width:300px;
           color: #fff;
           background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
           background-origin: border-box;
@@ -122,6 +126,7 @@ $num_rows = mysqli_num_rows($result);
           -webkit-user-select: none;
           touch-action: manipulation;
           margin-top:5%;
+
         }
             
                 .button-10:focus {
@@ -141,7 +146,7 @@ $num_rows = mysqli_num_rows($result);
           font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
           border-radius: 6px;
           border: none;
-          width:200px;
+          width:300px;
           /* color: #fff; */
           background: linear-gradient(180deg, gray 0%, gray 100%);
           background-origin: border-box;
@@ -277,8 +282,7 @@ $num_rows = mysqli_num_rows($result);
 
 
 
-<h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
-
+=
 <h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
 
 <div id="mymodal1" class="modal1">
@@ -318,7 +322,7 @@ $num_rows = mysqli_num_rows($result);
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-                                <button class="button-10" onclick="get_res(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\',\'' .$row['status']. '\');">למסעדות מתאימות לחץ כאן</button>  
+                                <button class="button-10" onclick="get_res(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\',\'' .$row['status']. '\');">למסעדות משתתפות לחץ כאן</button>  
     		
                                
 
