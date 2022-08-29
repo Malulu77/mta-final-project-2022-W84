@@ -416,6 +416,7 @@ function percent1($number){
                 </div>
             </div>
             <p style="text-align: right;"><button class="button1 button-10 " type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
+            <p id="error-msg-api"></p>
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
@@ -442,6 +443,8 @@ function percent1($number){
 </div>
 </div>
 
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -452,7 +455,7 @@ function percent1($number){
 
         // TODO(developer): Set to client ID and API key from the Developer Console
         const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
-        const API_KEY = '<?php echo $key;?>';
+        const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
 
         // Discovery doc URL for APIs used by the quickstart
         const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
@@ -510,11 +513,11 @@ function percent1($number){
                     range: 'Sheet1!A1:E80',
                 });
             } catch (err) {
-                document.getElementById('content').innerText = err.message;
+                document.getElementById('error-msg-api').innerText = err.message;
             }
             const range = response.result;
             if (!range || !range.values || range.values.length == 0) {
-                document.getElementById('content').innerText = 'No values found.';
+                document.getElementById('error-msg-api').innerText = 'No values found.';
             }
             row_data = range.values[<?php echo $enterprise_id;?>];
         }
