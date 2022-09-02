@@ -28,11 +28,13 @@ $num_rows = mysqli_num_rows($result);
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
         <link href='#' rel='stylesheet'>
+        <script src="./validate_new_campaign.js"></script>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
-        <script>
-        
 
+        <script>
+
+An invalid form control with name='name' is not focusable.
         function get_res($tag,$rate,$id,$status) {
                 $.ajax({
                 url: 'find_enterprise.php',
@@ -68,18 +70,30 @@ $num_rows = mysqli_num_rows($result);
             error: function(){
                 console.log("The request failed");
             }
-            });
 
         };
 
 
         </script>
 
+        <script>
+
+
+        </script>
+
         <style>
+
+        .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child) {display:none;}
+        .btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {display:none;}
         
         html{
             margin:auto;
         }
+
+        .mt-4 sw-container tab-content{
+        height:500px;
+        }
+
 
         .sw-theme-arrows>ul.step-anchor>li.active>a {
             border-color: #5cb85c!important;
@@ -165,9 +179,23 @@ $num_rows = mysqli_num_rows($result);
           margin-top:5%;
         }
 
+        .next-previous-button{
+        float:right;
+        width:20%;
+        margin-right:1%;
+        }
+
+        .error{
+        color:red;
+        text-align:right;}
+
+
+
+
+
         
             
-                @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
 
 
 
@@ -183,14 +211,14 @@ $num_rows = mysqli_num_rows($result);
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
 
  <div class="container">
-  <form action="add_campaign.php" class="needs-validation" method="post" novalidate="">
+  <form name="add_new_campaign" action="add_campaign.php" onsubmit="return validateForm()"  method="post">
      <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
              <div class="modal-content">
                  <div class="modal-header">
                      <h5 class="modal-title" id="exampleModalLabel">הוספת קמפיין חדש</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                 </div>
+
                  <div class="modal-body">
                      <div id="smartwizard">
                          <ul>
@@ -203,10 +231,16 @@ $num_rows = mysqli_num_rows($result);
                              <div id="step-1">
                                  <div class="row">
                                      <div class="col-md-6"> <input type="text" name="id" id="id" class="form-control" placeholder="מספר קמפיין" required> </div>
+                                     <p id="error-id" class="error"></p>
                                      <div class="col-md-6"> <input type="text" name="name" id="name" class="form-control" placeholder="שם הקמפיין" required> </div>
-                                                <label for="rating" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" required >בחר תמונת קמפיין</label>
-                                                <br>
-                                                <input id="img" name="img" type="file" required style="margin-right:1%; ">
+                                     <p id="error-name" class="error"></p>
+                                      <label for="image" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" required >בחר תמונת קמפיין</label>
+                                      <input id="img" name="img" type="file" required accept=".png, .jpg, .jpeg, .gif" onchange="return fileValidation()">
+                                       <p id="error-img" class="error"></p>
+                                       <button id="previous" class="button-11 sw-btn-prev  next-previous-button" disabled type="button">הקודם</button>
+                                       <button id="next" class="button-11 sw-btn-next next-previous-button" disabled ">הבא</button>
+
+
                                  </div>
                                  
                              </div>
@@ -243,20 +277,35 @@ $num_rows = mysqli_num_rows($result);
                                       
                                     </select>
                                  </div>
+                                     <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
+                                        <button class="button-10 sw-btn-next next-previous-button" type="button">הבא</button>
                                
                              </div>
                              <div id="step-3" class="">
                                  <div class="row">
                                     <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך תחילת קמפיין</label>
                                     <input type="date" id="starts_at" name="starts_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <p id="error-start" class="error"></p>
                                     <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך סיום קמפיין</label>
                                     <input type="date" id="ends_at" name="ends_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                    <p id="error-end" class="error"></p>
+
                                  </div>
+                                  <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
+                                  <button class="button-10 sw-btn-next next-previous-button" type="button">הבא</button>
                              </div>
                              <div id="step-4" clasConfirm detailss="">
                                  <div class="row">
-                                     <span style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;">לסיום הוספת קמפיין לחץ אישור</span>
-                                     <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run">אישור</button></p>
+                                 <label for="status" style="text-align: right; margin-right:1%; color: #495057;" >בחר סטטוס קמפיין</label>
+                                    <select name="status" id="status"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
+                                      <option value="done">Done</option>
+                                      <option value="upcoming">Upcoming</option>
+                                      <option value="running">Running</option>
+                                    
+      </select>
+                                       <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
+                                       <button class="button-10 sw-btn-next next-previous-button" type="submit" value="run">אישור</button>
+
 
                                  </div>
                              </div>
@@ -269,9 +318,6 @@ $num_rows = mysqli_num_rows($result);
       </form>
  </div>
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
-        <script type='text/javascript' src='#'></script>
         <script type='text/javascript'>$(document).ready(function(){
 
             $('#smartwizard').smartWizard({
@@ -280,7 +326,7 @@ $num_rows = mysqli_num_rows($result);
                     autoAdjustHeight:true,
                     transitionEffect:'fade',
                     showStepURLhash: false,
-                 
+
             });
 
         });</script>
@@ -292,7 +338,7 @@ $num_rows = mysqli_num_rows($result);
 
 
 
-=
+
 <h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
 
 <div id="mymodal1" class="modal1">
@@ -313,7 +359,7 @@ $num_rows = mysqli_num_rows($result);
 
         while($row = mysqli_fetch_assoc($result))
         {
-            echo ' 
+            echo '
 
 
             <section class="light">
