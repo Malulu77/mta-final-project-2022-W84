@@ -211,7 +211,7 @@ An invalid form control with name='name' is not focusable.
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
 
  <div class="container">
-  <form name="add_new_campaign" action="add_campaign.php" onsubmit="return validateForm()"  method="post">
+  <form name="add_new_campaign" action="add_campaign.php"  method="post">
      <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -220,7 +220,7 @@ An invalid form control with name='name' is not focusable.
                      <h5 class="modal-title" id="exampleModalLabel">הוספת קמפיין חדש</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
 
                  <div class="modal-body">
-                     <div id="smartwizard">
+                     <div id="smartwizard" style="height:380px;">
                          <ul>
                              <li><a href="#step-1">שלב 1<br /><small>פרטי הקמפיין</small></a></li>
                              <li><a href="#step-2">שלב 2<br /><small>דרישות</small></a></li>
@@ -237,11 +237,14 @@ An invalid form control with name='name' is not focusable.
                                       <label for="image" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" required >בחר תמונת קמפיין</label>
                                       <input id="img" name="img" type="file" required accept=".png, .jpg, .jpeg, .gif" onchange="return fileValidation()">
                                        <p id="error-img" class="error"></p>
-                                       <button id="previous" class="button-11 sw-btn-prev  next-previous-button" disabled type="button">הקודם</button>
-                                       <button id="next" class="button-11 sw-btn-next next-previous-button" disabled ">הבא</button>
+
+                                         <button id="previous" class="button-11 sw-btn-prev  next-previous-button" disabled type="button">הקודם</button>
+                                                                           <button id="next" class="button-11 sw-btn-next next-previous-button" disabled ">הבא</button>
 
 
                                  </div>
+
+
                                  
                              </div>
                              <div id="step-2">
@@ -277,10 +280,14 @@ An invalid form control with name='name' is not focusable.
                                       
                                     </select>
                                  </div>
+
                                      <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
-                                        <button class="button-10 sw-btn-next next-previous-button" type="button">הבא</button>
-                               
+                                      <button class="button-10 sw-btn-next next-previous-button" type="button">הבא</button>
+
                              </div>
+
+
+
                              <div id="step-3" class="">
                                  <div class="row">
                                     <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך תחילת קמפיין</label>

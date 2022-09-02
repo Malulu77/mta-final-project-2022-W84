@@ -8,6 +8,18 @@ a:hover {
     transition: color 0.3s ease-in-out;
 }
 
+.modal-header{
+    height: 450px;
+    display: block;
+}
+
+
+.modal-title{
+    display: block;
+    text-align: center;
+}
+
+
 #pageHeaderTitle {
     margin: 2rem 0;
     text-transform: uppercase;
