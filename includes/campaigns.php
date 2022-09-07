@@ -1,7 +1,5 @@
 <?php
 include("templates/header.php");
-// include("modal.html");
-
 require_once 'db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -14,12 +12,11 @@ $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 
 
-
 ?>
     
 
 
-<!doctype html>
+<html>
     <head>
             <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -30,6 +27,8 @@ $num_rows = mysqli_num_rows($result);
         <link href='#' rel='stylesheet'>
         <script src="./validate_new_campaign.js"></script>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
 
         <script>
@@ -209,7 +208,16 @@ An invalid form control with name='name' is not focusable.
                                         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
          <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
-
+<form action="add_campaign.php"  method="post">
+    <input type="text" value="שם קמפיין חדש" name="name">
+    <input type="text" value="Sandwich" name="main_tag">
+    <input type="text" value="3" name="rating">
+    <input type="text" value="2022-05-27" name="starts_at">
+    <input type="text" value="2022-05-27" name="ends_at">
+    <input type="text" value="INCOMING" name="status">
+    <input type="text" value="img1.jpg" name="img">
+    <button type="submit" value="run"></button>
+</form>
  <div class="container">
   <form name="add_new_campaign" action="add_campaign.php"  method="post">
      <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
@@ -400,11 +408,19 @@ An invalid form control with name='name' is not focusable.
         ';
 
     }
-
+        if ($_SERVER['QUERY_STRING'] == 'success') {
+            echo '    <script>
+                    Swal.fire("הקמפיין נשמר במערכת", "הקמפיין נשמר בהצלחה, ניתן לנהל אותו ברשימת הקמפיינים  ", "success");
+            </script>';
+        }
+        if ($_SERVER['QUERY_STRING'] == 'error') {
+            echo '    <script>
+                    Swal.fire("חלה שגיאה", "וודא כי כל הפרטים מולאו כראוי", "error");
+            </script>';
+        }
         ?>
 
 
-                
 
         
                             
