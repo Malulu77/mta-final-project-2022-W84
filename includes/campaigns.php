@@ -207,16 +207,7 @@ An invalid form control with name='name' is not focusable.
                                         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
          <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
-<form action="add_campaign.php"  method="post">
-    <input type="text" value="שם קמפיין חדש" name="name">
-    <input type="text" value="Sandwich" name="main_tag">
-    <input type="text" value="3" name="rating">
-    <input type="text" value="2022-05-27" name="starts_at">
-    <input type="text" value="2022-05-27" name="ends_at">
-    <input type="text" value="INCOMING" name="status">
-    <input type="text" value="img1.jpg" name="img">
-    <button type="submit" value="run"></button>
-</form>
+
  <div class="container">
   <form name="add_new_campaign" action="add_campaign.php"  method="post">
      <div class="row d-flex justify-content-right"> <button type="button" class="button-10" data-toggle="modal" data-target="#exampleModal"> הוספת קמפיין חדש </button> </div> <!-- Modal -->
@@ -241,8 +232,8 @@ An invalid form control with name='name' is not focusable.
                                      <p id="error-id" class="error"></p>
                                      <div class="col-md-6"> <input type="text" name="name" id="name" class="form-control" placeholder="שם הקמפיין" required> </div>
                                      <p id="error-name" class="error"></p>
-                                      <label for="image" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;" required >בחר תמונת קמפיין</label>
-                                      <input id="img" name="img" type="file" required accept=".png, .jpg, .jpeg, .gif" onchange="return fileValidation()">
+                                      <label for="image" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;"  >בחר תמונת קמפיין</label>
+                                      <input id="img" name="img" type="file" onchange="return fileValidation()">
                                        <p id="error-img" class="error"></p>
 
                                          <button id="previous" class="button-11 sw-btn-prev  next-previous-button" disabled type="button">הקודם</button>
@@ -318,7 +309,7 @@ An invalid form control with name='name' is not focusable.
                                     
       </select>
                                        <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
-                                       <button class="button-10 sw-btn-next next-previous-button" type="submit" value="run">אישור</button>
+                                       <button  type="submit" value="run">אישור</button>
 
 
                                  </div>
