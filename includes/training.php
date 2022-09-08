@@ -20,8 +20,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./validate_new_training.js"></script>
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script>
         function openForm() {
           document.getElementById("myForm").style.display = "block";
@@ -201,7 +203,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         .button-11:hover{
             opacity: 70%;
         }
-
+    .error{
+        color:red;
+        text-align:right;}
 
 
 
@@ -244,6 +248,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <div class="row g-3">
                                 <div class="col-12 pad">
                                     <p style="text-align: right;"><label class="form-label" for="name"&nbsp;</label>שם ההדרכה<input class="form-control" id="name" placeholder="" required="" type="text" value="" name="name" required/></p>
+                                    <p id="error-name" class="error"></p>
                 
                                     <div class="invalid-feedback" style="text-align: right;"></div>
                                 </div>
@@ -277,14 +282,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                     
                                 </div>
                                     
-                                <div class="col-12 pad" style="text-align: right;"><label class="form-label" for="name"&nbsp;>תאריך הדרכה</label>&nbsp;<input required class="form-control" id="date" placeholder="" type="datetime-local" name="date" /></div>
-                                    
+                                <div class="col-12 pad" style="text-align: right;"><label class="form-label" for="name"&nbsp;>תאריך הדרכה</label>&nbsp;<input required class="form-control" id="datepicker" placeholder="" type="datetime-local" name="date" /></div>
+                                <p id="error-name-date" class="error"></p>
                                 <div class="col-md-5">
                                     <p style="text-align: right;"></p>
                                 </div>
                             </div>
                                     
-                            <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run">שמור אירוע</button></p>
+                            <p style="text-align: right; margin-right:10px;"><button id="submit-btn"  type="submit" value="run" disabled>שמור אירוע</button></p>
                                     
                         </form>
                     </div>
