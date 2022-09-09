@@ -28,48 +28,11 @@ $num_rows = mysqli_num_rows($result);
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 
         <script>
-
 An invalid form control with name='name' is not focusable.
-        function get_res($tag,$rate,$id,$status) {
-                $.ajax({
-                url: 'find_enterprise.php',
-                type: 'POST',
-                data: {'tag':$tag,
-                        'rate':$rate},
-                        success: function(data){
-                console.log("The ajax request succeeded!");
-                console.log("The result is: ");
-                console.dir(data);
-                console.log($status)
-                modal1.style.display = "block";
-                document.getElementById('modal1-content').innerHTML = data;
-                if ($status==='DONE'){
-                  // var bg = document.getElementById("end-email");
-                  // bg.style.background="gray";
-                  document.querySelector('#send-email').disabled = true;
-                  document.getElementById("send-email").classList.remove('button-10');
-                  document.getElementById("send-email").classList.add('button-11');
-
-                }
-                if ($status!=='DONE'){
-                  document.querySelector('#send-email').disabled = false;
-                  document.getElementById("send-email").classList.remove('button-11');
-                  document.getElementById("send-email").classList.add('button-10');
-
-
-    
-                }
-                
-
-            },
-            error: function(){
-                console.log("The request failed");
-            }
-
-        };
 
 
         </script>
@@ -77,7 +40,78 @@ An invalid form control with name='name' is not focusable.
         <script>
 
 
+                function get_res($tag,$rate,$id,$status,$name) {
+                        $.ajax({
+                        url: 'find_enterprise.php',
+                        type: 'POST',
+                        data: {'tag':$tag,
+                                'rate':$rate},
+                                success: function(data){
+                        console.log("The ajax request succeeded!");
+                        console.log("The result is: ");
+                        console.dir(data);
+                        console.log($status)
+                        console.log($name)
+                        modal1.style.display = "block";
+                        document.getElementById('camp_name').innerHTML = $name;
+                        document.getElementById('modal1-content').innerHTML = data;
+                        if ($status==='DONE'){
+                          // var bg = document.getElementById("end-email");
+                          // bg.style.background="gray";
+                          document.querySelector('#send-email').disabled = true;
+                          document.getElementById("send-email").classList.remove('button-10');
+                          document.getElementById("send-email").classList.add('button-11');
+
+                        }
+                        if ($status!=='DONE'){
+                          document.querySelector('#send-email').disabled = false;
+                          document.getElementById("send-email").classList.remove('button-11');
+                          document.getElementById("send-email").classList.add('button-10');
+
+
+
+                        }
+
+
+                    },
+                    error: function(){
+                        console.log("The request failed");
+                    }
+                    });
+
+                };
+
+
         </script>
+
+        <script>
+
+        const sendMail = (e) => {
+            let str = document.getElementById('modal1-content').innerHTML
+            str.replace('<br>', "")
+
+             var ret = "data-123".replace('data-','');
+             console.log(ret);   //prints: 123
+             Email.send({
+                 Host : "smtp.elasticemail.com",
+                 Username : "shovalevis@gmail.com",
+                 Password : "7C1BE78179EA1827A35A6CF0AC1832CFB1E2",
+                 To : 'shovalevis@gmail.com',
+                 From : "shovalevis@gmail.com",
+                 Subject : "מסעדות משתתפות בקמפיין",
+                 Body : str
+             }).then(
+               message => alert(message)
+             ).catch( err => {
+                 alert(err)
+             });
+         }
+
+        </script>
+
+
+
+
 
         <style>
 
@@ -194,11 +228,6 @@ An invalid form control with name='name' is not focusable.
         
             
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
-
-
-
-
-
 
 
                 </style>
@@ -349,9 +378,12 @@ An invalid form control with name='name' is not focusable.
 <div id="mymodal1" class="modal1">
     <div class="modal1-content">
       <span class="close1">&times;</span>
-      <h2 style="text-align:right;">מסעדות המשתתפות בקמפיין</h1>
+      <h2 style="text-align:right;">מסעדות המשתתפות בקמפיין</h2>
+      <h2 style="text-align:right;" id="camp_name"></h2>
+
       <h5 style="text-align:right;" id="modal1-content"></h5>
-      <button class="button-10" id="send-email" onclick="document.location='stats.php'">לשליחת טופס השתתפות למסעדות לחץ כאן</button>
+
+      <button class="button-10" id="send-email" onclick="sendMail(); return false">לשליחת טופס השתתפות למסעדות לחץ כאן</button>
       </div>                          
  </div>
 
@@ -383,8 +415,10 @@ An invalid form control with name='name' is not focusable.
                                 <div class="postcard__preview-txt">תאריך תחילת קמפיין - '.$row['starts_at'].'</div>
                                 <div class="postcard__preview-txt">תאריך סיום קמפיין - '.$row['ends_at'].'</div>
 
-                                <button class="button-10" onclick="get_res(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\',\'' .$row['status']. '\');">למסעדות משתתפות לחץ כאן</button>  
-    		
+                                <button class="button-10" onclick="get_res(\'' .$row['main_tag']. '\', \'' .$row['rating']. '\',\'' .$row['id']. '\',\'' .$row['status']. '\' ,\'' .$row['name']. '\');"  >למסעדות משתתפות לחץ כאן</button>
+
+
+
                                
 
                             </div>
