@@ -57,6 +57,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         padding-right: 15px;
 
     }
+
+        body{
+                background-image:url("../images/bk-image.jpg");
+                background-attachment: fixed;
+
+            }
     
 
     .add-training-container{
@@ -95,11 +101,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       right: 15px;
       border: 3px solid #f1f1f1;
       z-index: 9;
+      width:280px;
+
     }
 
     /* Add styles to the form container */
     .form-container {
-      max-width: 300px;
       padding: 10px;
       background-color: white;
     }
@@ -215,7 +222,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
         <main class="container-lg">
-        <div class="text-black rounded bg-white" dir="rtl">
+        <div class="text-black rounded " dir="rtl">
         <div class="col-md-6 px-0">
         <br>
         <h1>ממשק ניהול הדרכות</h1>
@@ -289,7 +296,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 </div>
                             </div>
                                     
-                            <p style="text-align: right; margin-right:10px;"><button id="submit-btn"  type="submit" value="run" disabled>שמור אירוע</button></p>
+                            <p style="text-align: right; margin-right:10px;"><button id="submit-btn" type="submit" value="run" disabled>שמור אירוע</button></p>
                                     
                         </form>
                     </div>

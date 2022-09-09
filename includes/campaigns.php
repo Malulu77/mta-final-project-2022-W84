@@ -53,7 +53,7 @@ An invalid form control with name='name' is not focusable.
                         console.log($status)
                         console.log($name)
                         modal1.style.display = "block";
-                        document.getElementById('camp_name').innerHTML = $name;
+                        document.getElementById('second_subject').innerHTML = $name;
                         document.getElementById('modal1-content').innerHTML = data;
                         if ($status==='DONE'){
                           // var bg = document.getElementById("end-email");
@@ -84,28 +84,43 @@ An invalid form control with name='name' is not focusable.
 
         </script>
 
+
+
         <script>
 
         const sendMail = (e) => {
-            let str = document.getElementById('modal1-content').innerHTML
-            str.replace('<br>', "")
+            let str = document.getElementById('modal1-content').innerHTML;
+            let first = document.getElementById('first_subject').innerHTML;
+            let second = document.getElementById('second_subject').innerHTML;
+            let space = " ";
 
-             var ret = "data-123".replace('data-','');
-             console.log(ret);   //prints: 123
+            email_subject = first + space +second;
+            str.replace('<br>', "")
              Email.send({
                  Host : "smtp.elasticemail.com",
                  Username : "shovalevis@gmail.com",
                  Password : "7C1BE78179EA1827A35A6CF0AC1832CFB1E2",
                  To : 'shovalevis@gmail.com',
                  From : "shovalevis@gmail.com",
-                 Subject : "מסעדות משתתפות בקמפיין",
+                 Subject : email_subject,
                  Body : str
              }).then(
-               message => alert(message)
+                message => alert(message)
              ).catch( err => {
                  alert(err)
              });
+
          }
+
+        </script>
+
+
+
+        <script>
+
+        window.onload = function() {
+          yourFunction(param1, param2);
+        };
 
         </script>
 
@@ -257,16 +272,14 @@ An invalid form control with name='name' is not focusable.
                          <div class="mt-4">
                              <div id="step-1">
                                  <div class="row">
-                                     <div class="col-md-6"> <input type="text" name="id" id="id" class="form-control" placeholder="מספר קמפיין" required> </div>
-                                     <p id="error-id" class="error"></p>
+
                                      <div class="col-md-6"> <input type="text" name="name" id="name" class="form-control" placeholder="שם הקמפיין" required> </div>
                                      <p id="error-name" class="error"></p>
-                                      <label for="image" style="text-align: right;margin-top:2%; margin-right:1%; color: #495057;"  >בחר תמונת קמפיין</label>
-                                      <input id="img" name="img" type="file" onchange="return fileValidation()">
-                                       <p id="error-img" class="error"></p>
+                                     <div class="col-md-6"> <input type="text" name="img" id="img" class="form-control" placeholder="קישור לתמונת קמפיין" required> </div>
+                                     <p id="error-img" class="error"></p>
 
                                          <button id="previous" class="button-11 sw-btn-prev  next-previous-button" disabled type="button">הקודם</button>
-                                                                           <button id="next" class="button-11 sw-btn-next next-previous-button" disabled ">הבא</button>
+                                        <button id="next" class="button-11 sw-btn-next next-previous-button" disabled>הבא</button>
 
 
                                  </div>
@@ -318,11 +331,9 @@ An invalid form control with name='name' is not focusable.
                              <div id="step-3" class="">
                                  <div class="row">
                                     <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך תחילת קמפיין</label>
-                                    <input type="date" id="starts_at" name="starts_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
-                                    <p id="error-start" class="error"></p>
+                                    <input type="date" value="2022-10-08" id="starts_at" name="starts_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                     <label for="starting" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" required>בחר תאריך סיום קמפיין</label>
-                                    <input type="date" id="ends_at" name="ends_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
-                                    <p id="error-end" class="error"></p>
+                                    <input type="date" value="2022-10-10" id="ends_at" name="ends_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
 
                                  </div>
                                   <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
@@ -332,13 +343,13 @@ An invalid form control with name='name' is not focusable.
                                  <div class="row">
                                  <label for="status" style="text-align: right; margin-right:1%; color: #495057;" >בחר סטטוס קמפיין</label>
                                     <select name="status" id="status"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
-                                      <option value="done">Done</option>
-                                      <option value="upcoming">Upcoming</option>
-                                      <option value="running">Running</option>
+                                      <option value="done">DONE</option>
+                                      <option value="upcoming">UPCOMING</option>
+                                      <option value="running">RUNNING</option>
                                     
       </select>
                                        <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
-                                       <button  type="submit" value="run">אישור</button>
+                                       <button class="button-10 next-previous-button" type="submit" value="run">אישור</button>
 
 
                                  </div>
@@ -378,12 +389,15 @@ An invalid form control with name='name' is not focusable.
 <div id="mymodal1" class="modal1">
     <div class="modal1-content">
       <span class="close1">&times;</span>
-      <h2 style="text-align:right;">מסעדות המשתתפות בקמפיין</h2>
-      <h2 style="text-align:right;" id="camp_name"></h2>
 
-      <h5 style="text-align:right;" id="modal1-content"></h5>
+      <div id="camp_subject" style="text-align:right;">
+          <h2 style="display:inline;" id="first_subject">מסעדות המשתתפות בקמפיין</h2>
+          <h2 style="display:inline;" id="second_subject"></h2>
+      </div>
+          <h5 style="text-align:right;" id="modal1-content"></h5>
 
-      <button class="button-10" id="send-email" onclick="sendMail(); return false">לשליחת טופס השתתפות למסעדות לחץ כאן</button>
+
+      <button class="button-10" id="send-email" onclick="sendMail(); return false">לשליחת המסעדות למחלקת השיווק לחץ כאן</button>
       </div>                          
  </div>
 
@@ -396,18 +410,26 @@ An invalid form control with name='name' is not focusable.
 
         while($row = mysqli_fetch_assoc($result))
         {
+
+        $date_now = date("Y-m-d");
+        if ($date_now > $row['ends_at']) {
+            $sql1="UPDATE campaigns SET 'status' = 'DONE' WHERE 'id' = '".$row['id']."'";
+        }
+
+
             echo '
+
 
 
             <section class="light">
 	            <div class="container py-2">
 	            	<article class="postcard light blue">
 	            	    	<div class="postcard__img_link"></div>
-	            	    		<img class="postcard__img" src="../images/campaigns/'.$row['img'].'"  alt="Image Title" />
+	            	    		<img class="postcard__img" src="'.$row['img'].'"  alt="Image Title" />
 	            	    	<div class="postcard__text t-dark">
 	            	    		<h1 class="postcard__title blue">'.$row['name'].'</h1>
 	            	    		<div class="postcard__subtitle small">
-                        <div class="mr-2 '.(($row['status']==='DONE')?' text-primary':"text-success").'">'.$row['status'].'</div>	
+                                <div class="mr-2 '.(($row['status']==='DONE')?' text-primary':"text-success").'">'.$row['status'].'</div>
 	            	    		</div>
 	            	    		<div class="postcard__bar"></div>
 	            	    		<div class="postcard__preview-txt" style="float:right;">דירוג סף - '.$row['rating'].' ★ </div>
@@ -431,7 +453,15 @@ An invalid form control with name='name' is not focusable.
 
         ';
 
+
     }
+
+
+
+
+
+
+
         if ($_SERVER['QUERY_STRING'] == 'success') {
             echo '    <script>
                     Swal.fire("הקמפיין נשמר במערכת", "הקמפיין נשמר בהצלחה, ניתן לנהל אותו ברשימת הקמפיינים  ", "success");
@@ -449,6 +479,8 @@ An invalid form control with name='name' is not focusable.
         
                             
     </body>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -535,6 +567,5 @@ window.onclick = function(event) {
 </script>
 
 </body>
-</html>
 
 </html>
