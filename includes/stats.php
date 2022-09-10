@@ -17,7 +17,10 @@ $sql = "SELECT * FROM enterprises";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 
-
+$sql = "SELECT password FROM users where id = 7;";
+$key_result = mysqli_query($conn, $sql);
+$key_row = mysqli_fetch_assoc($key_result);
+$key = $key_row['password'];
 
 function percent($number){
     return $number * 100 . '%';
@@ -240,6 +243,7 @@ function percent1($number){
                 </div>
             </div>
             <p style="text-align: right;"><button class="button1 button-10 " type="submit" onclick="build()">משיכת נתוני עמלה היסטוריים</button></p>
+            <p id="error-msg-api"></p>
         </div>
 
         <p><canvas class="my-2 w-30" height="100px" id="myChart" width="200px"></canvas></p>
@@ -265,6 +269,9 @@ function percent1($number){
 </main>
 </div>
 </div>
+
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -275,7 +282,7 @@ function percent1($number){
 
         // TODO(developer): Set to client ID and API key from the Developer Console
         const CLIENT_ID = '189386995970-jsqgsehjlbvpegiu88c9qtpqgu8n546d.apps.googleusercontent.com';
-        const API_KEY = '';
+        const API_KEY = 'AIzaSyDliN3dTAD6-pGMW8caQQ3PQDzensy-9Yk';
 
         // Discovery doc URL for APIs used by the quickstart
         const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
@@ -308,7 +315,6 @@ function percent1($number){
             discoveryDocs: [DISCOVERY_DOC],
         });
         gapiInited = true;
-        maybeEnableButtons();
     }
 
         /**
@@ -321,68 +327,24 @@ function percent1($number){
             callback: '', // defined later
         });
         gisInited = true;
-        maybeEnableButtons();
+
     }
 
-        /**
-        * Enables user interaction after all libraries are loaded.
-        */
-        function maybeEnableButtons() {
-        if (gapiInited && gisInited) {
-        document.getElementById('authorize_button').style.visibility = 'visible';
-    }
-    }
-
-        /**
-        *  Sign in the user upon button click.
-        */
-        function handleAuthClick() {
-        tokenClient.callback = async (resp) => {
-            if (resp.error !== undefined) {
-                throw (resp);
-            }
-            document.getElementById('signout_button').style.visibility = 'visible';
-            document.getElementById('authorize_button').innerText = 'Refresh';
-        };
-
-        if (gapi.client.getToken() === null) {
-        // Prompt the user to select a Google Account and ask for consent to share their data
-        // when establishing a new session.
-        tokenClient.requestAccessToken({prompt: 'consent'});
-    } else {
-        // Skip display of account chooser and consent dialog for an existing session.
-        tokenClient.requestAccessToken({prompt: ''});
-    }
-    }
-
-        /**
-        *  Sign out the user upon button click.
-        */
-        function handleSignoutClick() {
-        const token = gapi.client.getToken();
-        if (token !== null) {
-        google.accounts.oauth2.revoke(token.access_token);
-        gapi.client.setToken('');
-        document.getElementById('content').innerText = '';
-        document.getElementById('authorize_button').innerText = 'Authorize';
-        document.getElementById('signout_button').style.visibility = 'hidden';
-    }
-    }
 
         async function getData() {
             let response;
             try {
                 // Fetch first 10 files
                 response = await gapi.client.sheets.spreadsheets.values.get({
-                    spreadsheetId: '1hy6XxMTJBlnuTIpWTfTcQmQUMGTM3c4uw3fnrrcLMDY',
+                    spreadsheetId: '1o38xpAySJD-MlIpiwb-uXq0jAIHkF68Wmu4MFkjb2gE',
                     range: 'Sheet1!A1:E80',
                 });
             } catch (err) {
-                document.getElementById('content').innerText = err.message;
+                document.getElementById('error-msg-api').innerText = err.message;
             }
             const range = response.result;
             if (!range || !range.values || range.values.length == 0) {
-                document.getElementById('content').innerText = 'No values found.';
+                document.getElementById('error-msg-api').innerText = 'No values found.';
             }
             row_data = range.values[<?php echo $enterprise_id;?>];
         }
@@ -429,9 +391,6 @@ function percent1($number){
         }
 
 </script>
-
-<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
 
 
