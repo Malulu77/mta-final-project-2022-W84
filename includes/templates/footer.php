@@ -1,4 +1,3 @@
-
 <footer class="page-footer font-small" style="background-color:#F0F0F0;" >
 
     <!-- Footer Elements -->
