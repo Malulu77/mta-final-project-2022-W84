@@ -2,6 +2,7 @@
 body{
     background-image:url("../images/bk-image.jpg");
     background-attachment: fixed;
+    font-family: 'Varela Round';
 
 
 }
@@ -34,7 +35,9 @@ body{
 .card-title{
     text-align:center;
     display: inline-block;
-    font-size:21px;
+    font-size:19px;
+    font-family: 'Varela Round';
+
 
 }
 

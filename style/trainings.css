@@ -18,12 +18,15 @@ main{
 
 .pad{
     padding-right: 15px;
+    font-family: 'Varela Round';
+
 
 }
 
 body{
     background-image:url("../images/bk-image.jpg");
     background-attachment: fixed;
+    font-family: 'Varela Round';
 
 }
 
@@ -73,7 +76,10 @@ body{
     padding: 10px;
     background-color: white;
 }
+.form-label{
+    font-family: 'Varela Round';
 
+}
 /* Full-width textarea */
 .form-container textarea {
     width: 100%;

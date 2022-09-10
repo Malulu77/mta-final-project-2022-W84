@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
 
 
-body {font-family: Arial, Helvetica, sans-serif;}
+body {font-family: 'Varela Round';}
 
 /* The modal1 (background) */
 .modal1 {
@@ -509,3 +508,7 @@ a:hover {
 }
 
 
+.searchbox-input{
+    width: 97%;
+    margin-right: 1.5%;
+}

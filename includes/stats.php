@@ -39,6 +39,8 @@ function percent1($number){
 	<link href="../bootstrap/assets/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/ce0967b930.js" crossorigin="anonymous"></script>
     <link href="../style/stats.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+
 
     <style>
 

@@ -21,6 +21,8 @@ $num_rows = mysqli_num_rows($result);
     <link href="/style/index.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/includes/index.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+
 
 
 </head>

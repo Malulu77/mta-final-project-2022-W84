@@ -30,6 +30,8 @@ $num_rows = mysqli_num_rows($result);
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
         <link href="../style/campaigns.css" rel="stylesheet" />
+        <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
+
 </head>
 
 
@@ -37,6 +39,7 @@ $num_rows = mysqli_num_rows($result);
                                         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
          <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_arrows.min.css" rel="stylesheet" type="text/css" />
          <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+
 
  <div class="container">
   <form name="add_new_campaign" action="add_campaign.php"  method="post">
@@ -152,8 +155,12 @@ $num_rows = mysqli_num_rows($result);
 
 
 
-
 <h1 style="text-align:center; margin-top:3%;">רשימת קמפיינים</h1>
+<br>
+
+ <input type="search" placeholder="חיפוש מהיר.." name="search" class="form-control searchbox-input" required onkeyup="buttonUp();">
+<br>
+
 
 <div id="mymodal1" class="modal1">
     <div class="modal1-content">
