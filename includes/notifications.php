@@ -58,15 +58,13 @@ while($row5 = mysqli_fetch_assoc($result_trainings5)){++$count;}
                                                     while($row = mysqli_fetch_assoc($result_trainings))
                                                     {
                                                         ++$flag;
-
-                                                       $sql2 = "SELECT name FROM enterprises where id='".$row['id']."'";
+                                                       $sql2 = "SELECT name FROM enterprises where id='".$row['restaurant_id']."'";
                                                        $result_trainings2 = mysqli_query($conn, $sql2);
-                                                       while ($row3 = mysqli_fetch_assoc($result_trainings2)) {
-
+                                                       $row3 = mysqli_fetch_assoc($result_trainings2);
                                                         echo '
                                                         <li class="li-design icon">'.$row['name'].' - '.$row['type'].' - '.$row3['name'].' </li>
                                                         ';
-                                                        }
+
 
 
                                                 }
