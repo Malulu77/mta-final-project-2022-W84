@@ -73,7 +73,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <div class="row g-3">
                     <div class="col-12 pad">
                         <p style="text-align: right;"><label class="form-label" for="name"&nbsp;</label>שם ההדרכה<input class="form-control" id="name" placeholder="" required="" type="text" value="" name="name" required/></p>
-
+                        <p id="error-name" class="error"></p>
                         <div class="invalid-feedback" style="text-align: right;"></div>
                     </div>
 
@@ -106,14 +106,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
                     </div>
 
-                    <div class="col-12 pad" style="text-align: right;"><label class="form-label" for="name"&nbsp;>תאריך הדרכה</label>&nbsp;<input required class="form-control" id="date" placeholder="" type="datetime-local" name="date" /></div>
-
+                    <div class="col-12 pad" style="text-align: right;"><label class="form-label" for="name"&nbsp;>תאריך הדרכה</label>&nbsp;<input required class="form-control" id="datepicker" placeholder="" type="datetime-local" name="date" /></div>
+                    <p id="error-name-date" class="error"></p>
                     <div class="col-md-5">
                         <p style="text-align: right;"></p>
                     </div>
                 </div>
 
-                <p style="text-align: right; margin-right:10px;"><button class="button-10" type="submit" value="run" >שמור אירוע</button></p>
+                <p style="text-align: right; margin-right:10px;"><button id="submit-btn" class="" type="submit" value="run" >שמור אירוע</button></p>
 
             </form>
             <button type="button"  id="authG" onclick="handleAuthClick()" >התחבר ל Google</button>
