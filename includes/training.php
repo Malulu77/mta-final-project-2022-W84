@@ -1,5 +1,6 @@
 <?php
 include("templates/header.php");
+include("notifications.php");
 require_once 'db/connection.php';
 
 
@@ -53,7 +54,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="add-training-container">
                 <div class="py-5 text-center" dir="rtl">
                     <p style="text-align: right;"></p>
-                    <h2 class="pad" style="text-align: center;">הוספת הדרכה חדשה</h2>
+                    <h2 class="pad" style="text-align: center;color:black;">הוספת הדרכה חדשה</h2>
                 
                     <p class="lead pad" style="text-align: right; padding:auto;"><strong>מלאו את הטופס בכדי להוסיף הדרכה חדשה ללוח השנה<br>
                 </div>

@@ -1,5 +1,8 @@
 <?php
 include("templates/header.php");
+include("notifications.php");
+
+
 require_once 'db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -279,6 +282,7 @@ window.onclick = function(event) {
 
 
 <?php
+
     include("templates/footer.php");
 ?>
 </html>

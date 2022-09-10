@@ -51,7 +51,6 @@ function percent1($number){
 </head>
 <body>
 
-
 <div class="container-fluid" dir="rtl">
 <div class="row">
 
@@ -131,6 +130,7 @@ function percent1($number){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
     <div class="container">
+
         <div class="header">
             <h2><?php echo $row_current['name'];?></h2>
             <img src="../images/<?php echo $row_current['img'];?>"/>

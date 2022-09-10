@@ -1,5 +1,6 @@
 <?php
 include("includes/templates/header.php");
+include("includes/notifications.php");
 require_once 'includes/db/connection.php';
 
 // Check if the user is logged in, if not then redirect him to login page
