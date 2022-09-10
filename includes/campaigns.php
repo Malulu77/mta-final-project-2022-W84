@@ -18,234 +18,20 @@ $num_rows = mysqli_num_rows($result);
 
 <html>
     <head>
-            <meta charset='utf-8'>
+        <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'><link rel="stylesheet" href="../style/campaigns.css">
-        <script src="./validate_new_campaign.js"></script>
+        <script src="./campaigns.js"></script>
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <link href="../style/campaigns.css" rel="stylesheet" />
+</head>
 
-
-        <script>
-An invalid form control with name='name' is not focusable.
-
-
-        </script>
-
-        <script>
-
-
-                function get_res($tag,$rate,$id,$status,$name) {
-                        $.ajax({
-                        url: 'find_enterprise.php',
-                        type: 'POST',
-                        data: {'tag':$tag,
-                                'rate':$rate},
-                                success: function(data){
-                        console.log("The ajax request succeeded!");
-                        console.log("The result is: ");
-                        console.dir(data);
-                        console.log($status)
-                        console.log($name)
-                        modal1.style.display = "block";
-                        document.getElementById('second_subject').innerHTML = $name;
-                        document.getElementById('modal1-content').innerHTML = data;
-                        if ($status==='DONE'){
-                          // var bg = document.getElementById("end-email");
-                          // bg.style.background="gray";
-                          document.querySelector('#send-email').disabled = true;
-                          document.getElementById("send-email").classList.remove('button-10');
-                          document.getElementById("send-email").classList.add('button-11');
-
-                        }
-                        if ($status!=='DONE'){
-                          document.querySelector('#send-email').disabled = false;
-                          document.getElementById("send-email").classList.remove('button-11');
-                          document.getElementById("send-email").classList.add('button-10');
-
-
-
-                        }
-
-
-                    },
-                    error: function(){
-                        console.log("The request failed");
-                    }
-                    });
-
-                };
-
-
-        </script>
-
-
-
-        <script>
-
-        const sendMail = (e) => {
-            let str = document.getElementById('modal1-content').innerHTML;
-            let first = document.getElementById('first_subject').innerHTML;
-            let second = document.getElementById('second_subject').innerHTML;
-            let space = " ";
-
-            email_subject = first + space +second;
-            str.replace('<br>', "")
-             Email.send({
-                 Host : "smtp.elasticemail.com",
-                 Username : "shovalevis@gmail.com",
-                 Password : "7C1BE78179EA1827A35A6CF0AC1832CFB1E2",
-                 To : 'shovalevis@gmail.com',
-                 From : "shovalevis@gmail.com",
-                 Subject : email_subject,
-                 Body : str
-             }).then(
-                message => alert(message)
-             ).catch( err => {
-                 alert(err)
-             });
-
-         }
-
-        </script>
-
-
-
-        <script>
-
-        window.onload = function() {
-          yourFunction(param1, param2);
-        };
-
-        </script>
-
-
-
-
-
-        <style>
-
-        .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child) {display:none;}
-        .btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {display:none;}
-        
-        html{
-            margin:auto;
-        }
-
-        .mt-4 sw-container tab-content{
-        height:500px;
-        }
-
-
-        .sw-theme-arrows>ul.step-anchor>li.active>a {
-            border-color: #5cb85c!important;
-            color: #fff!important;
-            background: #5cb85c!important;
-            width: 150px;
-            text-align: center;
-}
-
-        body{
-            background-image:url("../images/bk-image.jpg");
-            background-attachment: fixed;
-
-        }
-        
-        ::-webkit-scrollbar {
-              width: 8px;
-        }
-        /* Track */
-        ::-webkit-scrollbar-track {
-              background: #f1f1f1; 
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-              background: #888; 
-        }
-
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-              background: #555;
-        } body{background-color:white;
-        margin:auto;}
-        .form-control:focus{color: #495057;background-color: #fff;border-color: #80bdff;outline: 0;box-shadow: 0 0 0 0rem rgba(0,123,255,.25)}
-        .close:focus{box-shadow: 0 0 0 0rem rgba(108,117,125,.5)}
-        .mt-200{margin-top:200px}
-        .button-10 {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 6px 14px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-          border-radius: 6px;
-          border: none;
-          width:300px;
-          color: #fff;
-          background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
-          background-origin: border-box;
-          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
-          margin-top:5%;
-
-        }
-            
-                .button-10:focus {
-                  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-                  outline: 0;
-                }
-            
-                .button-10:hover{
-                    opacity: 70%;
-                }
-
-          .button-11 {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 6px 14px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-          border-radius: 6px;
-          border: none;
-          width:300px;
-          /* color: #fff; */
-          background: linear-gradient(180deg, gray 0%, gray 100%);
-          background-origin: border-box;
-          box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
-          margin-top:5%;
-        }
-
-        .next-previous-button{
-        float:right;
-        width:20%;
-        margin-right:1%;
-        }
-
-        .error{
-        color:red;
-        text-align:right;}
-
-
-
-
-
-        
-            
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
-
-
-                </style>
 
                 <body className='snippet-body'>
                                         <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet" type="text/css" />
@@ -363,23 +149,6 @@ An invalid form control with name='name' is not focusable.
       </form>
  </div>
         <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
-        <script type='text/javascript'>$(document).ready(function(){
-
-            $('#smartwizard').smartWizard({
-                    selected: 0,
-                    theme: 'arrows',
-                    autoAdjustHeight:true,
-                    transitionEffect:'fade',
-                    showStepURLhash: false,
-
-            });
-
-        });</script>
-        <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
-        myLink.addEventListener('click', function(e) {
-          e.preventDefault();
-        });</script>
-
 
 
 
@@ -429,7 +198,7 @@ An invalid form control with name='name' is not focusable.
 	            	    	<div class="postcard__text t-dark">
 	            	    		<h1 class="postcard__title blue">'.$row['name'].'</h1>
 	            	    		<div class="postcard__subtitle small">
-                                <div class="mr-2 '.(($row['status']==='DONE')?' text-primary':"text-success").'">'.$row['status'].'</div>
+                                <div class="mr-2 '.((strtoupper($row['status'])==='DONE')?' text-primary':"text-success").'">'.$row['status'].'</div>
 	            	    		</div>
 	            	    		<div class="postcard__bar"></div>
 	            	    		<div class="postcard__preview-txt" style="float:right;">דירוג סף - '.$row['rating'].' ★ </div>
@@ -476,87 +245,22 @@ An invalid form control with name='name' is not focusable.
 
 
 
-        
-                            
+
+
     </body>
 
 
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-
-/* The modal1 (background) */
-.modal1 {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* modal11 Content */
-.modal1-content {
-  background-color: #fefefe;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  height:500px;
-  margin-top:10%;
-  margin-right:10%;
-
-}
-
-/* The Close Button */
-.close1 {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close1:hover,
-.close1:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
-</head>
-
 <script>
-// Get the modal1
 var modal1 = document.getElementById("mymodal1");
-
-// Get the button that opens the modal1
 var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal1
 var span = document.getElementsByClassName("close1")[0];
-
-// When the user clicks the button, open the modal1 
-
 function click12() {
   modal1.style.display = "block";
 }
-
-// When the user clicks on <span> (x), close the modal1
 span.onclick = function() {
   modal1.style.display = "none";
-
-
 }
 
-// When the user clicks anywhere outside of the modal1, close it
 window.onclick = function(event) {
   if (event.target == modal1) {
     modal1.style.display = "none";
@@ -566,6 +270,8 @@ window.onclick = function(event) {
 }
 </script>
 
-</body>
 
+<?php
+    include("templates/footer.php");
+?>
 </html>

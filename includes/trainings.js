@@ -33,3 +33,11 @@ $(document).on('keyup change paste cut click', 'body', function (){
         document.getElementById('submit-btn').disabled = true;
     }
 });
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}

@@ -1,0 +1,177 @@
+
+body{
+    background-image:url("../images/bk-image.jpg");
+    background-attachment: fixed;
+
+
+}
+
+.contact-image{
+    width:50px;
+    height:50px;
+    margin-left:5px;
+}
+
+.contact-image:hover{
+    opacity: 50%;
+}
+
+.card{
+    background-color:#F5F5F5;
+    border:solid gray 1px;
+    border-radius: 10px;
+    height:100px;
+
+
+}
+
+.card-text{
+    display: block;
+    font-size:18px;
+}
+
+
+.card-title{
+    text-align:center;
+    display: inline-block;
+    font-size:21px;
+
+}
+
+.image-container{
+    width:25px;
+    height:25px;
+    margin-top:-5px;
+}
+
+.image-container:hover{
+    width:25px;
+    height:25px;
+    opacity: 50%;
+    margin-top:-5px;
+
+
+}
+
+
+
+.header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin:auto;
+    display: block;
+
+
+
+}
+
+.header h2 {
+    text-align: center;
+    margin-top:5px;
+
+
+}
+
+.button1{
+    margin-top:3%;
+}
+
+.con-tooltip {
+    position: relative;
+    border-radius: 9px;
+    display: inline-block;
+    clear:both;
+}
+
+/*tooltip */
+.tooltip {
+    visibility: hidden;
+    z-index: 1;
+    opacity: .40;
+    width: 210px;
+    padding: 0px 20px;
+    background: gray;
+    color: white;
+    position: absolute;
+    top:-360%;
+    left:-93px;
+    border-radius: 9px;
+    transform: translateY(9px);
+    transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+}
+
+
+/* tooltip  after*/
+.tooltip::after {
+    content: " ";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12.5px 0 12.5px;
+    border-color: gray transparent transparent transparent;
+    position: absolute;
+    left: 45%;
+
+}
+
+.con-tooltip:hover .tooltip{
+    visibility: visible;
+    transform: translateY(-10px);
+    opacity: 1;
+    transition: .3s linear;
+    animation: odsoky 1s ease-in-out infinite  alternate;
+
+}
+@keyframes odsoky {
+    0%{
+        transform: translateY(6px);
+    }
+
+    100%{
+        transform: translateY(1px);
+    }
+
+}
+
+
+.button-10 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-10:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-10:hover{
+    opacity: 70%;
+}
+
+@media (max-width:1587px) {
+    .row {
+        display: block;
+    }
+    .card{
+        margin-top:10px;
+    }
+}
+

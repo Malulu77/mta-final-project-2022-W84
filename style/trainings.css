@@ -1,0 +1,180 @@
+
+html{
+    height:100%;
+}
+
+main{
+    height:90%;
+}
+.row{
+    width:100%;
+}
+
+.calendar-container{
+    width:40%;
+    display: inline-block;
+    margin-left:170px;
+}
+
+.pad{
+    padding-right: 15px;
+
+}
+
+body{
+    background-image:url("../images/bk-image.jpg");
+    background-attachment: fixed;
+
+}
+
+
+.add-training-container{
+    background-color:#F5F5F5;
+    border:solid gray 1px;
+    border-radius: 10px;
+    display: inline-block;
+    width:35%;
+    margin-right:10%;
+    margin-bottom:10%;
+
+}
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 15%;
+    right: 28px;
+    width: 250px;
+    border-radius: 9px;
+    z-index: 5;
+
+
+
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 13%;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    width:280px;
+
+}
+
+/* Add styles to the form container */
+.form-container {
+    padding: 10px;
+    background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
+.button-10 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-10:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+@media (max-width:1587px) {
+    .add-training-container {
+        display: block;
+        width:80%;
+        margin-left:20%;
+        margin-top:4%;
+    }
+}
+@media (max-width:830px) {
+    .calendar-container{
+        display:none;
+    }
+}
+
+
+.button-11 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+
+    color: #fff;
+    background: linear-gradient(180deg, #EE4B2B	 0%, #AA4A44 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-11:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+}
+
+.button-10:hover{
+    opacity: 70%;
+}
+
+.button-11:hover{
+    opacity: 70%;
+}
+.error{
+    color:red;
+    text-align:right;}
+
+
