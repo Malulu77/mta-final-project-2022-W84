@@ -41,7 +41,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 <main class="container-lg">
-    <div class="text-black rounded bg-white" dir="rtl">
+    <div class="text-black rounded" dir="rtl">
         <div class="col-md-6 px-0">
             <br>
             <h1>ממשק ניהול הדרכות</h1>
@@ -59,7 +59,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="add-training-container">
         <div class="py-5 text-center" dir="rtl">
             <p style="text-align: right;"></p>
-            <h2 class="pad" style="text-align: center;">הוספת הדרכה חדשה</h2>
+            <h2 class="pad" style="text-align: center;color:black;">הוספת הדרכה חדשה</h2>
 
             <p class="lead pad" style="text-align: right; padding:auto;"><strong>מלאו את הטופס בכדי להוסיף הדרכה חדשה ללוח השנה<br>
         </div>

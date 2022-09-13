@@ -170,8 +170,8 @@ $num_rows = mysqli_num_rows($result);
       <span class="close1">&times;</span>
 
       <div id="camp_subject" style="text-align:right;">
-          <h2 style="display:inline;" id="first_subject">מסעדות המשתתפות בקמפיין</h2>
-          <h2 style="display:inline;" id="second_subject"></h2>
+          <h2 style="display:inline;color:black;" id="first_subject">מסעדות המשתתפות בקמפיין</h2>
+          <h2 style="display:inline;color:black;" id="second_subject"></h2>
       </div>
           <h5 style="text-align:right;" id="modal1-content"></h5>
 
