@@ -112,8 +112,8 @@ const sendMail = (e) => {
         Host : "smtp.elasticemail.com",
         Username : "shovalevis@gmail.com",
         Password : "7C1BE78179EA1827A35A6CF0AC1832CFB1E2",
-        To : 'shovalevis@gmail.com',
-        From : "shovalevis@gmail.com",
+        To : 'wolty.marketing.department@gmail.com',
+        From : "wolty.marketing.department@gmail.com",
         Subject : email_subject,
         Body : str
     }).then(
