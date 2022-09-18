@@ -59,7 +59,6 @@ $num_rows = mysqli_num_rows($result);
                              <li><a href="#step-1">שלב 1<br /><small>פרטי הקמפיין</small></a></li>
                              <li><a href="#step-2">שלב 2<br /><small>דרישות</small></a></li>
                              <li><a href="#step-3">שלב 3<br /><small>תאריכי קמפיין</small></a></li>
-                             <li><a href="#step-4">שלב 4<br/><small>אישור קמפיין</small></a></li>
                          </ul>
                          <div class="mt-4">
                              <div id="step-1">
@@ -95,7 +94,7 @@ $num_rows = mysqli_num_rows($result);
                                     <label for="rating" style="text-align: right; margin-right:2%; margin-top:1%;color: #495057;" >בחר תגית</label>
                                     <select name="main_tag" id="main_tag"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
                                       <option value="Burger">Burger</option>
-                                      <option value="Mediterenian">Mediterenian</option>
+                                      <option value="Mediterranean">Mediterranean</option>
                                       <option value="Sweet">Sweet</option>
                                       <option value="Health">Health</option>
                                       <option value="Cafe">Cafe</option>
@@ -128,24 +127,10 @@ $num_rows = mysqli_num_rows($result);
                                     <input type="date" value="2022-10-10" id="ends_at" name="ends_at" style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
 
                                  </div>
-                                  <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
-                                  <button class="button-10 sw-btn-next next-previous-button" type="button">הבא</button>
+                                 <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
+                                  <button class="button-10 next-previous-button" type="submit" value="run">אישור</button>
                              </div>
-                             <div id="step-4" clasConfirm detailss="">
-                                 <div class="row">
-                                 <label for="status" style="text-align: right; margin-right:1%; color: #495057;" >בחר סטטוס קמפיין</label>
-                                    <select name="status" id="status"  style="width:50%; margin-right:2%;border: 1px solid #ced4da; background-color:white;height:50px; line-height: 1.5; border-radius: 0.25rem; height: calc(1.5em + 0.75rem + 2px);padding: 0.375rem 0.75rem;font-size: 1rem;">
-                                      <option value="done">DONE</option>
-                                      <option value="upcoming">UPCOMING</option>
-                                      <option value="running">RUNNING</option>
-                                    
-      </select>
-                                       <button class="button-10 sw-btn-prev disabled next-previous-button" type="button">הקודם</button>
-                                       <button class="button-10 next-previous-button" type="submit" value="run">אישור</button>
-
-
-                                 </div>
-                             </div>
+   
                          </div>
                      </div>
                  </div>
@@ -192,8 +177,25 @@ $num_rows = mysqli_num_rows($result);
 
         $date_now = date("Y-m-d");
         if ($date_now > $row['ends_at']) {
-            $sql1="UPDATE campaigns SET 'status' = 'DONE' WHERE 'id' = '".$row['id']."'";
+            $sql1="UPDATE campaigns SET status = 'DONE' WHERE id = '".$row['id']."'";
+            $stmt = mysqli_prepare($conn, $sql1);
+            mysqli_stmt_execute($stmt);
         }
+        
+        if ($date_now < $row['starts_at']) {
+            $sql1="UPDATE campaigns SET status = 'UPCOMING' WHERE id = '".$row['id']."'";
+            $stmt = mysqli_prepare($conn, $sql1);
+            mysqli_stmt_execute($stmt);
+
+        }
+
+        if ($date_now > $row['starts_at'] AND $date_now < $row['ends_at']){
+            $sql1="UPDATE campaigns SET status = 'RUNNING' WHERE id = '".$row['id']."'";
+            $stmt = mysqli_prepare($conn, $sql1);
+            mysqli_stmt_execute($stmt);
+
+        }
+
 
 
             echo '
