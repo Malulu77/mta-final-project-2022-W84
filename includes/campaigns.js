@@ -110,8 +110,8 @@ const sendMail = (e) => {
     str.replace('<br>', "")
     Email.send({
         Host : "smtp.elasticemail.com",
-        Username : "shovalevis@gmail.com",
-        Password : "7C1BE78179EA1827A35A6CF0AC1832CFB1E2",
+        Username: "wolty.marketing.department@gmail.com",
+        Password: "CCAA472C655E173CF2B7CB3AF3895C3F7C2A",
         To : 'wolty.marketing.department@gmail.com',
         From : "wolty.marketing.department@gmail.com",
         Subject : email_subject,
